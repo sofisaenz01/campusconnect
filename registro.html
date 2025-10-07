@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear cuenta - Unisabaneta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f6f7fb;
+        }
+
+        .laptop {
+            background-color: white;
+            width: 750px;
+            height: 440px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Encabezado */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 25px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header img {
+            height: 45px;
+        }
+
+        .header-links a {
+            margin-left: 15px;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fondo azul */
+        .blue-background {
+            background-color: #86c7ee;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Formulario */
+        .register-box {
+            background-color: white;
+            padding: 25px 30px;
+            border-radius: 10px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-box h2 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .register-box p {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .input-box {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1.5px solid #000;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .checkbox input {
+            margin-right: 6px;
+        }
+
+        .btn {
+            background-color: #a5d0f3;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #7dbef2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="laptop">
+        <!-- Encabezado -->
+        <div class="header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Unisabaneta_logo.png" alt="Logo Unisabaneta">
+            <div class="header-links">
+                <a href="#">Ayuda</a>
+                <a href="#">Condiciones</a>
+                <a href="#">Privacidad</a>
+            </div>
+        </div>
+
+        <!-- Fondo azul con el formulario -->
+        <div class="blue-background">
+            <div class="register-box">
+                <h2>Crear tu cuenta</h2>
+                <p>Todos los campos son obligatorios.</p>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Nombres y Apellidos">
+                </div>
+
+                <div class="input-box">
+                    <input type="email" placeholder="Correo electrónico">
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Cédula">
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Celular">
+                </div>
+
+                <div class="input-box">
+                    <input type="password" placeholder="Contraseña">
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">Aceptar Términos y Condiciones</label>
+                </div>
+
+                <button class="btn">Crear cuenta</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

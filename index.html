@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect - Unisabaneta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #f6f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .laptop {
+            background-color: white;
+            width: 850px;
+            height: 480px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- Encabezado ---------- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 25px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px;
+            margin-right: 8px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .login {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Contenido ---------- */
+        .content {
+            flex: 1;
+            padding: 20px 40px;
+            background-color: #fff;
+        }
+
+        .sub-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .sub-logo img {
+            height: 35px;
+            margin-right: 10px;
+        }
+
+        .sub-logo h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* ---------- Sección “Quiénes Somos” ---------- */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            background-color: #bce2f6;
+            padding: 6px 12px;
+            border-radius: 5px;
+            width: fit-content;
+            font-size: 16px;
+        }
+
+        .section p {
+            margin-top: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        /* ---------- Sección “Objetivos” ---------- */
+        .objectives {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .objectives .text {
+            background-color: #bce2f6;
+            padding: 10px 15px;
+            border-radius: 10px;
+            flex: 1;
+        }
+
+        .objectives ul {
+            margin-left: 18px;
+            font-size: 14px;
+        }
+
+        .objectives img {
+            width: 260px;
+            border-radius: 8px;
+        }
+
+        /* ---------- Pie con íconos ---------- */
+        footer {
+            border-top: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        .icons {
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .icons span {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="laptop">
+        <!-- Encabezado -->
+        <header>
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Unisabaneta_logo.png" alt="Unisabaneta">
+                <span><strong>Unisabaneta</strong></span>
+            </div>
+
+            <nav>
+                <a href="#">Quienes Somos</a>
+                <a href="#">Objetivos</a>
+                <a href="#"><strong>Beneficios</strong></a>
+            </nav>
+
+            <a href="#" class="login">Inicia Sesión</a>
+        </header>
+
+        <!-- Contenido -->
+        <div class="content">
+            <div class="sub-logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" alt="Campus Connect">
+                <h2>Campus Connect</h2>
+            </div>
+
+            <div class="section">
+                <h3>Quienes Somos</h3>
+                <p>
+                    Campus Connect es una plataforma web y móvil diseñada para estudiantes de ingeniería,
+                    que centraliza noticias, eventos, deportes y recursos académicos específicos de la universidad,
+                    con un enfoque especial en las necesidades y oportunidades del ámbito ingenieril.
+                </p>
+            </div>
+
+            <div class="objectives">
+                <div class="text">
+                    <h3>Objetivos</h3>
+                    <ul>
+                        <li>Centralizar noticias, eventos y recursos de ingeniería.</li>
+                        <li>Facilitar el acceso a software, tutoriales y bibliotecas digitales.</li>
+                        <li>Conectar estudiantes, profesores y empresas del sector.</li>
+                        <li>Promover la participación en ferias y conferencias.</li>
+                        <li>Difundir oportunidades de prácticas y empleos.</li>
+                    </ul>
+                </div>
+
+                <img src="https://unisabaneta.edu.co/wp-content/uploads/2023/05/estudiantes-ingenieria.jpg" alt="Estudiantes">
+            </div>
+        </div>
+
+        <!-- Pie -->
+        <footer>
+            <div class="icons">
+                <span>📘</span>
+                <span>⚙️</span>
+                <span>▶️</span>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
