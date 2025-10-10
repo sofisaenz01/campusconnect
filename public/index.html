@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Connect - Unisabaneta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -146,14 +147,28 @@
         }
 
         .icons {
-            font-size: 20px;
+            font-size: 22px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .icons span {
-            cursor: pointer;
+        .icons a {
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .icons a:hover {
+            color: #0077b5;
+        }
+
+        .icons a.instagram:hover {
+            color: #e4405f;
+        }
+
+        .icons a.youtube:hover {
+            color: #ff0000;
         }
     </style>
 </head>
@@ -173,7 +188,7 @@
                 <a href="#"><strong>Beneficios</strong></a>
             </nav>
 
-            <a href="#" class="login">Inicia Sesión</a>
+            <a href="login.html" class="login">Inicia Sesión</a>
         </header>
 
         <!-- Contenido -->
@@ -211,9 +226,9 @@
         <!-- Pie -->
         <footer>
             <div class="icons">
-                <span>📘</span>
-                <span>⚙️</span>
-                <span>▶️</span>
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
             </div>
         </footer>
     </div>

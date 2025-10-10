@@ -3,38 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Formulario De Registro</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #9cc9e0;
+        }
+
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        header nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .form-container {
+            background-color: white;
+            width: 320px;
+            margin: 60px auto;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .form-container p {
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="number"],
+        .form-container input[type="password"] {
+            width: 90%;
+            padding: 8px;
+            margin: 6px 0;
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+
+        .form-container label {
+            font-size: 12px;
+        }
+
+        .form-container input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #5ca0d3;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #478bb9;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-mod-3">
-                
-            </div>
-            <div class="col-md-6 main">
-                <form action="/sign_up" method="POST">
-                    <h2> Registration Form</h2>
-                    <input type="text" class="box" id="name" name="name" placeholder="Name" required/>
-                    <br>
-                    <input type="text" class="box" id="age" name="age" placeholder="Age" required/>
-                    <br>
-                    <input type="text" class="box" id="email" name="email" placeholder="EmailId" required/>
-                    <br>
-                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" required/>
-                    <br>
-                    <input type="text" class="box" id="gender" name="gender" placeholder="Gender" required/>
-                    <br>
-                    <input type="text" class="box" id="password" name="password" placeholder="Password" required/>
-                    <br>
-                    <input type="submit" value="Submit" id="submit" />
 
-                    </form>
-                </form>
-            </div>
-        </div>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Logo_Unisabaneta.png" alt="Logo Unisabaneta">
+        <nav>
+            <a href="#">Ayuda</a>
+            <a href="#">Condiciones</a>
+            <a href="#">Privacidad</a>
+        </nav>
+    </header>
+
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <p>Todos los campos son obligatorios.</p>
+
+        <form action="/sign_up" method="POST">
+            <input type="text" class="box" id="name" name="name" placeholder="Name" required/>
+            <br>
+            <input type="text" class="box" id="age" name="age" placeholder="Age" required/>
+            <br>
+            <input type="text" class="box" id="email" name="email" placeholder="EmailId" required/>
+            <br>
+            <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" required/>
+            <br>
+            <input type="text" class="box" id="gender" name="gender" placeholder="Gender" required/>
+            <br>
+            <input type="text" class="box" id="password" name="password" placeholder="Password" required/>
+            <br>
+            <label>
+                <input type="checkbox" required>
+                Aceptar Términos y Condiciones
+            </label><br>
+            <button type="button" id="submit" onclick="window.location.href='noticias.html'">Submit</button>
+        </form>
     </div>
-    
+
 </body>
 </html>
