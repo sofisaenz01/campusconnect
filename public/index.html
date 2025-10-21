@@ -14,17 +14,19 @@
         }
 
         body {
-            background-color: #f6f7fb;
+            background: linear-gradient(135deg, #f0f4f867 0%, #e0e8f065 100%); /* Gradiente suave para el fondo */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Cambiado para que se adapte al contenido */
+            padding: 20px; /* Espacio en los bordes */
         }
 
         .laptop {
             background-color: white;
             width: 850px;
-            height: 480px;
+            max-width: 100%; /* Responsivo */
+            height: auto; /* Se ajusta al contenido */
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -48,7 +50,6 @@
 
         .logo img {
             height: 45px;
-            margin-right: 8px;
         }
 
         nav a {
@@ -66,6 +67,9 @@
             color: #000;
             text-decoration: none;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .login:hover {
@@ -98,13 +102,16 @@
         /* ---------- Sección “Quiénes Somos” ---------- */
         .section {
             margin-bottom: 20px;
+            background-color: #bce2f6; /* Fondo azul claro para el rectángulo */
+            padding: 15px; /* Hace el rectángulo más grande */
+            border-radius: 10px; /* Bordes redondeados */
         }
 
         .section h3 {
-            background-color: #bce2f6;
-            padding: 6px 12px;
-            border-radius: 5px;
-            width: fit-content;
+            background-color: transparent; /* Sin fondo en el título */
+            padding: 0;
+            border-radius: 0;
+            width: auto;
             font-size: 16px;
         }
 
@@ -137,13 +144,14 @@
         .objectives img {
             width: 260px;
             border-radius: 8px;
+            object-fit: cover; /* Ajusta la imagen correctamente */
         }
 
         /* ---------- Pie con íconos ---------- */
         footer {
             border-top: 1px solid #ddd;
             text-align: center;
-            padding: 8px;
+            padding: 15px; /* Más espacio para las redes */
         }
 
         .icons {
@@ -170,6 +178,21 @@
         .icons a.youtube:hover {
             color: #ff0000;
         }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .laptop {
+                width: 100%;
+            }
+
+            .objectives {
+                flex-direction: column;
+            }
+
+            .objectives img {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -178,28 +201,27 @@
         <!-- Encabezado -->
         <header>
             <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Unisabaneta_logo.png" alt="Unisabaneta">
-                <span><strong>Unisabaneta</strong></span>
+                <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
             </div>
 
             <nav>
-                <a href="#">Quienes Somos</a>
+                <a href="#">Quiénes Somos</a>
                 <a href="#">Objetivos</a>
                 <a href="#"><strong>Beneficios</strong></a>
             </nav>
 
-            <a href="login.html" class="login">Inicia Sesión</a>
+            <a href="login.html" class="login"><i class="fas fa-user"></i> Inicia Sesión</a>
         </header>
 
         <!-- Contenido -->
         <div class="content">
             <div class="sub-logo">
-                <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" alt="Campus Connect">
+                <img src="campus_connect_icon.png" alt="Campus Connect">
                 <h2>Campus Connect</h2>
             </div>
 
             <div class="section">
-                <h3>Quienes Somos</h3>
+                <h3>Quiénes Somos</h3>
                 <p>
                     Campus Connect es una plataforma web y móvil diseñada para estudiantes de ingeniería,
                     que centraliza noticias, eventos, deportes y recursos académicos específicos de la universidad,
@@ -219,7 +241,7 @@
                     </ul>
                 </div>
 
-                <img src="https://unisabaneta.edu.co/wp-content/uploads/2023/05/estudiantes-ingenieria.jpg" alt="Estudiantes">
+                <img src="estudiantes_graduandose.jpeg" alt="Estudiantes en conferencia">
             </div>
         </div>
 

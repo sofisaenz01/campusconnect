@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario De Registro</title>
+    <title>Formulario de Registro</title>
     <style>
         body {
             margin: 0;
@@ -53,12 +53,23 @@
         .form-container input[type="text"],
         .form-container input[type="email"],
         .form-container input[type="number"],
+        .form-container input[type="tel"],
         .form-container input[type="password"] {
             width: 90%;
             padding: 8px;
             margin: 6px 0;
             border: 1px solid #555;
             border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container select {
+            width: 90%;
+            padding: 8px;
+            margin: 6px 0;
+            border: 1px solid #555;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
         .form-container label {
@@ -69,7 +80,7 @@
             margin-right: 5px;
         }
 
-        .form-container input[type="submit"] {
+        .form-container button[type="submit"] {
             background-color: #5ca0d3;
             color: white;
             border: none;
@@ -80,7 +91,7 @@
             margin-top: 10px;
         }
 
-        .form-container input[type="submit"]:hover {
+        .form-container button[type="submit"]:hover {
             background-color: #478bb9;
         }
     </style>
@@ -88,7 +99,7 @@
 <body>
 
     <header>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Logo_Unisabaneta.png" alt="Logo Unisabaneta">
+        <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
         <nav>
             <a href="#">Ayuda</a>
             <a href="#">Condiciones</a>
@@ -97,27 +108,32 @@
     </header>
 
     <div class="form-container">
-        <h2>Registration Form</h2>
+        <h2>Formulario de Registro</h2>
         <p>Todos los campos son obligatorios.</p>
 
         <form action="/sign_up" method="POST">
-            <input type="text" class="box" id="name" name="name" placeholder="Name" required/>
+            <input type="text" class="box" id="nombre" name="nombre" placeholder="Nombre" required/>
             <br>
-            <input type="text" class="box" id="age" name="age" placeholder="Age" required/>
+            <input type="number" class="box" id="edad" name="edad" placeholder="Edad" required/>
             <br>
-            <input type="text" class="box" id="email" name="email" placeholder="EmailId" required/>
+            <input type="email" class="box" id="correo" name="correo" placeholder="Correo electrónico" required/>
             <br>
-            <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" required/>
+            <input type="tel" class="box" id="telefono" name="telefono" placeholder="Teléfono" required/>
             <br>
-            <input type="text" class="box" id="gender" name="gender" placeholder="Gender" required/>
+            <select class="box" id="genero" name="genero" required>
+                <option value="">Seleccione un género</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+            </select>
             <br>
-            <input type="text" class="box" id="password" name="password" placeholder="Password" required/>
+            <input type="password" class="box" id="contrasena" name="contrasena" placeholder="Contraseña" required/>
             <br>
             <label>
-                <input type="checkbox" required>
+                <input type="checkbox" id="terminos" name="terminos" required>
                 Aceptar Términos y Condiciones
             </label><br>
-            <button type="button" id="submit" onclick="window.location.href='noticias.html'">Submit</button>
+            <button type="submit">Enviar</button>
         </form>
     </div>
 
