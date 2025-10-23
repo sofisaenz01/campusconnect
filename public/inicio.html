@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Connect - Explorar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0d67a5;
+      --primary-light: #e8f4fc;
+      --bg-light: #f8fbff;
+      --text: #2d3748;
+      --text-light: #718096;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius: 20px;
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: #fff;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    .logo i {
+      font-size: 28px;
+      color: var(--primary);
+    }
+
+    .search-container {
+      position: relative;
+      width: 340px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px 48px 12px 16px;
+      border: 2px solid var(--primary);
+      border-radius: 30px;
+      font-size: 15px;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-container input:focus {
+      box-shadow: 0 0 0 4px rgba(13, 103, 165, 0.15);
+    }
+
+    .search-container i {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 17px;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .profile i {
+      width: 38px;
+      height: 38px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      border: 2.5px solid var(--primary);
+      box-shadow: 0 2px 6px rgba(13, 103, 165, 0.2);
+    }
+
+    /* ===== LAYOUT ===== */
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 74px);
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      width: 240px;
+      background: var(--primary-light);
+      padding: 24px 16px;
+      border-right: 1px solid var(--border);
+    }
+
+    .tab-group {
+      display: flex;
+      background: #d0e9f7;
+      border-radius: 30px;
+      padding: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 16px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 25px;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .tab.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .nav-item {
+      display: block;
+      padding: 14px 20px;
+      margin-bottom: 8px;
+      border-radius: 30px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .nav-item:hover {
+      background: rgba(13, 103, 165, 0.1);
+    }
+
+    .nav-item.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      flex: 1;
+      padding: 32px 48px;
+      background: #fff;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .category-card {
+      text-align: center;
+      padding: 16px;
+      background: #f8fbff;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .category-card:hover {
+      background: #e8f4fc;
+      transform: translateY(-4px);
+    }
+
+    .category-icon {
+      width: 70px;
+      height: 70px;
+      background: white;
+      border: 3px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 28px;
+      color: var(--primary);
+      box-shadow: 0 4px 10px rgba(13, 103, 165, 0.15);
+    }
+
+    .category-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .pregrado-item {
+      margin-bottom: 28px;
+    }
+
+    .pregrado-name {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .pregrado-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .social-bar {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: var(--transition);
+    }
+
+    .social-icon:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      header { padding: 14px 24px; }
+      .search-container { width: 280px; }
+      .content { padding: 24px; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        padding: 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .tab-group {
+        margin-bottom: 16px;
+      }
+      header {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .search-container { order: 3; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-project-diagram"></i>
+      <span>Campus Connect</span>
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Buscar">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <a href="perfil.html" class="profile">
+      <span>Mi perfil</span>
+      <i class="fas fa-user-circle"></i>
+    </a>
+  </header>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="tab-group">
+        <div class="tab">Inicio</div>
+        <div class="tab active">Explorar</div>
+      </div>
+
+      <a href="noticias.html" class="nav-item">Noticias</a>
+      <a href="eventos.html" class="nav-item">Eventos</a>
+      <a href="recursos.html" class="nav-item">Recursos</a>
+      <a href="oportunidades.html" class="nav-item active">Oportunidades</a>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <h1 class="page-title">Categorías</h1>
+
+      <div class="categories">
+        <div class="category-card">
+          <div class="category-icon"><i class="fas fa-microchip"></i></div>
+          <div class="category-title">Ingeniería<br>Informática</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fas fa-gavel"></i></div>
+          <div class="category-title">Derecho</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fas fa-globe"></i></div>
+          <div class="category-title">Negocios<br>Internacionales</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fas fa-plane"></i></div>
+          <div class="category-title">Ingeniería<br>Aeronáutica</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fas fa-briefcase"></i></div>
+          <div class="category-title">Administración de<br>Empresas</div>
+        </div>
+        <div class="category-card">
+          <div class="category-icon"><i class="fas fa-calculator"></i></div>
+          <div class="category-title">Contaduría</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Conoce más Acerca tu Pregrado</h2>
+
+      <div class="pregrado-item">
+        <div class="pregrado-name">Ingeniería Informática</div>
+        <p class="pregrado-desc">
+          Los ingenieros informáticos son los arquitectos del mundo digital. Son los encargados de diseñar, desarrollar y mantener el software y las infraestructuras tecnológicas que usamos a diario. Desde la creación de videojuegos hasta la seguridad de la banca en línea, su trabajo es fundamental. A diferencia de lo que muchos creen, no solo se dedican a reparar computadores: su campo es mucho más amplio y creativo, y el futuro tecnológico de la sociedad.
+        </p>
+      </div>
+
+      <div class="pregrado-item">
+        <div class="pregrado-name">Ingeniería Aeronáutica</div>
+        <p class="pregrado-desc">
+          El pregrado en Ingeniería Aeronáutica suele durar entre 4 y 5 años y su plan de estudios incluye materias como la aerodinámica, la propulsión, la ingeniería de materiales, la aviónica, y la mecánica de vuelo.
+        </p>
+      </div>
+
+      <!-- NUEVOS PREGRADOS -->
+      <div class="pregrado-item">
+        <div class="pregrado-name">Derecho</div>
+        <p class="pregrado-desc">
+          El campo laboral para un egresado de Derecho es muy amplio y diverso. Los profesionales pueden desempeñarse como abogados litigantes, representando a clientes en juicios y procedimientos legales, como asesores jurídicos en empresas, gobiernos o en el sector público, trabajando en el poder judicial, la fiscalía o la defensoría, como notarios, mediadores o conciliadores, en el sector de la propiedad intelectual, la academia y la investigación jurídica. Las habilidades adquiridas durante la carrera, como el análisis crítico, la capacidad de análisis y síntesis, una excelente comunicación oral y escrita y el pensamiento ético.
+        </p>
+      </div>
+
+      <div class="pregrado-item">
+        <div class="pregrado-name">Contaduría</div>
+        <p class="pregrado-desc">
+          El campo laboral del contador es muy amplio y se extiende a prácticamente todos los sectores económicos. Un egresado puede trabajar en el sector privado como contador general, auditor interno o externo, asesor fiscal, gerente financiero, en el sector público.
+        </p>
+      </div>
+
+      <div class="pregrado-item">
+        <div class="pregrado-name">Negocios Internacionales</div>
+        <p class="pregrado-desc">
+          El campo laboral para un egresado de Negocios Internacionales es amplio y dinámico. Un profesional en esta área puede trabajar en empresas multinacionales, bancos de inversión, consultoras especializadas en comercio internacional y organismos gubernamentales.
+        </p>
+      </div>
+
+      <div class="pregrado-item">
+        <div class="pregrado-name">Administración de Empresas</div>
+        <p class="pregrado-desc">
+          El campo laboral para un administrador de empresas es sumamente amplio, ya que sus habilidades son aplicables en cualquier tipo de organización, sea pública o privada, con o sin fines de lucro.
+        </p>
+      </div>
+
+      <div class="social-bar">
+        <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+        <div class="social-icon"><i class="fab fa-instagram"></i></div>
+        <div class="social-icon"><i class="fab fa-youtube"></i></div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

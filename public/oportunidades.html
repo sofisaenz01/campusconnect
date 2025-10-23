@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oportunidades - Campus Connect</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0d67a5;
+      --primary-light: #e8f4fc;
+      --bg-light: #f8fbff;
+      --text: #2d3748;
+      --text-light: #718096;
+      --border: #e2e8f0;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius: 20px;
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: #fff;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    .logo i {
+      font-size: 28px;
+      color: var(--primary);
+    }
+
+    .search-container {
+      position: relative;
+      width: 340px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px 48px 12px 16px;
+      border: 2px solid var(--primary);
+      border-radius: 30px;
+      font-size: 15px;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-container input:focus {
+      box-shadow: 0 0 0 4px rgba(13, 103, 165, 0.15);
+    }
+
+    .search-container i {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 17px;
+    }
+
+    .profile-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .profile-link i {
+      width: 38px;
+      height: 38px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      border: 2.5px solid var(--primary);
+      box-shadow: 0 2px 6px rgba(13, 103, 165, 0.2);
+    }
+
+    /* ===== LAYOUT ===== */
+    .layout {
+      display: flex;
+      min-height: calc(100vh - 74px);
+    }
+
+    /* ===== SIDEBAR - VERTICAL ===== */
+    .sidebar {
+      width: 240px;
+      background: var(--primary-light);
+      padding: 32px 16px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      border-radius: 30px;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .nav-item i {
+      font-size: 18px;
+      width: 20px;
+      text-align: center;
+    }
+
+    .nav-item:hover {
+      background: rgba(13, 103, 165, 0.1);
+    }
+
+    .nav-item.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .nav-item.active i {
+      color: white;
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      flex: 1;
+      padding: 32px 48px;
+      background: #fff;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid var(--primary);
+      display: inline-block;
+    }
+
+    .opportunity-card {
+      background: var(--primary-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .opportunity-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(13, 103, 165, 0.15);
+      cursor: pointer;
+    }
+
+    .opportunity-icon {
+      width: 70px;
+      height: 70px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--primary);
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(13, 103, 165, 0.1);
+    }
+
+    .opportunity-content {
+      flex: 1;
+    }
+
+    .opportunity-title {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .opportunity-desc {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .opportunity-quote {
+      font-style: italic;
+      color: var(--text-light);
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    .opportunity-img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      header { padding: 14px 24px; }
+      .search-container { width: 280px; }
+      .content { padding: 24px; }
+    }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        padding: 16px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 8px;
+      }
+      .nav-item {
+        white-space: nowrap;
+        min-width: 140px;
+      }
+      header { flex-wrap: wrap; gap: 12px; }
+      .search-container { order: 3; width: 100%; }
+      .opportunity-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .opportunity-icon {
+        margin: 0 auto 16px;
+      }
+      .opportunity-img {
+        max-width: 180px;
+        margin: 16px auto 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-project-diagram"></i>
+      <span>Campus Connect</span>
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Buscar">
+      <i class="fas fa-search"></i>
+    </div>
+
+    <a href="perfil.html" class="profile-link">
+      <span>Mi perfil</span>
+      <i class="fas fa-user-circle"></i>
+    </a>
+  </header>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+    <!-- SIDEBAR - VERTICAL -->
+    <nav class="sidebar">
+      <a href="inicio.html" class="nav-item">
+        <i class="fas fa-home"></i> Inicio
+      </a>
+      <a href="noticias.html" class="nav-item">
+        <i class="fas fa-newspaper"></i> Noticias
+      </a>
+      <a href="eventos.html" class="nav-item">
+        <i class="fas fa-calendar-alt"></i> Eventos
+      </a>
+      <a href="recursos.html" class="nav-item">
+        <i class="fas fa-book"></i> Recursos
+      </a>
+      <a href="oportunidades.html" class="nav-item active">
+        <i class="fas fa-briefcase"></i> Oportunidades
+      </a>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <h1 class="page-title">Oportunidades</h1>
+      <p class="page-subtitle" style="color: var(--text-light); font-size: 16px; margin-bottom: 32px;">
+        Conoce de nuevas Oportunidades Laborales
+      </p>
+
+      <!-- OPORTUNIDAD 1 - CLICKABLE -->
+      <a href="https://www.linkedin.com/jobs" class="opportunity-card">
+        <div class="opportunity-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="opportunity-content">
+          <div class="opportunity-title">Explora Oportunidades Laborales Globales</div>
+          <p class="opportunity-desc">
+            “Descubre un mundo de posibilidades profesionales en cualquier campo con una plataforma líder. Crea tu perfil, conecta con empleadores y da el primer paso hacia tu futuro laboral. ¡Tu carrera comienza hoy!”
+          </p>
+          <img src="https://via.placeholder.com/200x120?text=Plataforma+Laboral" alt="Plataforma Laboral" class="opportunity-img">
+        </div>
+      </a>
+
+      <!-- OPORTUNIDAD 2 - CLICKABLE -->
+      <a href="https://www.internshala.com" class="opportunity-card">
+        <div class="opportunity-icon">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <div class="opportunity-content">
+          <div class="opportunity-title">Lanza tu Carrera con Prácticas Profesionales</div>
+          <p class="opportunity-desc">
+            “Gana experiencia valiosa en empresas de todo tipo mientras estudias. Aplica a prácticas que impulsan tus habilidades y te abren puertas en el mundo laboral. Es tu momento de brillar.”
+          </p>
+          <p class="opportunity-quote">
+            “Las prácticas profesionales son el puente entre la universidad y el éxito profesional.”
+          </p>
+          <img src="https://via.placeholder.com/200x120?text=Prácticas+Profesionales" alt="Prácticas Profesionales" class="opportunity-img">
+        </div>
+      </a>
+
+      <!-- OPORTUNIDAD 3 - CLICKABLE -->
+      <a href="https://www.linkedin.com" class="opportunity-card">
+        <div class="opportunity-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <div class="opportunity-content">
+          <div class="opportunity-title">Conecta con tu Futuro Profesional</div>
+          <p class="opportunity-desc">
+            “Encuentra empleos, proyectos y contactos que transformen tu trayectoria. Una red global te espera para ayudarte a alcanzar tus metas, sin importar tu área de estudio. ¡Únete ahora!”
+          </p>
+          <img src="https://via.placeholder.com/200x120?text=Red+Profesional" alt="Red Profesional" class="opportunity-img">
+        </div>
+      </a>
+    </main>
+  </div>
+
+</body>
+</html>

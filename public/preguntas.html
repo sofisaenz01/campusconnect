@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unisabaneta - FAQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #00a0df;
+        }
+
+        .logo img {
+            width: 40px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00a0df;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        .faq-section {
+            margin-bottom: 30px;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00a0df;
+            margin-bottom: 12px;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: #444;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight {
+            background-color: #e6f7ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="https://via.placeholder.com/40x40/00a0df/ffffff?text=U" alt="Unisabaneta Logo">
+                <span>Unisabaneta</span>
+            </div>
+            <nav>
+                <a href="ayuda.html">Ayuda</a>
+                <a href="condiciones.html">Condiciones</a>
+                <a href="privacidad.html">Privacidad</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="faq-section">
+                <h2 class="faq-question">¿Cómo crear una cuenta?</h2>
+                <p class="faq-answer">
+                    Para crear una cuenta en la mayoría de las plataformas, primero debes ir a la página principal. Busca el botón que diga "<span class="highlight">Iniciar sesión</span>" y haz clic en él. Una vez en la nueva página, verás un enlace o un botón que dice "<span class="highlight">Todavía no tienes una cuenta? Regístrate</span>". Haz clic ahí y serás dirigido a un formulario donde deberás ingresar tus datos para completar el registro.
+                </p>
+            </section>
+
+            <section class="faq-section">
+                <h2 class="faq-question">¿Qué requisitos técnicos necesita la página para funcionar correctamente?</h2>
+                <p class="faq-answer">
+                    Detalla navegadores compatibles, dispositivos o conexión a internet requerida. Detalla navegadores compatibles, como las últimas versiones de Chrome, Firefox, Safari y Edge; sistemas operativos actualizados, dispositivos como computadoras, tablets y smartphones y conexión a internet adecuada.
+                </p>
+            </section>
+
+            <section class="faq-section">
+                <h2 class="faq-question">¿Dónde puedo contactar al soporte?</h2>
+                <p class="faq-answer">
+                    Para contactar al equipo de soporte, ve a la sección de "<span class="highlight">Ayuda</span>" que se encuentra en la parte superior de la página. Una vez allí, desplázate hacia abajo hasta que encuentres la opción de "<span class="highlight">Contactar</span>".
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            &copy; 2025 Unisabaneta. Todos los derechos reservados.
+        </footer>
+    </div>
+</body>
+</html>

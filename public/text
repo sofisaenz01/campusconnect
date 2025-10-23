@@ -38,3 +38,245 @@
     
 </body>
 </html>
+// codigo noticias
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Connect - Noticias</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+    }
+
+    /* ----- BARRA SUPERIOR ----- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      padding: 10px 30px;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .logo span {
+      font-size: 18px;
+      color: #0d67a5;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #0d67a5;
+      border-radius: 20px;
+      padding: 5px 10px;
+      width: 300px;
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    .search-bar input::placeholder {
+      color: #888;
+    }
+
+    .perfil {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .perfil a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .perfil img {
+      width: 25px;
+    }
+
+    /* ----- CONTENEDOR PRINCIPAL ----- */
+    .main-container {
+      display: flex;
+    }
+
+    /* ----- MENÚ LATERAL ----- */
+    .sidebar {
+      background-color: #c9e3f2;
+      width: 200px;
+      height: calc(100vh - 60px);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #9cc9e0;
+    }
+
+    /* ----- CONTENIDO PRINCIPAL ----- */
+    .content {
+      flex: 1;
+      padding: 20px 40px;
+    }
+
+    .content h2 {
+      background-color: #c9e3f2;
+      padding: 10px;
+      border-radius: 6px;
+      width: fit-content;
+      color: #0d67a5;
+    }
+
+    .content h3 {
+      margin-top: 5px;
+      color: #333;
+    }
+
+    .news-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .news-item {
+      text-align: center;
+    }
+
+    .news-item img {
+      width: 100%;
+      border-radius: 8px;
+      height: 130px;
+      object-fit: cover;
+    }
+
+    .news-item a {
+      display: block;
+      margin-top: 6px;
+      font-size: 14px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .news-item a:hover {
+      color: #0d67a5;
+      text-decoration: underline;
+    }
+
+    .news-item p {
+      font-size: 12px;
+      color: #555;
+    }
+
+    /* ----- ICONOS FINALES ----- */
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .icons img {
+      width: 25px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Logo_Unisabaneta.png" alt="Unisabaneta">
+      <span>Campus Connect</span>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar">
+    </div>
+
+    <div class="perfil">
+      <a href="#">Mi perfil</a>
+      <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="Perfil">
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="sidebar">
+      <a href="#" class="active">Inicio</a>
+      <a href="#">Noticias</a>
+      <a href="#">Eventos</a>
+      <a href="#">Recursos</a>
+      <a href="#">Oportunidades</a>
+    </div>
+
+    <div class="content">
+      <h2>Noticias</h2>
+      <h3>Últimas Noticias</h3>
+
+      <div class="news-section">
+        <div class="news-item">
+          <img src="https://cdn.pixabay.com/photo/2016/11/29/05/12/meeting-1867108_1280.jpg" alt="Noticia 1">
+          <a href="#">¡No te pierdas Feria Campus U 2024! inscríbete ya!</a>
+        </div>
+        <div class="news-item">
+          <img src="https://cdn.pixabay.com/photo/2018/02/13/10/24/people-3146451_1280.jpg" alt="Noticia 2">
+          <a href="#">¿Cuándo es el Día de Amor y Amistad en Colombia?</a>
+        </div>
+        <div class="news-item">
+          <img src="https://cdn.pixabay.com/photo/2018/01/19/07/55/conference-3094364_1280.jpg" alt="Noticia 3">
+          <a href="#">Conceptos básicos sobre la prevención de la infección por el VIH</a>
+        </div>
+        <div class="news-item">
+          <img src="https://cdn.pixabay.com/photo/2015/05/26/09/05/man-784145_1280.jpg" alt="Noticia 4">
+          <a href="#">Expertos comparten ideas para proteger datos en un mundo digital</a>
+        </div>
+        <div class="news-item">
+          <img src="https://cdn.pixabay.com/photo/2018/01/19/07/55/ai-3094346_1280.jpg" alt="Noticia 5">
+          <a href="#">Descubre cómo la IA está transformando el mundo laboral</a>
+        </div>
+      </div>
+
+      <div class="icons">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384005.png" alt="Facebook">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384017.png" alt="Instagram">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384014.png" alt="YouTube">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
