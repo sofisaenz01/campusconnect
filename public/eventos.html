@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eventos - Campus Connect</title>
-  <linklink rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -32,7 +32,6 @@
       line-height: 1.6;
     }
 
-    /* ===== HEADER ===== */
     header {
       background: #fff;
       padding: 16px 40px;
@@ -109,13 +108,11 @@
       box-shadow: 0 2px 6px rgba(13, 103, 165, 0.2);
     }
 
-    /* ===== LAYOUT ===== */
     .layout {
       display: flex;
       min-height: calc(100vh - 74px);
     }
 
-    /* ===== SIDEBAR - VERTICAL ===== */
     .sidebar {
       width: 240px;
       background: var(--primary-light);
@@ -147,6 +144,7 @@
 
     .nav-item:hover {
       background: rgba(13, 103, 165, 0.1);
+      color: var(--primary);
     }
 
     .nav-item.active {
@@ -158,7 +156,6 @@
       color: white;
     }
 
-    /* ===== CONTENT ===== */
     .content {
       flex: 1;
       padding: 32px 48px;
@@ -203,17 +200,23 @@
     }
 
     .event-icon {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       background: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      color: var(--primary);
       flex-shrink: 0;
       box-shadow: 0 2px 8px rgba(13, 103, 165, 0.15);
+      overflow: hidden;
+      border: 3px solid var(--primary);
+    }
+
+    .event-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .event-content {
@@ -238,6 +241,7 @@
       color: #d32f2f;
       font-weight: 600;
       margin-top: 8px;
+      display: inline-block;
     }
 
     .event-badge {
@@ -263,7 +267,22 @@
       font-size: 16px;
     }
 
-    /* ===== RESPONSIVE ===== */
+    .event-contact {
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: white;
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+      display: block;
+    }
+
+    .event-contact i {
+      margin-right: 8px;
+    }
+
     @media (max-width: 992px) {
       header { padding: 14px 24px; }
       .search-container { width: 280px; }
@@ -299,7 +318,6 @@
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="logo">
       <i class="fas fa-project-diagram"></i>
@@ -317,9 +335,7 @@
     </a>
   </header>
 
-  <!-- LAYOUT -->
   <div class="layout">
-    <!-- SIDEBAR - VERTICAL -->
     <nav class="sidebar">
       <a href="inicio.html" class="nav-item">
         <i class="fas fa-home"></i> Inicio
@@ -333,87 +349,100 @@
       <a href="recursos.html" class="nav-item">
         <i class="fas fa-book"></i> Recursos
       </a>
-      <a href="#" class="nav-item">
+      <a href="oportunidades.html" class="nav-item">
         <i class="fas fa-briefcase"></i> Oportunidades
       </a>
     </nav>
 
-    <!-- CONTENT -->
     <main class="content">
       <h1 class="page-title">Próximos Eventos</h1>
 
-      <!-- EVENTO 1: Ping Pong -->
       <div class="section">
         <h2 class="section-title">Inicia el nuevo torneo de ping pong</h2>
         <div class="event-card">
           <div class="event-icon">
-            <i class="fas fa-table-tennis"></i>
+            <img src="https://images.pexels.com/photos/976873/pexels-photo-976873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ping Pong">
           </div>
           <div class="event-content">
             <div class="event-title">Torneo de Ping Pong</div>
             <p class="event-desc">
               ¡Te invitamos a participar en una competencia llena de adrenalina y diversión que se llevará a cabo en el Auditorio principal! Este es tu momento para demostrar tus habilidades, enfrentarte a tus compañeros y coronarte como el campeón indiscutible. No importa si eres un experto o si solo juegas por diversión, ¡te esperamos!
             </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- EVENTO 2: Pruebas de VIH -->
-      <div class="section">
-        <h2 class="section-title">Pruebas de VIH sida</h2>
-        <div class="event-card">
-          <div class="event-icon">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <div class="event-content">
-            <div class="event-title">Pruebas de VIH</div>
-            <p class="event-desc">
-              “Tu salud es lo más importante. Te invitamos a realizarte la prueba de VIH/SIDA en nuestro campus. Un procedimiento rápido y confidencial. La prueba está disponible para todo el mundo y se encuentra en la plaza cerca al edificio de CAEQUINOS.”
-            </p>
-            <div class="event-badge hiv">
-              <i class="fas fa-shield-virus"></i>
-              Confidencial
+            <div class="event-contact">
+              <i class="fas fa-info-circle"></i>
+              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
             </div>
           </div>
         </div>
       </div>
 
-      <!-- EVENTO 3: Festival Cultural -->
       <div class="section">
-        <h2 class="section-title">Festival Cultural Interuniversitario</h2>
+        <h2 class="section-title">Pruebas de VIH sida</h2>
         <div class="event-card">
           <div class="event-icon">
-            <i class="fas fa-globe-americas"></i>
+            <img src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Salud">
           </div>
           <div class="event-content">
-            <div class="event-title">Festival Cultural Interuniversitario</div>
+            <div class="event-title">Pruebas de VIH</div>
             <p class="event-desc">
-              “Vive la diversidad con vibrantes presentaciones de música y danza de diversas culturas, acompañadas de deliciosa comida típica preparada por estudiantes. Explora talleres y stands interactivos que resaltan tradiciones globales. ¡Todos son bienvenidos a disfrutar y compartir de este gran festival!”
+              "Tu salud es lo más importante. Te invitamos a realizarte la prueba de VIH/SIDA en nuestro campus. Un procedimiento rápido y confidencial. La prueba está disponible para todo el mundo y se encuentra en la plaza cerca al edificio de CAEQUINOS."
             </p>
+            <div class="event-badge hiv">
+              <i class="fas fa-shield-virus"></i>
+              Confidencial
+            </div>
+            <div class="event-contact">
+              <i class="fas fa-info-circle"></i>
+              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- EVENTO 4: Torneo Relámpago -->
+      <div class="section">
+        <h2 class="section-title">Festival Cultural Interuniversitario</h2>
+        <div class="event-card">
+          <div class="event-icon">
+            <img src="https://images.pexels.com/photos/1387037/pexels-photo-1387037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Festival Cultural">
+          </div>
+          <div class="event-content">
+            <div class="event-title">Festival Cultural Interuniversitario</div>
+            <p class="event-desc">
+              "Vive la diversidad con vibrantes presentaciones de música y danza de diversas culturas, acompañadas de deliciosa comida típica preparada por estudiantes. Explora talleres y stands interactivos que resaltan tradiciones globales. ¡Todos son bienvenidos a disfrutar y compartir de este gran festival!"
+            </p>
+            <div class="event-contact">
+              <i class="fas fa-info-circle"></i>
+              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="section">
         <h2 class="section-title">Torneo Relámpago de Voleibol y Fútbol</h2>
         <div class="event-card">
           <div class="event-icon">
-            <i class="fas fa-futbol"></i>
+            <img src="https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Deportes">
           </div>
           <div class="event-content">
             <div class="event-title">Torneo Relámpago de Voleibol y Fútbol</div>
             <p class="event-desc">
-              “Disfruta de un día lleno de competencia y diversión con el Torneo Relámpago de Voleibol y Fútbol, exclusivo para estudiantes. Participa en partidos intensos, forma tu equipo y vive la emoción del deporte en el campus. Habrá premios para los ganadores y un ambiente festivo para todos. ¡Únete el 28 de agosto de 2025 a partir de las 9:00 AM!"
+              "Disfruta de un día lleno de competencia y diversión con el Torneo Relámpago de Voleibol y Fútbol, exclusivo para estudiantes. Participa en partidos intensos, forma tu equipo y vive la emoción del deporte en el campus. Habrá premios para los ganadores y un ambiente festivo para todos. ¡Únete el 28 de agosto de 2025 a partir de las 9:00 AM!"
             </p>
             <div class="event-date">
               28 de agosto de 2025 - 9:00 AM
+            </div>
+            <div class="event-contact">
+              <i class="fas fa-info-circle"></i>
+              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
             </div>
           </div>
         </div>
       </div>
     </main>
   </div>
+
+<script src="search.js"></script>
 
 </body>
 </html>

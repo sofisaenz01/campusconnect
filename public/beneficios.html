@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficios - Campus Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f4f867 0%, #e0e8f065 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .laptop {
+            background-color: white;
+            width: 850px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- Encabezado ---------- */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 25px;
+            border-bottom: 1px solid #ddd;
+            background-color: #ffffff;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transform: scaleX(1.3);
+            transform-origin: left center;
+        }
+
+        nav {
+            background-color: #e8e8e8;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .login {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .login:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Contenido ---------- */
+        .content {
+            flex: 1;
+            padding: 20px 40px;
+            background-color: #fff;
+        }
+
+        .sub-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .sub-logo img {
+            height: 35px;
+            margin-right: 10px;
+        }
+
+        .sub-logo h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* ---------- Sección Beneficios ---------- */
+        .benefits-section {
+            background-color: #d9e9f2;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .benefits-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .benefit-item {
+            margin-bottom: 15px;
+        }
+
+        .benefit-item strong {
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .benefit-item p {
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: justify;
+            margin: 0;
+        }
+
+        /* ---------- Imagen ---------- */
+        .image-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .image-section img {
+            width: 100%;
+            max-width: 770px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* ---------- Pie con íconos ---------- */
+        footer {
+            border-top: 1px solid #ddd;
+            text-align: center;
+            padding: 15px;
+            background-color: #ffffff;
+        }
+
+        .icons {
+            font-size: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .icons a {
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .icons a:hover {
+            color: #0077b5;
+        }
+
+        .icons a.instagram:hover {
+            color: #e4405f;
+        }
+
+        .icons a.youtube:hover {
+            color: #ff0000;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .laptop {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="laptop">
+        <!-- Encabezado -->
+        <header>
+            <div class="logo">
+                <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
+            </div>
+
+            <nav>
+                <a href="index.html">Quiénes Somos</a>
+                <a href="index.html">Objetivos</a>
+                <a href="beneficios.html"><strong>Beneficios</strong></a>
+            </nav>
+
+            <a href="login.html" class="login"><i class="fas fa-user"></i> Inicia Sesión</a>
+        </header>
+
+        <!-- Contenido -->
+        <div class="content">
+            <div class="sub-logo">
+                <img src="campus_connect_icon.png" alt="Campus Connect">
+                <h2>Campus Connect</h2>
+            </div>
+
+            <div class="benefits-section">
+                <h3>Beneficios</h3>
+                
+                <div class="benefit-item">
+                    <strong>Becas y apoyo financiero:</strong>
+                    <p>Ofrecemos programas de becas y financiamiento para apoyar tu formación, asegurando que el talento no se detenga por limitaciones económicas.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <strong>Formación en Ingeniería Informática:</strong>
+                    <p>Adquiere habilidades en programación, diseño de sistemas, machine learning y desarrollo web, preparándote para un mercado laboral competitivo.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <strong>Oportunidades de Investigación:</strong>
+                    <p>Participa en proyectos de investigación de vanguardia, especialmente en áreas como la inteligencia artificial, ciberseguridad y desarrollo de software.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <strong>Educación de Calidad:</strong>
+                    <p>Nuestra universidad cuenta con un plan de estudios acreditado y profesores altamente calificados, asegurando una formación académica de excelencia.</p>
+                </div>
+            </div>
+
+            <div class="image-section">
+                <img src="unisabaneta.jpg" alt="Universidad Unisabaneta">
+            </div>
+        </div>
+
+        <!-- Pie -->
+        <footer>
+            <div class="icons">
+                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+
+<script src="search.js"></script>
+
+</body>
+</html>

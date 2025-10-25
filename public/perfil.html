@@ -246,17 +246,17 @@
         Bienvenido a Tu Perfil
       </div>
 
-      <form>
+      <form id="editForm">
         <div class="form-group">
           <label class="form-label" for="nombre">
             Nombre completo <span class="required">[Editable]</span>
           </label>
-          <input type="text" id="nombre" class="form-input" value="Juan Pérez" required>
+          <input type="text" id="nombre" class="form-input" required>
         </div>
 
         <div class="form-group">
           <label class="form-label" for="email">Correo electrónico</label>
-          <input type="email" id="email" class="form-input" value="ejemplo@dominio.com" readonly>
+          <input type="email" id="email" class="form-input" readonly>
           <p class="form-note">Este campo no se puede modificar.</p>
         </div>
 
@@ -264,7 +264,13 @@
           <label class="form-label" for="telefono">
             Número de teléfono <span class="optional">[Opcional]</span>
           </label>
-          <input type="tel" id="telefono" class="form-input" placeholder="+57 300 123 4567">
+          <div style="display: flex; gap: 10px;">
+            <select id="codigoPais" class="form-select" style="width: 120px;">
+              <option value="">Código</option>
+            </select>
+            <input type="tel" id="numeroTelefono" class="form-input" placeholder="Número local">
+          </div>
+          <input type="hidden" id="telefono" name="telefono">
         </div>
 
         <div class="form-group">
@@ -280,11 +286,6 @@
           </label>
           <select id="pais" class="form-select">
             <option value="">Seleccionar país</option>
-            <option value="CO">Colombia</option>
-            <option value="MX">México</option>
-            <option value="AR">Argentina</option>
-            <option value="ES">España</option>
-            <option value="PE">Perú</option>
           </select>
         </div>
 
@@ -298,6 +299,186 @@
       </form>
     </div>
   </main>
+
+  <script>
+    // Objeto con países y códigos de teléfono
+    const paises = {
+      'Afganistán': '+93', 'Albania': '+355', 'Alemania': '+49', 'Andorra': '+376', 'Angola': '+244',
+      'Anguila': '+1264', 'Antártida': '+672', 'Antigua y Barbuda': '+1268', 'Arabia Saudita': '+966',
+      'Argelia': '+213', 'Argentina': '+54', 'Armenia': '+374', 'Aruba': '+297', 'Australia': '+61',
+      'Austria': '+43', 'Azerbaiyán': '+994', 'Bahamas': '+1242', 'Bahréin': '+973', 'Bangladés': '+880',
+      'Barbados': '+1246', 'Bélgica': '+32', 'Belice': '+501', 'Benín': '+229', 'Bermudas': '+1441',
+      'Bielorrusia': '+375', 'Birmania': '+95', 'Bolivia': '+591', 'Bonaire, San Eustaquio y Saba': '+599',
+      'Bosnia y Herzegovina': '+387', 'Botsuana': '+267', 'Brasil': '+55', 'Brunéi': '+673',
+      'Bulgaria': '+359', 'Burkina Faso': '+226', 'Burundi': '+257', 'Bután': '+975', 'Cabo Verde': '+238',
+      'Camboya': '+855', 'Camerún': '+237', 'Canadá': '+1', 'Catar': '+974', 'Chad': '+235',
+      'Chile': '+56', 'China': '+86', 'Chipre': '+357', 'Colombia': '+57', 'Comoras': '+269',
+      'Congo': '+242', 'Congo Democrático': '+243', 'Corea del Norte': '+850', 'Corea del Sur': '+82',
+      'Costa Rica': '+506', 'Costa de Marfil': '+225', 'Croacia': '+385', 'Cuba': '+53', 'Curazao': '+599',
+      'Dinamarca': '+45', 'Dominica': '+1767', 'Ecuador': '+593', 'Egipto': '+20', 'El Salvador': '+503',
+      'Emiratos Árabes Unidos': '+971', 'Eritrea': '+291', 'Eslovaquia': '+421', 'Eslovenia': '+386',
+      'España': '+34', 'Estados Unidos': '+1', 'Estonia': '+372', 'Esuatini': '+268', 'Etiopía': '+251',
+      'Filipinas': '+63', 'Finlandia': '+358', 'Fiyi': '+679', 'Francia': '+33', 'Gabón': '+241',
+      'Gambia': '+220', 'Georgia': '+995', 'Ghana': '+233', 'Granada': '+1473', 'Grecia': '+30',
+      'Groenlandia': '+299', 'Guam': '+1671', 'Guatemala': '+502', 'Guayana Francesa': '+594',
+      'Guernesey': '+44', 'Guinea': '+224', 'Guinea Ecuatorial': '+240', 'Guinea-Bisáu': '+245',
+      'Guyana': '+592', 'Haití': '+509', 'Honduras': '+504', 'Hong Kong': '+852', 'Hungría': '+36',
+      'India': '+91', 'Indonesia': '+62', 'Irak': '+964', 'Irán': '+98', 'Irlanda': '+353',
+      'Isla Bouvet': '+47', 'Isla de Man': '+44', 'Isla de Pascua': '+56', 'Isla de la Reunión': '+262',
+      'Isla de Navidad': '+61', 'Isla Heard y McDonald': '+672', 'Islandia': '+354', 'Islas Caimán': '+1345',
+      'Islas Cook': '+682', 'Islas Feroe': '+298', 'Islas Malvinas': '+500', 'Islas Salomón': '+677',
+      'Islas Turcas y Caicos': '+1649', 'Islas Vírgenes Británicas': '+1284', 'Islas Vírgenes de EE.UU.': '+1340',
+      'Israel': '+972', 'Italia': '+39', 'Jamaica': '+1876', 'Japón': '+81', 'Jersey': '+44',
+      'Jordania': '+962', 'Kazajistán': '+7', 'Kenia': '+254', 'Kirguistán': '+996', 'Kiribati': '+686',
+      'Kuwait': '+965', 'Laos': '+856', 'Lesoto': '+266', 'Letonia': '+371', 'Líbano': '+961',
+      'Liberia': '+231', 'Libia': '+218', 'Liechtenstein': '+423', 'Lituania': '+370', 'Luxemburgo': '+352',
+      'Macao': '+853', 'Macedonia del Norte': '+389', 'Madagascar': '+261', 'Malasia': '+60', 'Malaui': '+265',
+      'Maldivas': '+960', 'Malí': '+223', 'Malta': '+356', 'Marruecos': '+212', 'Marshall': '+692',
+      'Martinica': '+596', 'Mauricio': '+230', 'Mauritania': '+222', 'Mayotte': '+262', 'México': '+52',
+      'Micronesia': '+691', 'Moldavia': '+373', 'Mónaco': '+377', 'Mongolia': '+976', 'Montenegro': '+382',
+      'Montserrat': '+1664', 'Mozambique': '+258', 'Myanmar': '+95', 'Namibia': '+264', 'Nauru': '+674',
+      'Nepal': '+977', 'Nicaragua': '+505', 'Níger': '+227', 'Nigeria': '+234', 'Niue': '+683',
+      'Norfolk': '+672', 'Noruega': '+47', 'Nueva Caledonia': '+687', 'Nueva Zelanda': '+64', 'Omán': '+968',
+      'Países Bajos': '+31', 'Pakistán': '+92', 'Palaos': '+680', 'Panamá': '+507', 'Papúa Nueva Guinea': '+675',
+      'Paraguay': '+595', 'Perú': '+51', 'Pitcairn': '+64', 'Polinesia Francesa': '+689', 'Polonia': '+48',
+      'Portugal': '+351', 'Puerto Rico': '+1', 'Reino Unido': '+44', 'República Centroafricana': '+236',
+      'República Checa': '+420', 'República Dominicana': '+1', 'República Eslovaca': '+421', 'Ruanda': '+250',
+      'Rumanía': '+40', 'Rusia': '+7', 'Samoa': '+685', 'Samoa Americana': '+1684', 'San Cristóbal y Nieves': '+1869',
+      'San Marino': '+378', 'San Pedro y Miquelón': '+508', 'San Vicente y las Granadinas': '+1784', 'Santa Elena': '+290',
+      'Santa Lucía': '+1758', 'Santa Sede': '+39', 'Santo Tomé y Príncipe': '+239', 'Senegal': '+221', 'Serbia': '+381',
+      'Seychelles': '+248', 'Sierra Leona': '+232', 'Singapur': '+65', 'Siria': '+963', 'Somalia': '+252',
+      'Sri Lanka': '+94', 'Sudáfrica': '+27', 'Sudán': '+249', 'Sudán del Sur': '+211', 'Suecia': '+46',
+      'Suiza': '+41', 'Surinam': '+597', 'Tailandia': '+66', 'Taiwán': '+886', 'Tayikistán': '+992',
+      'Tanzania': '+255', 'Togo': '+228', 'Tokelau': '+690', 'Tonga': '+676', 'Trinidad y Tobago': '+1868',
+      'Túnez': '+216', 'Turkmenistán': '+993', 'Turquía': '+90', 'Tuvalu': '+688', 'Ucrania': '+380',
+      'Uganda': '+256', 'Uruguay': '+598', 'Uzbekistán': '+998', 'Vanuatu': '+678', 'Venezuela': '+58',
+      'Vietnam': '+84', 'Wallis y Futuna': '+681', 'Yemen': '+967', 'Yibuti': '+253', 'Zambia': '+260',
+      'Zimbabue': '+263'
+    };
+
+    function inicializarPaisesYTelefonos() {
+      const paisSelect = document.getElementById('pais');
+      const codigoPaisSelect = document.getElementById('codigoPais');
+      const numeroTelefonoInput = document.getElementById('numeroTelefono');
+      const telefonoHidden = document.getElementById('telefono');
+
+      // Poblar select de países y códigos
+      Object.entries(paises).forEach(([pais, codigo]) => {
+        const optionPais = document.createElement('option');
+        optionPais.value = pais;
+        optionPais.textContent = pais;
+        paisSelect.appendChild(optionPais);
+
+        const optionCodigo = document.createElement('option');
+        optionCodigo.value = codigo;
+        optionCodigo.textContent = codigo;
+        codigoPaisSelect.appendChild(optionCodigo);
+      });
+
+      // Sincronizar país y código
+      paisSelect.addEventListener('change', () => {
+        const codigo = paises[paisSelect.value] || '';
+        codigoPaisSelect.value = codigo;
+        actualizarTelefono();
+      });
+
+      // Actualizar teléfono al cambiar código o número
+      [codigoPaisSelect, numeroTelefonoInput].forEach(element => {
+        element.addEventListener('change', actualizarTelefono);
+        element.addEventListener('input', actualizarTelefono);
+      });
+
+      function actualizarTelefono() {
+        const codigo = codigoPaisSelect.value;
+        const numero = numeroTelefonoInput.value.trim();
+        telefonoHidden.value = codigo && numero ? `${codigo} ${numero}` : '';
+      }
+    }
+
+    async function cargarPerfil() {
+      try {
+        const response = await fetch('/api/perfil', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include'
+        });
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            window.location.href = 'login.html';
+          }
+          return; // Salir sin mostrar alert si falla
+        }
+
+        const data = await response.json();
+        document.getElementById('nombre').value = data.nombre || '';
+        document.getElementById('email').value = data.correo || '';
+        document.getElementById('telefono').value = data.telefono || '';
+        document.getElementById('nacimiento').value = data.fechaNacimiento ? data.fechaNacimiento.split('T')[0] : '';
+        document.getElementById('pais').value = data.pais || '';
+
+        // Inicializar teléfono desde datos cargados
+        if (data.telefono) {
+          const [codigo, numero] = data.telefono.split(' ');
+          if (codigo && paises[Object.keys(paises).find(p => paises[p] === codigo)]) {
+            document.getElementById('pais').value = Object.keys(paises).find(p => paises[p] === codigo);
+            document.getElementById('codigoPais').value = codigo;
+            document.getElementById('numeroTelefono').value = numero || '';
+          } else {
+            document.getElementById('numeroTelefono').value = data.telefono;
+          }
+        }
+        actualizarTelefono();
+      } catch (error) {
+        console.error('Error al cargar perfil:', error);
+        // No mostrar alert, solo loggear el error
+      }
+    }
+
+    async function guardarCambios() {
+      const nuevoNombre = document.getElementById('nombre').value;
+      const nuevoTelefono = document.getElementById('telefono').value;
+      const nuevaFechaNacimiento = document.getElementById('nacimiento').value;
+      const nuevoPais = document.getElementById('pais').value;
+
+      try {
+        const response = await fetch('/api/perfil', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            nombre: nuevoNombre,
+            telefono: nuevoTelefono,
+            fechaNacimiento: nuevaFechaNacimiento,
+            pais: nuevoPais
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al guardar los cambios');
+        }
+
+        const data = await response.json();
+        alert(data.message || 'Cambios guardados con éxito!');
+        await cargarPerfil(); // Recargar datos sin mostrar errores
+      } catch (error) {
+        console.error('Error al guardar cambios:', error);
+        alert('No se pudieron guardar los cambios. Intenta de nuevo.');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      inicializarPaisesYTelefonos();
+      cargarPerfil();
+    });
+
+    document.getElementById('editForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await guardarCambios();
+    });
+  </script>
+
+<script src="search.js"></script>
 
 </body>
 </html>

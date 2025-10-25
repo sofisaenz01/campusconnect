@@ -115,12 +115,20 @@
       min-height: calc(100vh - 74px);
     }
 
+    /* Smooth scroll para los enlaces internos */
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* ===== SIDEBAR ===== */
     .sidebar {
       width: 240px;
       background: var(--primary-light);
-      padding: 24px 16px;
+      padding: 32px 16px;
       border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .tab-group {
@@ -128,7 +136,7 @@
       background: #d0e9f7;
       border-radius: 30px;
       padding: 6px;
-      margin-bottom: 20px;
+      margin-bottom: 4px;
     }
 
     .tab {
@@ -140,6 +148,15 @@
       border-radius: 25px;
       color: var(--text);
       transition: var(--transition);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tab:hover {
+      background: rgba(13, 103, 165, 0.1);
     }
 
     .tab.active {
@@ -148,9 +165,10 @@
     }
 
     .nav-item {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       padding: 14px 20px;
-      margin-bottom: 8px;
       border-radius: 30px;
       color: var(--text);
       font-weight: 600;
@@ -159,13 +177,15 @@
       transition: var(--transition);
     }
 
-    .nav-item:hover {
-      background: rgba(13, 103, 165, 0.1);
+    .nav-item i {
+      font-size: 18px;
+      width: 20px;
+      text-align: center;
     }
 
-    .nav-item.active {
-      background: var(--primary);
-      color: white;
+    .nav-item:hover {
+      background: rgba(13, 103, 165, 0.1);
+      color: var(--primary);
     }
 
     /* ===== CONTENT ===== */
@@ -195,6 +215,10 @@
       background: #f8fbff;
       border-radius: var(--radius);
       transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .category-card:hover {
@@ -268,6 +292,7 @@
       justify-content: center;
       font-size: 18px;
       transition: var(--transition);
+      cursor: pointer;
     }
 
     .social-icon:hover {
@@ -328,14 +353,22 @@
     <!-- SIDEBAR -->
     <nav class="sidebar">
       <div class="tab-group">
-        <div class="tab">Inicio</div>
+        <div class="tab"><i class="fas fa-home"></i> Inicio</div>
         <div class="tab active">Explorar</div>
       </div>
 
-      <a href="noticias.html" class="nav-item">Noticias</a>
-      <a href="eventos.html" class="nav-item">Eventos</a>
-      <a href="recursos.html" class="nav-item">Recursos</a>
-      <a href="oportunidades.html" class="nav-item active">Oportunidades</a>
+      <a href="noticias.html" class="nav-item">
+        <i class="fas fa-newspaper"></i> Noticias
+      </a>
+      <a href="eventos.html" class="nav-item">
+        <i class="fas fa-calendar-alt"></i> Eventos
+      </a>
+      <a href="recursos.html" class="nav-item">
+        <i class="fas fa-book"></i> Recursos
+      </a>
+      <a href="oportunidades.html" class="nav-item">
+        <i class="fas fa-briefcase"></i> Oportunidades
+      </a>
     </nav>
 
     <!-- CONTENT -->
@@ -343,74 +376,97 @@
       <h1 class="page-title">Categorías</h1>
 
       <div class="categories">
-        <div class="category-card">
+        <a href="#ingenieria-informatica" class="category-card">
           <div class="category-icon"><i class="fas fa-microchip"></i></div>
           <div class="category-title">Ingeniería<br>Informática</div>
-        </div>
-        <div class="category-card">
+        </a>
+        <a href="#derecho" class="category-card">
           <div class="category-icon"><i class="fas fa-gavel"></i></div>
           <div class="category-title">Derecho</div>
-        </div>
-        <div class="category-card">
+        </a>
+        <a href="#negocios-internacionales" class="category-card">
           <div class="category-icon"><i class="fas fa-globe"></i></div>
           <div class="category-title">Negocios<br>Internacionales</div>
-        </div>
-        <div class="category-card">
+        </a>
+        <a href="#ingenieria-aeronautica" class="category-card">
           <div class="category-icon"><i class="fas fa-plane"></i></div>
           <div class="category-title">Ingeniería<br>Aeronáutica</div>
-        </div>
-        <div class="category-card">
+        </a>
+        <a href="#administracion-empresas" class="category-card">
           <div class="category-icon"><i class="fas fa-briefcase"></i></div>
           <div class="category-title">Administración de<br>Empresas</div>
-        </div>
-        <div class="category-card">
+        </a>
+        <a href="#contaduria" class="category-card">
           <div class="category-icon"><i class="fas fa-calculator"></i></div>
           <div class="category-title">Contaduría</div>
-        </div>
+        </a>
       </div>
 
       <h2 class="section-title">Conoce más Acerca tu Pregrado</h2>
 
-      <div class="pregrado-item">
+      <div id="ingenieria-informatica" class="pregrado-item">
         <div class="pregrado-name">Ingeniería Informática</div>
         <p class="pregrado-desc">
-          Los ingenieros informáticos son los arquitectos del mundo digital. Son los encargados de diseñar, desarrollar y mantener el software y las infraestructuras tecnológicas que usamos a diario. Desde la creación de videojuegos hasta la seguridad de la banca en línea, su trabajo es fundamental. A diferencia de lo que muchos creen, no solo se dedican a reparar computadores: su campo es mucho más amplio y creativo, y el futuro tecnológico de la sociedad.
+          Los ingenieros informáticos son los arquitectos del mundo digital. Son los encargados de diseñar, desarrollar y mantener el software y las infraestructuras tecnológicas que usamos a diario. Desde la creación de videojuegos hasta la seguridad de la banca en línea, su trabajo es fundamental. A diferencia de lo que muchos creen, no solo se dedican a reparar computadores: su campo es mucho más amplio y creativo, y el futuro tecnológico de la sociedad depende de ellos.<br><br>
+          
+          El programa tiene una duración de 5 años (10 semestres) y ofrece áreas de especialización en desarrollo de software, inteligencia artificial, ciberseguridad, desarrollo web y móvil, ciencia de datos y computación en la nube. Los estudiantes desarrollan habilidades en programación avanzada, bases de datos, redes, arquitectura de sistemas y gestión de proyectos tecnológicos. Las oportunidades laborales incluyen posiciones como desarrollador full-stack, ingeniero de software, arquitecto de soluciones, especialista en ciberseguridad, científico de datos y consultor tecnológico.<br><br>
+          
+          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2101 | informacion@unisabaneta.edu.co
         </p>
       </div>
 
-      <div class="pregrado-item">
+      <div id="ingenieria-aeronautica" class="pregrado-item">
         <div class="pregrado-name">Ingeniería Aeronáutica</div>
         <p class="pregrado-desc">
-          El pregrado en Ingeniería Aeronáutica suele durar entre 4 y 5 años y su plan de estudios incluye materias como la aerodinámica, la propulsión, la ingeniería de materiales, la aviónica, y la mecánica de vuelo.
+          El pregrado en Ingeniería Aeronáutica suele durar entre 4 y 5 años y su plan de estudios incluye materias como la aerodinámica, la propulsión, la ingeniería de materiales, la aviónica, y la mecánica de vuelo. Esta carrera forma profesionales capacitados para diseñar, construir y mantener aeronaves, sistemas aeroespaciales y tecnologías relacionadas con la aviación.<br><br>
+          
+          Los ingenieros aeronáuticos trabajan en el diseño y desarrollo de aviones comerciales y militares, helicópteros, drones, satélites y sistemas de propulsión. También participan en el mantenimiento y certificación de aeronaves, asegurando que cumplan con los más altos estándares de seguridad. Las áreas de especialización incluyen aerodinámica computacional, sistemas de navegación y control, materiales aeroespaciales avanzados y tecnologías de propulsión sostenible. El campo laboral abarca aerolíneas, fabricantes de aeronaves, agencias espaciales, empresas de defensa y centros de investigación aeroespacial.<br><br>
+          
+          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2105 | aeronautica@unisabaneta.edu.co
         </p>
       </div>
 
-      <!-- NUEVOS PREGRADOS -->
-      <div class="pregrado-item">
+      <div id="derecho" class="pregrado-item">
         <div class="pregrado-name">Derecho</div>
         <p class="pregrado-desc">
-          El campo laboral para un egresado de Derecho es muy amplio y diverso. Los profesionales pueden desempeñarse como abogados litigantes, representando a clientes en juicios y procedimientos legales, como asesores jurídicos en empresas, gobiernos o en el sector público, trabajando en el poder judicial, la fiscalía o la defensoría, como notarios, mediadores o conciliadores, en el sector de la propiedad intelectual, la academia y la investigación jurídica. Las habilidades adquiridas durante la carrera, como el análisis crítico, la capacidad de análisis y síntesis, una excelente comunicación oral y escrita y el pensamiento ético.
+          El campo laboral para un egresado de Derecho es muy amplio y diverso. Los profesionales pueden desempeñarse como abogados litigantes, representando a clientes en juicios y procedimientos legales, como asesores jurídicos en empresas, gobiernos o en el sector público, trabajando en el poder judicial, la fiscalía o la defensoría, como notarios, mediadores o conciliadores, en el sector de la propiedad intelectual, la academia y la investigación jurídica.<br><br>
+          
+          El programa de Derecho tiene una duración de 5 años (10 semestres) y forma profesionales con sólidos conocimientos en derecho constitucional, civil, penal, laboral, comercial e internacional. Las habilidades adquiridas durante la carrera incluyen el análisis crítico, la capacidad de argumentación jurídica, una excelente comunicación oral y escrita, el pensamiento ético y la resolución de conflictos. Los graduados pueden especializarse en áreas como derecho corporativo, derecho tributario, derecho ambiental, derechos humanos, derecho digital y propiedad intelectual. Las oportunidades incluyen ejercer en firmas de abogados, departamentos jurídicos corporativos, judicatura, fiscalía, defensoría pública, notarías y organismos internacionales.<br><br>
+          
+          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2102 | derecho@unisabaneta.edu.co
         </p>
       </div>
 
-      <div class="pregrado-item">
+      <div id="contaduria" class="pregrado-item">
         <div class="pregrado-name">Contaduría</div>
         <p class="pregrado-desc">
-          El campo laboral del contador es muy amplio y se extiende a prácticamente todos los sectores económicos. Un egresado puede trabajar en el sector privado como contador general, auditor interno o externo, asesor fiscal, gerente financiero, en el sector público.
+          El campo laboral del contador es muy amplio y se extiende a prácticamente todos los sectores económicos. Un egresado puede trabajar en el sector privado como contador general, auditor interno o externo, asesor fiscal, gerente financiero, en el sector público, en firmas de auditoría y consultoría, o como contador independiente.<br><br>
+          
+          El programa de Contaduría tiene una duración de 5 años (10 semestres) y forma profesionales con dominio en contabilidad financiera, auditoría, tributación, costos, análisis financiero y normas internacionales de información financiera (NIIF). Los contadores públicos desarrollan competencias en gestión contable y financiera, uso de software especializado, interpretación de estados financieros, cumplimiento normativo y asesoría tributaria. Las áreas de especialización incluyen auditoría forense, revisoría fiscal, consultoría financiera, planeación tributaria y control interno. El campo laboral es versátil: empresas de todos los tamaños, entidades gubernamentales, firmas de auditoría (Big Four y locales), bancos, aseguradoras y práctica profesional independiente.<br><br>
+          
+          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2103 | contaduria@unisabaneta.edu.co
         </p>
       </div>
 
-      <div class="pregrado-item">
+      <div id="negocios-internacionales" class="pregrado-item">
         <div class="pregrado-name">Negocios Internacionales</div>
         <p class="pregrado-desc">
-          El campo laboral para un egresado de Negocios Internacionales es amplio y dinámico. Un profesional en esta área puede trabajar en empresas multinacionales, bancos de inversión, consultoras especializadas en comercio internacional y organismos gubernamentales.
+          El campo laboral para un egresado de Negocios Internacionales es amplio y dinámico. Un profesional en esta área puede trabajar en empresas multinacionales, bancos de inversión, consultoras especializadas en comercio internacional y organismos gubernamentales que promueven el comercio exterior.<br><br>
+          
+          El programa de Negocios Internacionales tiene una duración de 4 a 5 años (8-10 semestres) y prepara profesionales para liderar operaciones comerciales globales. Los estudiantes adquieren conocimientos en comercio exterior, logística internacional, finanzas internacionales, marketing global, negociación intercultural y legislación aduanera. Las competencias incluyen dominio de idiomas extranjeros (especialmente inglés), análisis de mercados internacionales, gestión de cadenas de suministro globales y desarrollo de estrategias de expansión internacional. Los graduados pueden desempeñarse como gerentes de exportación e importación, analistas de comercio exterior, consultores en internacionalización, coordinadores de logística internacional, ejecutivos de cuenta en bancos de comercio exterior y asesores en organismos multilaterales como la OMC, BID o Cámaras de Comercio.<br><br>
+          
+          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2104 | negocios@unisabaneta.edu.co
         </p>
       </div>
 
-      <div class="pregrado-item">
+      <div id="administracion-empresas" class="pregrado-item">
         <div class="pregrado-name">Administración de Empresas</div>
         <p class="pregrado-desc">
-          El campo laboral para un administrador de empresas es sumamente amplio, ya que sus habilidades son aplicables en cualquier tipo de organización, sea pública o privada, con o sin fines de lucro.
+          El campo laboral para un administrador de empresas es sumamente amplio, ya que sus habilidades son aplicables en cualquier tipo de organización, sea pública o privada, con o sin fines de lucro. Los administradores pueden liderar áreas de recursos humanos, finanzas, marketing, operaciones, ventas y gerencia general.<br><br>
+          
+          El programa de Administración de Empresas tiene una duración de 4 a 5 años (8-10 semestres) y forma profesionales integrales con visión estratégica y capacidad de liderazgo. Los estudiantes desarrollan competencias en planeación estratégica, gestión del talento humano, análisis financiero, marketing y ventas, gestión de operaciones, emprendimiento e innovación. El plan de estudios incluye áreas como economía empresarial, contabilidad gerencial, investigación de mercados, comportamiento organizacional y dirección estratégica. Los graduados pueden desempeñarse como gerentes generales, directores de área, consultores empresariales, analistas de negocios, coordinadores de proyectos, emprendedores y empresarios. Sus habilidades en toma de decisiones, liderazgo de equipos y gestión del cambio los hacen profesionales versátiles y demandados en todos los sectores económicos.<br><br>
+          
+          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2106 | administracion@unisabaneta.edu.co
         </p>
       </div>
 
@@ -422,5 +478,7 @@
     </main>
   </div>
 
+  <script src="search.js"></script>
+  
 </body>
 </html>

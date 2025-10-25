@@ -130,15 +130,17 @@
     .sidebar {
       width: 240px;
       background: var(--primary-light);
-      padding: 24px 16px;
+      padding: 32px 16px;
       border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .nav-item {
       display: flex;
       align-items: center;
       padding: 14px 20px;
-      margin-bottom: 8px;
       border-radius: 30px;
       color: var(--text);
       font-weight: 600;
@@ -167,6 +169,10 @@
       box-shadow: 0 4px 12px rgba(13, 103, 165, 0.25);
     }
 
+    .nav-item.active i {
+      color: white;
+    }
+
     .nav-item.active::before {
       content: '';
       position: absolute;
@@ -184,19 +190,8 @@
       background: #ffffff;
     }
 
-    .page-badge {
-      display: inline-block;
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 15px;
-      padding: 8px 22px;
-      border-radius: 30px;
-      margin-bottom: 12px;
-    }
-
     .section-title {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 24px;
@@ -216,6 +211,9 @@
       box-shadow: var(--shadow);
       transition: var(--transition);
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .news-card:hover {
@@ -240,13 +238,15 @@
       color: var(--text);
       margin-bottom: 6px;
       line-height: 1.4;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      max-height: 2.8em;
       overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      line-clamp: 2;
     }
 
-    .news-card-title:hover {
+    .news-card:hover .news-card-title {
       color: var(--primary);
     }
 
@@ -276,6 +276,7 @@
       justify-content: center;
       font-size: 18px;
       transition: var(--transition);
+      cursor: pointer;
     }
 
     .social-icon:hover {
@@ -340,7 +341,7 @@
     <!-- SIDEBAR -->
     <nav class="sidebar">
       <a href="inicio.html" class="nav-item"><i class="fas fa-home"></i> Inicio</a>
-      <a href="#" class="nav-item active"><i class="fas fa-newspaper"></i> Noticias</a>
+      <a href="noticias.html" class="nav-item active"><i class="fas fa-newspaper"></i> Noticias</a>
       <a href="eventos.html" class="nav-item"><i class="fas fa-calendar-alt"></i> Eventos</a>
       <a href="recursos.html" class="nav-item"><i class="fas fa-book"></i> Recursos</a>
       <a href="oportunidades.html" class="nav-item"><i class="fas fa-briefcase"></i> Oportunidades</a>
@@ -348,49 +349,48 @@
 
     <!-- CONTENT -->
     <main class="content">
-      <div class="page-badge">Noticias</div>
       <h1 class="section-title">Últimas Noticias</h1>
 
       <div class="news-grid">
-        <article class="news-card">
+        <a href="https://feriacampusu.com/" target="_blank" class="news-card">
           <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Feria Campus">
           <div class="news-card-content">
             <h3 class="news-card-title">¡No te pierdas Feria Campus U 2024! inscríbete ya!</h3>
             <p class="news-card-meta">Hoy • 14:30</p>
           </div>
-        </article>
+        </a>
 
-        <article class="news-card">
+        <a href="https://canaltrece.com.co/noticias/dia-amor-amistad-colombia-septiembre/" target="_blank" class="news-card">
           <img src="https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Amor y Amistad">
           <div class="news-card-content">
             <h3 class="news-card-title">¿Cuándo es el Día de Amor y Amistad en Colombia?</h3>
             <p class="news-card-meta">Ayer • 09:15</p>
           </div>
-        </article>
+        </a>
 
-        <article class="news-card">
+        <a href="https://www.cdc.gov/hiv/es/prevention/como-prevenir-el-vih.html" target="_blank" class="news-card">
           <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="VIH">
           <div class="news-card-content">
             <h3 class="news-card-title">Conceptos básicos sobre la prevención de la infección por el VIH</h3>
             <p class="news-card-meta">2 días atrás</p>
           </div>
-        </article>
+        </a>
 
-        <article class="news-card">
+        <a href="https://www.youtube.com/watch?v=oVMsZyTKdvo" target="_blank" class="news-card">
           <img src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ciberseguridad">
           <div class="news-card-content">
             <h3 class="news-card-title">Expertos comparten ideas para proteger datos en un mundo digital</h3>
             <p class="news-card-meta">3 días atrás</p>
           </div>
-        </article>
+        </a>
 
-        <article class="news-card">
+        <a href="https://www.ibm.com/think/artificial-intelligence" target="_blank" class="news-card">
           <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="IA">
           <div class="news-card-content">
             <h3 class="news-card-title">Descubre cómo la IA está transformando el mundo laboral</h3>
             <p class="news-card-meta">5 días atrás</p>
           </div>
-        </article>
+        </a>
       </div>
 
       <!-- SOCIAL BAR -->
@@ -401,6 +401,8 @@
       </div>
     </main>
   </div>
+
+<script src="search.js"></script>
 
 </body>
 </html>
