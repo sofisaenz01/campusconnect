@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect - Usuarios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-icon {
+            width: 38px;
+            height: 38px;
+            background: #0077cc;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-icon::before {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            top: 6px;
+            left: 6px;
+            box-shadow: 0 0 0 3px #0077cc;
+        }
+
+        .header-icon::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            bottom: 6px;
+            right: 6px;
+            box-shadow: 0 0 0 3px #0077cc;
+        }
+
+        .header-icon span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 2px;
+            background: #0077cc;
+            z-index: 1;
+        }
+
+        .header-title {
+            font-weight: 700;
+            color: #0077cc;
+            font-size: 1.5rem;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #0077cc;
+        }
+
+        .admin-info i {
+            font-size: 1.6rem;
+            color: #0077cc;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 260px;
+            background-color: #ffffff;
+            padding: 20px 16px;
+            height: calc(100vh - 74px);
+            box-shadow: 2px 0 8px rgba(0,0,0,0.06);
+            border-right: 1px solid #e0e0e0;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-bottom: 4px;
+        }
+
+        nav ul li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #444;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.98rem;
+            transition: all 0.2s;
+        }
+
+        nav ul li a i {
+            margin-right: 14px;
+            width: 22px;
+            font-size: 1.25rem;
+            text-align: center;
+        }
+
+        nav ul li a:hover {
+            background-color: #f0f8ff;
+            color: #0077cc;
+        }
+
+        nav ul li a.active {
+            background-color: #0077cc;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Submenú */
+        .submenu {
+            margin-left: 50px;
+            margin-top: 6px;
+        }
+
+        .submenu a {
+            padding: 9px 16px;
+            font-size: 0.92rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .submenu a i {
+            font-size: 0.65rem;
+            margin-right: 10px;
+            color: #0077cc;
+        }
+
+        .submenu a:hover {
+            background-color: #f0f8ff;
+            color: #0077cc;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 30px;
+            background-color: #ffffff;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            color: #0077cc;
+            margin-bottom: 30px;
+            font-weight: 600;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e6f2ff;
+        }
+
+        .users-section {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .user-group {
+            background: #f8fbff;
+            border: 1px solid #cce5ff;
+            border-radius: 14px;
+            padding: 20px 24px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .user-group-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #0077cc;
+            margin-bottom: 12px;
+        }
+
+        .user-count {
+            font-size: 1rem;
+            color: #444;
+            margin-left: 4px;
+        }
+
+        .user-count strong {
+            font-weight: 700;
+            color: #0077cc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                height: auto;
+                padding: 18px;
+            }
+            header {
+                padding: 12px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .admin-info {
+                align-self: flex-end;
+            }
+            .page-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-logo">
+            <div class="header-icon">
+                <span></span>
+            </div>
+            <div class="header-title">Campus Connect</div>
+        </div>
+        <a href="perfiladmin.html" class="admin-info" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+            <span style="font-weight: 500; color: #0077cc;">Administrador</span>
+            <i class="fas fa-user-circle" style="font-size: 1.6rem; color: #0077cc;"></i>
+        </a>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="estadisticas_admin.html"><i class="fas fa-chart-bar"></i> Estadísticas</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-users"></i> Usuarios</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-plus-circle"></i> Publicar</a>
+                        <div class="submenu">
+                            <a href="noticias_admin.html"><i class="fas fa-newspaper"></i> Noticias</a>
+                            <a href="eventos_admin.html"><i class="fas fa-calendar-alt"></i> Eventos</a>
+                            <a href="recursos_admin.html"><i class="fas fa-book"></i> Recursos</a>
+                            <a href="oportunidades_admin.html"><i class="fas fa-briefcase"></i> Oportunidades</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <h1 class="page-title">Usuarios Registrados</h1>
+
+            <section class="users-section">
+
+                <!-- Grupo 1: Estudiante-Docente -->
+                <div class="user-group">
+                    <h3 class="user-group-title">Usuarios (Estudiante-Docente)</h3>
+                    <p class="user-count">
+                        <i class="fas fa-circle" style="font-size: 0.6rem; color: #0077cc; margin-right: 6px;"></i>
+                        <strong>500</strong> usuarios registrados
+                    </p>
+                </div>
+
+                <!-- Grupo 2: Administrativos -->
+                <div class="user-group">
+                    <h3 class="user-group-title">Usuarios (Administrativos)</h3>
+                    <p class="user-count">
+                        <i class="fas fa-circle" style="font-size: 0.6rem; color: #0077cc; margin-right: 6px;"></i>
+                        <strong>900</strong> usuarios registrados
+                    </p>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Submenú colapsable
+        const toggle = document.querySelector('.dropdown-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const submenu = this.nextElementSibling;
+                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            });
+        }
+    </script>
+</body>
+</html>

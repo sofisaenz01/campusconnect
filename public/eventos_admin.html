@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect - Eventos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #e6f2ff;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: #0077cc;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            top: 6px;
+            left: 6px;
+            box-shadow: 0 0 0 3px #0077cc;
+        }
+
+        .logo-icon::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            bottom: 6px;
+            right: 6px;
+            box-shadow: 0 0 0 3px #0077cc;
+        }
+
+        .logo-icon span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 2px;
+            background: #0077cc;
+            z-index: 1;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            color: #0077cc;
+            font-size: 1.5rem;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #0077cc;
+        }
+
+        .admin-info i {
+            font-size: 1.6rem;
+            color: #0077cc;
+        }
+
+        /* Main Layout */
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar */
+        aside {
+            width: 250px;
+            background-color: #ffffff;
+            padding: 25px 15px;
+            height: calc(100vh - 68px);
+            box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+            overflow-y: auto;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-bottom: 6px;
+        }
+
+        nav ul li a {
+            display: flex;
+            align-items: center;
+            padding: 11px 14px;
+            color: #444;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        nav ul li a i {
+            margin-right: 12px;
+            width: 18px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        nav ul li a:hover {
+            background-color: #e6f2ff;
+            color: #0077cc;
+        }
+
+        nav ul li a.active {
+            background-color: #0077cc;
+            color: white;
+        }
+
+        /* Submenú */
+        .submenu {
+            margin-left: 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .submenu.show {
+            max-height: 300px;
+        }
+
+        .submenu a {
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .submenu a:hover {
+            background-color: #f0f8ff;
+            color: #0077cc;
+        }
+
+        .submenu a.active {
+            background-color: #0077cc;
+            color: white;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 30px;
+            position: relative;
+        }
+
+        .page-title {
+            font-size: 1.7rem;
+            color: #0077cc;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* Events Section */
+        .events-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .event-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .event-content {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 6px;
+        }
+
+        .event-desc {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .event-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #0077cc;
+            font-weight: 500;
+        }
+
+        .event-info i {
+            font-size: 0.9rem;
+        }
+
+        .event-contact {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .event-contact i {
+            color: #0077cc;
+            margin-right: 5px;
+        }
+
+        /* Botón flotante */
+        .add-more-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #0077cc, #005fa3);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 6px 16px rgba(0, 119, 204, 0.35);
+            transition: all 0.3s;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-more-btn i {
+            font-size: 1.1rem;
+        }
+
+        .add-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 119, 204, 0.45);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .event-card {
+                flex-direction: column;
+            }
+            .event-img {
+                width: 100%;
+                height: 180px;
+                border-radius: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                height: auto;
+                padding: 15px;
+            }
+            .add-more-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            header {
+                padding: 12px 20px;
+            }
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <span></span>
+            </div>
+            <div class="logo-text">Campus Connect</div>
+        </div>
+        <a href="perfil_admin.html" class="admin-info" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+            <span style="font-weight: 500; color: #0077cc;">Administrador</span>
+            <i class="fas fa-user-circle" style="font-size: 1.6rem; color: #0077cc;"></i>
+        </a>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside>
+            <nav>
+                <ul>
+                    <li><a href="estadisticas_admin.html"><i class="fas fa-chart-bar"></i> Estadísticas</a></li>
+                    <li><a href="usuarios_admin.html"><i class="fas fa-users"></i> Usuarios</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle"><i class="fas fa-plus-circle"></i> Publicar</a>
+                        <div class="submenu show">
+                            <a href="noticias_admin.html"><i class="fas fa-newspaper"></i> Noticias</a>
+                            <a href="eventos_admin.html" class="active"><i class="fas fa-calendar-alt"></i> Eventos</a>
+                            <a href="recursos_admin.html"><i class="fas fa-book"></i> Recursos</a>
+                            <a href="oportunidades_admin.html"><i class="fas fa-briefcase"></i> Oportunidades</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <h1 class="page-title">Próximos Eventos</h1>
+
+            <section class="events-section">
+
+                <!-- Evento 1: Ping Pong -->
+                <article class="event-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Torneo de Ping Pong" class="event-img">
+                    <div class="event-content">
+                        <h3 class="event-title">Torneo de Ping Pong</h3>
+                        <p class="event-desc">¡Te invitamos a participar en una competencia llena de adrenalina y diversión que se llevará a cabo en el Auditorio principal! Este es tu momento para demostrar tus habilidades, enfrentarte a tus compañeros y coronarte como el campeón indiscutible. No importa si eres un experto o si solo juegas por diversión, ¡te esperamos!</p>
+                        <div class="event-info">
+                            <i class="far fa-clock"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Evento 2: Pruebas de VIH -->
+                <article class="event-card">
+                    <img src="https://images.unsplash.com/photo-1581595220877-7d0d2b00a9d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Pruebas de VIH" class="event-img">
+                    <div class="event-content">
+                        <h3 class="event-title">Pruebas de VIH</h3>
+                        <p class="event-desc">Tu salud es lo más importante. Te invitamos a realizarte la prueba de VIH/SIDA en nuestro campus. Un procedimiento rápido y confidencial. La prueba está disponible para todo el mundo y se encuentra en la plaza cerca al edificio de CAEGUNOS.</p>
+                        <div class="event-info">
+                            <i class="fas fa-shield-alt"></i> Confidencial
+                        </div>
+                        <div class="event-contact">
+                            <i class="fas fa-phone"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Evento 3: Festival Cultural -->
+                <article class="event-card">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Festival Cultural" class="event-img">
+                    <div class="event-content">
+                        <h3 class="event-title">Festival Cultural Interuniversitario</h3>
+                        <p class="event-desc">¡Vive la diversidad con vibrantes presentaciones de música y danza de diversas culturas, acompañadas de deliciosa comida típica preparada por estudiantes! Explora talleres y stands interactivos que resaltan tradiciones globales. ¡Todos son bienvenidos a disfrutar y compartir de este gran festival!</p>
+                        <div class="event-contact">
+                            <i class="fas fa-phone"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Evento 4: Torneo Relámpago -->
+                <article class="event-card">
+                    <img src="https://images.unsplash.com/photo-1570545906912-3f2d9f76f3e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Torneo Relámpago" class="event-img">
+                    <div class="event-content">
+                        <h3 class="event-title">Torneo Relámpago de Voleibol y Fútbol</h3>
+                        <p class="event-desc">¡Disfruta de un día lleno de competencia y diversión con el Torneo Relámpago de Voleibol y Fútbol, exclusivo para estudiantes. Participa en partidos intensos, forma tu equipo y vive la emoción del deporte en el campus. Habrá premios para los ganadores y un ambiente festivo para todos. ¡Únete el 28 de agosto de 2025 a partir de las 9:00 AM!</p>
+                        <div class="event-info">
+                            <i class="far fa-calendar-alt"></i> 28 de agosto de 2025 – 9:00 AM
+                        </div>
+                        <div class="event-contact">
+                            <i class="fas fa-phone"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
+                        </div>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- Botón flotante -->
+            <a href="añadeevento.html" class="add-more-btn">
+                <i class="fas fa-plus"></i> Añade más Eventos
+            </a>
+        </main>
+    </div>
+
+    <script>
+        // Menú desplegable
+        document.querySelector('.dropdown-toggle').addEventListener('click', function(e) {
+            e.preventDefault();
+            const submenu = this.nextElementSibling;
+            submenu.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>

@@ -29,10 +29,10 @@
             background-color: #f4f4f4;
         }
         .logo-section img {
-            max-width: 90%; /* Ocupa el 90% del ancho disponible */
-            max-height: 90%; /* Ocupa el 90% de la altura disponible */
-            width: auto; /* Ajusta proporcionalmente */
-            height: auto; /* Ajusta proporcionalmente */
+            max-width: 90%;
+            max-height: 90%;
+            width: auto;
+            height: auto;
         }
         .login-section {
             flex: 1;
@@ -57,21 +57,39 @@
             font-size: 14px;
         }
         input[type="password"] {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        button {
+
+        /* Botones */
+        .btn {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
             border: none;
             border-radius: 20px;
             color: white;
             font-size: 16px;
             cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
         }
-        button:hover {
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn-primary:hover {
             background-color: #0056b3;
         }
+
+        .btn-admin {
+            background-color: #28a745;
+        }
+        .btn-admin:hover {
+            background-color: #218838;
+        }
+
         .register-link {
             margin-top: 15px;
             font-size: 12px;
@@ -93,15 +111,20 @@
             <form action="/login" method="POST">
                 <input type="email" name="correo" placeholder="Correo electrónico" required>
                 <input type="password" name="contrasena" placeholder="Contraseña" required>
-                <button type="submit">Iniciar sesión</button>
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
             </form>
+
+            <!-- NUEVO BOTÓN: Entrar como Administrador -->
+            <a href="estadisticas_admin.html" class="btn btn-admin">
+                Entrar como Administrador
+            </a>
+
             <div class="register-link">
                 ¿Todavía no tienes una cuenta? <a href="index-connection.html">Regístrate</a>.
             </div>
         </div>
     </div>
 
-<script src="search.js"></script>
-
+    <script src="search.js"></script>
 </body>
 </html>
