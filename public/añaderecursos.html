@@ -1,69 +1,120 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Añadir Noticias - Campus Connect</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
-</head>
-<body class="bg-gray-50 font-sans min-h-screen flex flex-col">
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Recurso - Campus Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-gray-50 font-sans min-h-screen flex flex-col">
 
-  <!-- Encabezado -->
-  <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
-    <div class="flex items-center space-x-2">
-      <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
-      <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
-    </div>
-    <div class="flex items-center space-x-3">
-      <span class="text-sm text-gray-700">Administrador</span>
-      <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
-        <i class="fa-solid fa-user text-gray-700"></i>
+    <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
+        <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
       </div>
-    </div>
-  </header>
-
-  <!-- Contenedor principal -->
-  <main class="flex justify-center items-center flex-1 p-6">
-    <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
-      
-      <!-- Encabezado del formulario -->
-      <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
-        Añade más Recursos
+      <div class="flex items-center space-x-3">
+        <span class="text-sm text-gray-700">Administrador</span>
+        <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
+          <i class="fa-solid fa-user text-gray-700"></i>
+        </div>
       </div>
+    </header>
 
-      <!-- Cuerpo del formulario -->
-      <form class="p-6 space-y-4">
-        
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Nombre completo del Recurso:</label>
-          <input type="text" placeholder="Escribe el título del Recurso" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+    <main class="flex justify-center items-center flex-1 p-6">
+      <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
+        <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
+          Añade más Recursos
         </div>
 
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Descripción Recurso:</label>
-          <textarea placeholder="Escribe una breve descripción..." rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"></textarea>
-        </div>
+        <form id="formRecurso" class="p-6 space-y-4">
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Nombre completo del Recurso:</label>
+            <input type="text" id="titulo" placeholder="Escribe el título del Recurso" required
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          </div>
 
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">URL Recurso:</label>
-          <input type="url" placeholder="https://ejemplo.com" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
-        </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Descripción Recurso:</label>
+            <textarea id="descripcion" placeholder="Escribe una breve descripción..." rows="3" required
+                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"></textarea>
+          </div>
 
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Cargar Icono:</label>
-          <input type="file" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-blue-300 outline-none">
-        </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">URL Recurso:</label>
+            <input type="url" id="enlace" placeholder="https://ejemplo.com/recurso.pdf" required
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          </div>
 
-        <!-- Botones -->
-        <div class="flex justify-between pt-4">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">Subir</button>
-          <a href="recursos_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center">Atrás</a>
-        </div>
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">URL del Ícono (48x48):</label>
+            <input type="url" id="icono" placeholder="https://i.imgur.com/1kJ8m2L.png" required
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+            <p class="text-xs text-gray-500 mt-1">Sube tu imagen a <a href="https://imgur.com" target="_blank" class="text-blue-600 underline">imgur.com</a> y pega el enlace directo.</p>
+          </div>
 
-      </form>
-    </div>
-  </main>
+          <div>
+            <label class="block text-gray-700 font-medium mb-1">Tipo de Recurso:</label>
+            <select id="tipo" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+              <option value="pdf">PDF / Descargar</option>
+              <option value="video">Video / Ver</option>
+            </select>
+          </div>
 
-</body>
-</html>
+          <div class="flex justify-between pt-4">
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">
+              Subir Recurso
+            </button>
+            <a href="recursos_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center">
+              Atrás
+            </a>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- SCRIPT: GUARDA EN MONGO -->
+    <script>
+      document.getElementById('formRecurso').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const recurso = {
+          titulo: document.getElementById('titulo').value.trim(),
+          descripcion: document.getElementById('descripcion').value.trim(),
+          enlace: document.getElementById('enlace').value.trim(),
+          icono: document.getElementById('icono').value.trim(),
+          tipo: document.getElementById('tipo').value
+        };
+
+        if (!recurso.titulo || !recurso.descripcion || !recurso.enlace || !recurso.icono) {
+          alert('Por favor, completa todos los campos.');
+          return;
+        }
+
+        fetch('/api/recursos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(recurso)
+        })
+        .then(r => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        })
+        .then(data => {
+          if (data.success) {
+            alert('¡Recurso añadido con éxito!');
+            this.reset();
+            window.location.href = 'recursos_admin.html';
+          } else {
+            alert('Error: ' + (data.message || 'No se pudo subir'));
+          }
+        })
+        .catch(err => {
+          console.error('Error:', err);
+          alert('Error de conexión. Asegúrate de que el servidor esté corriendo en el puerto 3001.');
+        });
+      });
+    </script>
+  </body>
+  </html>

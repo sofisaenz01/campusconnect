@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campus Connect - Explorar</title>
+  <title>Campus Connect - Inicio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -41,6 +41,9 @@
       justify-content: space-between;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
@@ -115,7 +118,6 @@
       min-height: calc(100vh - 74px);
     }
 
-    /* Smooth scroll para los enlaces internos */
     html {
       scroll-behavior: smooth;
     }
@@ -128,40 +130,7 @@
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      gap: 4px;
-    }
-
-    .tab-group {
-      display: flex;
-      background: #d0e9f7;
-      border-radius: 30px;
-      padding: 6px;
-      margin-bottom: 4px;
-    }
-
-    .tab {
-      flex: 1;
-      padding: 10px 16px;
-      text-align: center;
-      font-weight: 600;
-      font-size: 15px;
-      border-radius: 25px;
-      color: var(--text);
-      transition: var(--transition);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .tab:hover {
-      background: rgba(13, 103, 165, 0.1);
-    }
-
-    .tab.active {
-      background: var(--primary);
-      color: white;
+      gap: 12px;
     }
 
     .nav-item {
@@ -186,6 +155,15 @@
     .nav-item:hover {
       background: rgba(13, 103, 165, 0.1);
       color: var(--primary);
+    }
+
+    .nav-item.active {
+      background: var(--primary);
+      color: white;
+    }
+
+    .nav-item.active i {
+      color: white;
     }
 
     /* ===== CONTENT ===== */
@@ -272,34 +250,42 @@
       text-align: justify;
     }
 
-    .social-bar {
-      display: flex;
-      justify-content: center;
-      gap: 28px;
-      padding: 20px 0;
+    /* ===== FOOTER CON REDES SOCIALES ===== */
+    .footer-social {
+      margin-top: 50px;
+      padding-top: 30px;
       border-top: 1px solid var(--border);
-      margin-top: 40px;
+      text-align: center;
     }
 
-    .social-icon {
-      width: 42px;
-      height: 42px;
-      background: var(--primary-light);
-      color: var(--primary);
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      transition: var(--transition);
-      cursor: pointer;
+      color: white;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
-    .social-icon:hover {
-      background: var(--primary);
-      color: white;
+    .social-btn:hover {
       transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
+
+    .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .facebook { background: #1877f2; }
+    .youtube { background: #ff0000; }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
@@ -316,9 +302,13 @@
         padding: 16px;
         border-right: none;
         border-bottom: 1px solid var(--border);
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 8px;
       }
-      .tab-group {
-        margin-bottom: 16px;
+      .nav-item {
+        white-space: nowrap;
+        min-width: 140px;
       }
       header {
         flex-wrap: wrap;
@@ -338,7 +328,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Buscar">
+      <input type="text" placeholder="Buscar" id="searchInput">
       <i class="fas fa-search"></i>
     </div>
 
@@ -352,11 +342,9 @@
   <div class="layout">
     <!-- SIDEBAR -->
     <nav class="sidebar">
-      <div class="tab-group">
-        <div class="tab"><i class="fas fa-home"></i> Inicio</div>
-        <div class="tab active">Explorar</div>
-      </div>
-
+      <a href="inicio.html" class="nav-item active">
+        <i class="fas fa-home"></i> Inicio
+      </a>
       <a href="noticias.html" class="nav-item">
         <i class="fas fa-newspaper"></i> Noticias
       </a>
@@ -404,6 +392,7 @@
 
       <h2 class="section-title">Conoce más Acerca tu Pregrado</h2>
 
+      <!-- [TODOS LOS PREGRADOS IGUAL QUE EN TU CÓDIGO ORIGINAL] -->
       <div id="ingenieria-informatica" class="pregrado-item">
         <div class="pregrado-name">Ingeniería Informática</div>
         <p class="pregrado-desc">
@@ -411,7 +400,7 @@
           
           El programa tiene una duración de 5 años (10 semestres) y ofrece áreas de especialización en desarrollo de software, inteligencia artificial, ciberseguridad, desarrollo web y móvil, ciencia de datos y computación en la nube. Los estudiantes desarrollan habilidades en programación avanzada, bases de datos, redes, arquitectura de sistemas y gestión de proyectos tecnológicos. Las oportunidades laborales incluyen posiciones como desarrollador full-stack, ingeniero de software, arquitecto de soluciones, especialista en ciberseguridad, científico de datos y consultor tecnológico.<br><br>
           
-          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2101 | informacion@unisabaneta.edu.co
+          <strong>Contacto:</strong> +57 (4) 322-1500 ext. 2101 | informacion@unisabaneta.edu.co
         </p>
       </div>
 
@@ -422,7 +411,7 @@
           
           Los ingenieros aeronáuticos trabajan en el diseño y desarrollo de aviones comerciales y militares, helicópteros, drones, satélites y sistemas de propulsión. También participan en el mantenimiento y certificación de aeronaves, asegurando que cumplan con los más altos estándares de seguridad. Las áreas de especialización incluyen aerodinámica computacional, sistemas de navegación y control, materiales aeroespaciales avanzados y tecnologías de propulsión sostenible. El campo laboral abarca aerolíneas, fabricantes de aeronaves, agencias espaciales, empresas de defensa y centros de investigación aeroespacial.<br><br>
           
-          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2105 | aeronautica@unisabaneta.edu.co
+          <strong>Contacto:</strong> +57 (4) 322-1500 ext. 2105 | aeronautica@unisabaneta.edu.co
         </p>
       </div>
 
@@ -433,7 +422,7 @@
           
           El programa de Derecho tiene una duración de 5 años (10 semestres) y forma profesionales con sólidos conocimientos en derecho constitucional, civil, penal, laboral, comercial e internacional. Las habilidades adquiridas durante la carrera incluyen el análisis crítico, la capacidad de argumentación jurídica, una excelente comunicación oral y escrita, el pensamiento ético y la resolución de conflictos. Los graduados pueden especializarse en áreas como derecho corporativo, derecho tributario, derecho ambiental, derechos humanos, derecho digital y propiedad intelectual. Las oportunidades incluyen ejercer en firmas de abogados, departamentos jurídicos corporativos, judicatura, fiscalía, defensoría pública, notarías y organismos internacionales.<br><br>
           
-          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2102 | derecho@unisabaneta.edu.co
+          <strong>Contacto:</strong> +57 (4) 322-1500 ext. 2102 | derecho@unisabaneta.edu.co
         </p>
       </div>
 
@@ -444,7 +433,7 @@
           
           El programa de Contaduría tiene una duración de 5 años (10 semestres) y forma profesionales con dominio en contabilidad financiera, auditoría, tributación, costos, análisis financiero y normas internacionales de información financiera (NIIF). Los contadores públicos desarrollan competencias en gestión contable y financiera, uso de software especializado, interpretación de estados financieros, cumplimiento normativo y asesoría tributaria. Las áreas de especialización incluyen auditoría forense, revisoría fiscal, consultoría financiera, planeación tributaria y control interno. El campo laboral es versátil: empresas de todos los tamaños, entidades gubernamentales, firmas de auditoría (Big Four y locales), bancos, aseguradoras y práctica profesional independiente.<br><br>
           
-          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2103 | contaduria@unisabaneta.edu.co
+          <strong>Contacto:</strong> +57 (4) 322-1500 ext. 2103 | contaduria@unisabaneta.edu.co
         </p>
       </div>
 
@@ -455,7 +444,7 @@
           
           El programa de Negocios Internacionales tiene una duración de 4 a 5 años (8-10 semestres) y prepara profesionales para liderar operaciones comerciales globales. Los estudiantes adquieren conocimientos en comercio exterior, logística internacional, finanzas internacionales, marketing global, negociación intercultural y legislación aduanera. Las competencias incluyen dominio de idiomas extranjeros (especialmente inglés), análisis de mercados internacionales, gestión de cadenas de suministro globales y desarrollo de estrategias de expansión internacional. Los graduados pueden desempeñarse como gerentes de exportación e importación, analistas de comercio exterior, consultores en internacionalización, coordinadores de logística internacional, ejecutivos de cuenta en bancos de comercio exterior y asesores en organismos multilaterales como la OMC, BID o Cámaras de Comercio.<br><br>
           
-          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2104 | negocios@unisabaneta.edu.co
+          <strong>Contacto:</strong> +57 (4) 322-1500 ext. 2104 | negocios@unisabaneta.edu.co
         </p>
       </div>
 
@@ -466,19 +455,48 @@
           
           El programa de Administración de Empresas tiene una duración de 4 a 5 años (8-10 semestres) y forma profesionales integrales con visión estratégica y capacidad de liderazgo. Los estudiantes desarrollan competencias en planeación estratégica, gestión del talento humano, análisis financiero, marketing y ventas, gestión de operaciones, emprendimiento e innovación. El plan de estudios incluye áreas como economía empresarial, contabilidad gerencial, investigación de mercados, comportamiento organizacional y dirección estratégica. Los graduados pueden desempeñarse como gerentes generales, directores de área, consultores empresariales, analistas de negocios, coordinadores de proyectos, emprendedores y empresarios. Sus habilidades en toma de decisiones, liderazgo de equipos y gestión del cambio los hacen profesionales versátiles y demandados en todos los sectores económicos.<br><br>
           
-          <strong>📞 Contacto:</strong> +57 (4) 322-1500 ext. 2106 | administracion@unisabaneta.edu.co
+          <strong>Contacto:</strong> +57 (4) 322-1500 ext. 2106 | administracion@unisabaneta.edu.co
         </p>
       </div>
 
-      <div class="social-bar">
-        <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
-        <div class="social-icon"><i class="fab fa-instagram"></i></div>
-        <div class="social-icon"><i class="fab fa-youtube"></i></div>
+      <!-- REDES SOCIALES -->
+      <div class="footer-social">
+        <div class="social-links">
+          <a href="https://www.instagram.com/unisabaneta/" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/Unisabaneta.colombia" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/@unisabaneta" target="_blank" class="social-btn youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
       </div>
     </main>
   </div>
 
+  <!-- BÚSQUEDA EN TIEMPO REAL -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const items = document.querySelectorAll('.pregrado-item');
+      items.forEach(item => {
+        const name = item.querySelector('.pregrado-name').textContent.toLowerCase();
+        const desc = item.querySelector('.pregrado-desc').textContent.toLowerCase();
+        item.style.display = (name.includes(query) || desc.includes(query)) ? '' : 'none';
+      });
+    });
+
+    // REGISTRA VISITA
+    fetch('/api/visitas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pagina: 'inicio' })
+    }).catch(() => {});
+  </script>
+
   <script src="search.js"></script>
-  
 </body>
 </html>

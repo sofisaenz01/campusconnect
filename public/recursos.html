@@ -32,6 +32,7 @@
       line-height: 1.6;
     }
 
+    /* ===== HEADER ===== */
     header {
       background: #fff;
       padding: 16px 40px;
@@ -40,6 +41,9 @@
       justify-content: space-between;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
@@ -108,6 +112,7 @@
       box-shadow: 0 2px 6px rgba(13, 103, 165, 0.2);
     }
 
+    /* ===== LAYOUT ===== */
     .layout {
       display: flex;
       min-height: calc(100vh - 74px);
@@ -252,36 +257,53 @@
       color: white;
     }
 
-    .btn-primary {
-      background: var(--primary);
+    .btn-primary { background: var(--primary); }
+    .btn-primary:hover { background: #0b5a8f; transform: translateY(-2px); }
+
+    .btn-secondary { background: var(--primary); }
+    .btn-secondary:hover { background: #0b5a8f; transform: translateY(-2px); }
+
+    .btn-ieee { background: #00629b; }
+    .btn-ieee:hover { background: #004a7c; transform: translateY(-2px); }
+
+    /* ===== FOOTER CON REDES SOCIALES ===== */
+    .footer-social {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
-    .btn-primary:hover {
-      background: #0b5a8f;
-      transform: translateY(-2px);
+    .social-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-    .btn-secondary {
-      background: var(--primary);
-      color: white;
-    }
+    .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .facebook { background: #1877f2; }
+    .youtube { background: #ff0000; }
 
-    .btn-secondary:hover {
-      background: #0b5a8f;
-      transform: translateY(-2px);
-    }
-
-    .btn-ieee {
-      background: #00629b;
-      color: white;
-    }
-
-    .btn-ieee:hover {
-      background: #004a7c;
-      transform: translateY(-2px);
-    }
-
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
       header { padding: 14px 24px; }
       .search-container { width: 280px; }
@@ -305,14 +327,13 @@
       }
       header { flex-wrap: wrap; gap: 12px; }
       .search-container { order: 3; width: 100%; }
-      .resources-grid {
-        grid-template-columns: 1fr;
-      }
+      .resources-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="logo">
       <i class="fas fa-project-diagram"></i>
@@ -320,7 +341,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Buscar">
+      <input type="text" placeholder="Buscar recursos..." id="searchInput">
       <i class="fas fa-search"></i>
     </div>
 
@@ -330,6 +351,7 @@
     </a>
   </header>
 
+  <!-- LAYOUT -->
   <div class="layout">
     <nav class="sidebar">
       <a href="inicio.html" class="nav-item">
@@ -352,8 +374,9 @@
     <main class="content">
       <h1 class="page-title">Recursos Académicos y Técnicos</h1>
 
-      <div class="resources-grid">
-        <!-- Recurso 1: Normas APA 7 - DESCARGAR -->
+      <!-- RECURSOS GRID -->
+      <div id="resourcesGrid" class="resources-grid">
+        <!-- RECURSOS ESTÁTICOS (fallback) -->
         <div class="resource-card">
           <div class="resource-icon">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" alt="PDF APA">
@@ -365,7 +388,6 @@
           </a>
         </div>
 
-        <!-- Recurso 2: Normas IEEE - DESCARGAR -->
         <div class="resource-card">
           <div class="resource-icon">
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/IEEE_logo.svg" alt="IEEE">
@@ -377,7 +399,6 @@
           </a>
         </div>
 
-        <!-- Recurso 3: Excel Básico - VER -->
         <div class="resource-card">
           <div class="resource-icon">
             <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel">
@@ -389,7 +410,6 @@
           </a>
         </div>
 
-        <!-- Recurso 4: Canva - VER -->
         <div class="resource-card">
           <div class="resource-icon">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg" alt="Canva">
@@ -401,7 +421,6 @@
           </a>
         </div>
 
-        <!-- Recurso 5: Técnicas de Estudio - VER -->
         <div class="resource-card">
           <div class="resource-icon">
             <i class="fas fa-graduation-cap"></i>
@@ -413,10 +432,71 @@
           </a>
         </div>
       </div>
+
+      <!-- REDES SOCIALES -->
+      <div class="footer-social">
+        <div class="social-links">
+          <a href="https://www.instagram.com/unisabaneta/" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/Unisabaneta.colombia" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/@unisabaneta" target="_blank" class="social-btn youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
     </main>
   </div>
 
-<script src="search.js"></script>
+  <!-- BÚSQUEDA + CARGA DINÁMICA -->
+  <script>
+    // === BÚSQUEDA EN TIEMPO REAL ===
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const cards = document.querySelectorAll('.resource-card');
+      cards.forEach(card => {
+        const title = card.querySelector('.resource-title').textContent.toLowerCase();
+        const desc = card.querySelector('.resource-desc').textContent.toLowerCase();
+        card.style.display = (title.includes(query) || desc.includes(query)) ? '' : 'none';
+      });
+    });
 
+    // === CARGAR RECURSOS DINÁMICOS (AGREGA AL INICIO) ===
+    fetch('/api/recursos')
+      .then(r => r.json())
+      .then(recursos => {
+        const grid = document.getElementById('resourcesGrid');
+        if (recursos.length === 0) return;
+
+        const nuevos = recursos.map(r => `
+          <div class="resource-card">
+            <div class="resource-icon">
+              <img src="${r.icono}" alt="${r.titulo}" onerror="this.src='https://via.placeholder.com/50?text=?'">
+            </div>
+            <div class="resource-title">${r.titulo}</div>
+            <p class="resource-desc">${r.descripcion}</p>
+            <a href="${r.enlace}" target="_blank" class="btn ${r.tipo === 'pdf' ? 'btn-primary' : 'btn-secondary'}">
+              <i class="fas ${r.tipo === 'pdf' ? 'fa-download' : 'fa-eye'}"></i>
+              ${r.tipo === 'pdf' ? 'Descargar' : 'Ver'}
+            </a>
+          </div>
+        `).join('');
+
+        grid.insertAdjacentHTML('afterbegin', nuevos);
+      })
+      .catch(() => console.log('Backend no disponible, se muestran recursos estáticos'));
+
+    // === REGISTRAR VISITA ===
+    fetch('/api/visitas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pagina: 'recursos' })
+    }).catch(() => {});
+  </script>
+
+  <script src="search.js"></script>
 </body>
 </html>

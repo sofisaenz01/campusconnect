@@ -5,70 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Añadir Evento - Campus Connect</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a2e0a6efee.js"></script>
 </head>
 <body class="bg-gray-50 font-sans min-h-screen flex flex-col">
 
-  <!-- Encabezado -->
   <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
     <div class="flex items-center space-x-2">
       <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
       <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
     </div>
     <div class="flex items-center space-x-3">
-      <span class="text-sm text-gray-700">Administrador</span>
+      <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded-full text-sm">
+        Cerrar Sesión
+      </button>
+      <span id="adminName" class="text-sm text-gray-700 font-medium">Cargando...</span>
       <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
         <i class="fa-solid fa-user text-gray-700"></i>
       </div>
     </div>
   </header>
 
-  <!-- Contenedor principal -->
   <main class="flex justify-center items-center flex-1 p-6">
     <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
-      
-      <!-- Encabezado del formulario -->
       <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
-        Añade más Eventos
+        Añadir Nuevo Evento
       </div>
 
-      <!-- Cuerpo del formulario -->
-      <form class="p-6 space-y-4">
-        
+      <form id="eventoForm" enctype="multipart/form-data" class="p-6 space-y-4">
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Nombre completo del Evento:</label>
-          <input type="text" placeholder="Escribe el título del Evento" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          <label class="block text-gray-700 font-medium mb-1">Título:</label>
+          <input type="text" name="titulo" required placeholder="Torneo de Ping Pong" class="w-full border border-gray-300 rounded-lg px-3 py-2">
         </div>
-
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Descripción Evento:</label>
-          <textarea placeholder="Escribe una breve descripción..." rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"></textarea>
+          <label class="block text-gray-700 font-medium mb-1">Descripción:</label>
+          <textarea name="descripcion" required rows="3" placeholder="Descripción del evento..." class="w-full border border-gray-300 rounded-lg px-3 py-2"></textarea>
         </div>
-
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Numero para más información acerca del Evento :</label>
-          <input type="url" placeholder="+57 305 228 3997" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          <label class="block text-gray-700 font-medium mb-1">Fecha y hora:</label>
+          <input type="text" name="fecha" required placeholder="28 de agosto de 2025 - 9:00 AM" class="w-full border border-gray-300 rounded-lg px-3 py-2">
         </div>
-
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Fecha Evento :</label>
-          <input type="url" placeholder="Viernes 30 de Septiembre" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          <label class="block text-gray-700 font-medium mb-1">Contacto:</label>
+          <input type="text" name="contacto" required placeholder="312-228-3900" class="w-full border border-gray-300 rounded-lg px-3 py-2">
         </div>
-
         <div>
-          <label class="block text-gray-700 font-medium mb-1">Cargar Imagen:</label>
-          <input type="file" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-blue-300 outline-none">
+          <label class="block text-gray-700 font-medium mb-1">Imagen:</label>
+          <input type="file" name="imagen" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer">
         </div>
-
-        <!-- Botones -->
         <div class="flex justify-between pt-4">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">Subir</button>
-          <a href="eventos_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center">Atrás</a>
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full">
+            Publicar Evento
+          </button>
+          <a href="eventos_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full">
+            Atrás
+          </a>
         </div>
-
       </form>
     </div>
   </main>
 
+  <script>
+    fetch('/api/admin/perfil')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(d => document.getElementById('adminName').textContent = d.nombre)
+      .catch(() => window.location.href = 'admin-login.html');
+
+    document.getElementById('eventoForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      try {
+        const res = await fetch('/api/eventos', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.success) {
+          alert('¡Evento publicado!');
+          this.reset();
+        } else {
+          alert('Error: ' + data.message);
+        }
+      } catch (err) {
+        alert('Error de conexión');
+      }
+    };
+
+    function logout() {
+      if (confirm('¿Cerrar sesión?')) {
+        fetch('/logout', { method: 'POST' }).then(() => window.location.href = 'login.html');
+      }
+    }
+  </script>
 </body>
 </html>

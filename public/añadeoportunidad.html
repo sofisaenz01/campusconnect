@@ -1,70 +1,84 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Añadir Noticias - Campus Connect</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
-</head>
-<body class="bg-gray-50 font-sans min-h-screen flex flex-col">
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Noticias - Campus Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
+  </head>
+  <body class="bg-gray-50 font-sans min-h-screen flex flex-col">
 
-  <!-- Encabezado -->
-  <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
-    <div class="flex items-center space-x-2">
-      <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
-      <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
-    </div>
-    <div class="flex items-center space-x-3">
-      <span class="text-sm text-gray-700">Administrador</span>
-      <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
-        <i class="fa-solid fa-user text-gray-700"></i>
+    <!-- Encabezado -->
+    <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
+        <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
       </div>
-    </div>
-  </header>
-
-  <!-- Contenedor principal -->
-  <main class="flex justify-center items-center flex-1 p-6">
-    <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
-      
-      <!-- Encabezado del formulario -->
-      <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
-        Añade más Oportunidades
+      <div class="flex items-center space-x-3">
+        <span class="text-sm text-gray-700">Administrador</span>
+        <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
+          <i class="fa-solid fa-user text-gray-700"></i>
+        </div>
       </div>
+    </header>
 
-      <!-- Cuerpo del formulario -->
-      <form class="p-6 space-y-4">
+    <!-- Contenedor principal -->
+    <main class="flex justify-center items-center flex-1 p-6">
+      <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
         
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Nombre completo de la Oportunidad:</label>
-          <input type="text" placeholder="Escribe el título de la Oportunidad" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+        <!-- Encabezado del formulario -->
+        <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
+          Añade más Oportunidades
         </div>
 
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Descripción Oportunidad:</label>
-          <textarea placeholder="Escribe una breve descripción..." rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"></textarea>
-        </div>
-
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">URL Oportunidad:</label>
-          <input type="url" placeholder="https://ejemplo.com" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
-        </div>
-
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Cargar Icono:</label>
-          <input type="file" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-blue-300 outline-none">
-        </div>
-
-        <!-- Botones -->
-        <div class="flex justify-between pt-4">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">Subir</button>
-          <button type="reset" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-5 py-2 rounded-full transition">Cancelar</button>
-          <a href="#" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center">Atrás</a>
-        </div>
-
-      </form>
+        <!-- Cuerpo del formulario -->
+        <form id="formOportunidad" class="p-6 space-y-4" enctype="multipart/form-data">
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Nombre completo de la Oportunidad:</label>
+      <input type="text" name="titulo" required placeholder="Escribe el título de la Oportunidad" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
     </div>
-  </main>
 
-</body>
-</html>
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Descripción Oportunidad:</label>
+      <textarea name="descripcion" required placeholder="Escribe una breve descripción..." rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"></textarea>
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">URL Oportunidad:</label>
+      <input type="url" name="url" placeholder="https://ejemplo.com" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-medium mb-1">Cargar Icono:</label>
+      <input type="file" name="imagen" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-blue-300 outline-none">
+    </div>
+
+    <div class="flex justify-between pt-4">
+      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">Subir</button>
+      <button type="reset" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-5 py-2 rounded-full transition">Cancelar</button>
+      <a href="oportunidades_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center">Atrás</a>
+    </div>
+  </form>
+
+  <script>
+  document.getElementById('formOportunidad').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const res = await fetch('/api/oportunidades', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await res.json();
+    alert(data.message || 'Operación completada');
+  });
+  </script>
+
+        </form>
+      </div>
+    </main>
+
+  </body>
+  </html>

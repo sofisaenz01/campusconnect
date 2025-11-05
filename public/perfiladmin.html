@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil - Campus Connect</title>
+  <title>Perfil Admin - Campus Connect</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
 </head>
@@ -12,70 +12,125 @@
   <!-- Encabezado -->
   <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
     <div class="flex items-center space-x-2">
-      <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
+      <i class="fa-solid fa-network-w干部ired text-blue-700 text-xl"></i>
       <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
     </div>
+
     <div class="flex items-center space-x-3">
-      <span class="text-sm text-gray-700 font-medium">Administrador</span>
+      <button onclick="logout()" 
+              class="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-full text-sm transition flex items-center gap-1.5">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Cerrar Sesión
+      </button>
+
+      <span id="adminName" class="text-sm text-gray-700 font-medium">Cargando...</span>
       <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
         <i class="fa-solid fa-user text-gray-700"></i>
       </div>
     </div>
   </header>
 
-  <!-- Contenedor principal -->
   <main class="flex justify-center items-center flex-1 p-6">
     <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
-
-      <!-- Encabezado del formulario -->
       <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
-        Bienvenido a Tu Perfil
+        Editar Perfil de Administrador
       </div>
 
-      <!-- Cuerpo del formulario -->
-      <form class="p-6 space-y-4">
-
+      <form id="perfilForm" class="p-6 space-y-4">
         <div>
           <label class="block text-gray-700 font-medium mb-1">Nombre completo:</label>
-          <input type="text" placeholder="Escribe tu nombre completo" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          <input type="text" id="nombre" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
         </div>
 
         <div>
           <label class="block text-gray-700 font-medium mb-1">Correo electrónico:</label>
-          <input type="email" placeholder="ejemplo@dominio.com" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          <input type="email" id="correo" disabled class="w-full border border-gray-200 bg-gray-50 rounded-lg px-3 py-2">
         </div>
 
         <div>
           <label class="block text-gray-700 font-medium mb-1">Número de teléfono: <span class="text-gray-500">(Opcional)</span></label>
-          <input type="tel" placeholder="+57 300 1234567" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          <input type="tel" id="telefono" placeholder="+57 300 1234567" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
         </div>
 
         <div>
           <label class="block text-gray-700 font-medium mb-1">Fecha de nacimiento: <span class="text-gray-500">(Opcional)</span></label>
-          <input type="date" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
+          <input type="date" id="fechaNacimiento" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
         </div>
 
         <div>
           <label class="block text-gray-700 font-medium mb-1">País/Región:</label>
-          <select class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-blue-300 outline-none">
+          <select id="pais" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white focus:ring-2 focus:ring-blue-300 outline-none">
             <option value="">Selecciona una opción</option>
-            <option>Colombia</option>
-            <option>Argentina</option>
-            <option>México</option>
-            <option>España</option>
-            <option>Chile</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Argentina">Argentina</option>
+            <option value="México">México</option>
+            <option value="España">España</option>
+            <option value="Chile">Chile</option>
           </select>
         </div>
 
-        <!-- Botones -->
         <div class="flex justify-between pt-4">
           <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">Guardar Cambios</button>
-          <a href="estadisticas_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center">Atrás</a>
+          <a href="estadisticas_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition">Atrás</a>
         </div>
-
       </form>
     </div>
   </main>
+
+  <script>
+    // Cargar perfil
+    async function cargarPerfil() {
+      try {
+        const res = await fetch('/api/admin/perfil');
+        if (!res.ok) throw new Error('No autenticado');
+        const data = await res.json();
+
+        document.getElementById('adminName').textContent = data.nombre;
+        document.getElementById('nombre').value = data.nombre;
+        document.getElementById('correo').value = data.correo;
+        document.getElementById('telefono').value = data.telefono;
+        document.getElementById('fechaNacimiento').value = data.fechaNacimiento;
+        document.getElementById('pais').value = data.pais;
+      } catch (err) {
+        alert('Debes iniciar sesión como administrador');
+        window.location.href = 'admin-login.html';
+      }
+    }
+
+    // Guardar cambios
+    document.getElementById('perfilForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const datos = {
+        nombre: document.getElementById('nombre').value,
+        telefono: document.getElementById('telefono').value,
+        fechaNacimiento: document.getElementById('fechaNacimiento').value,
+        pais: document.getElementById('pais').value
+      };
+
+      try {
+        const res = await fetch('/api/admin/perfil', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos)
+        });
+        const result = await res.json();
+        alert(result.message || 'Guardado');
+        document.getElementById('adminName').textContent = datos.nombre;
+      } catch (err) {
+        alert('Error al guardar');
+      }
+    };
+
+    function logout() {
+      if (confirm('¿Cerrar sesión?')) {
+        fetch('/logout', { method: 'POST' }).then(() => {
+          window.location.href = 'login.html';
+        });
+      }
+    }
+
+    cargarPerfil();
+  </script>
 
 </body>
 </html>

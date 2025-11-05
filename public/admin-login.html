@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Administrador - Unisabaneta</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Acceso Administrador</h2>
+        <form id="adminLoginForm">
+            <input type="text" id="username" placeholder="Usuario" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <button type="submit">Iniciar Sesión</button>
+            <p class="error" id="errorMsg"></p>
+        </form>
+        <a href="login.html" style="display: block; text-align: center; margin-top: 10px; color: #007bff;">← Volver al inicio</a>
+    </div>
+
+        <script>
+    document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const errorMsg = document.getElementById('errorMsg');
+
+        try {
+        const res = await fetch('/admin-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            window.location.href = 'estadisticas_admin.html';
+        } else {
+            errorMsg.textContent = data.message;
+        }
+        } catch (err) {
+        errorMsg.textContent = 'Error de conexión';
+        }
+    });
+    </script>
+</body>
+</html>

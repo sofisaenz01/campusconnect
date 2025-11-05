@@ -41,6 +41,9 @@
       justify-content: space-between;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
@@ -115,7 +118,6 @@
       min-height: calc(100vh - 74px);
     }
 
-    /* ===== SIDEBAR - VERTICAL ===== */
     .sidebar {
       width: 240px;
       background: var(--primary-light);
@@ -147,6 +149,7 @@
 
     .nav-item:hover {
       background: rgba(13, 103, 165, 0.1);
+      color: var(--primary);
     }
 
     .nav-item.active {
@@ -158,7 +161,6 @@
       color: white;
     }
 
-    /* ===== CONTENT ===== */
     .content {
       flex: 1;
       padding: 32px 48px;
@@ -169,11 +171,13 @@
       font-size: 28px;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
-    .section {
-      margin-bottom: 40px;
+    .page-subtitle {
+      color: var(--text-light);
+      font-size: 16px;
+      margin-bottom: 32px;
     }
 
     .section-title {
@@ -181,6 +185,7 @@
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 20px;
+      margin-top: 30px;
       padding-bottom: 8px;
       border-bottom: 3px solid var(--primary);
       display: inline-block;
@@ -251,7 +256,46 @@
       border-radius: 12px;
       margin-top: 16px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      object-fit: cover;
+      max-height: 150px;
     }
+
+    /* ===== FOOTER CON REDES SOCIALES ===== */
+    .footer-social {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .facebook { background: #1877f2; }
+    .youtube { background: #ff0000; }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
@@ -261,7 +305,7 @@
     }
 
     @media (max-width: 768px) {
-      .layout { flex-direction: column; }
+      .layout { flex-direction:izal column; }
       .sidebar {
         width: 100%;
         padding: 16px;
@@ -301,7 +345,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Buscar">
+      <input type="text" placeholder="Buscar" id="searchInput">
       <i class="fas fa-search"></i>
     </div>
 
@@ -313,7 +357,6 @@
 
   <!-- LAYOUT -->
   <div class="layout">
-    <!-- SIDEBAR - VERTICAL -->
     <nav class="sidebar">
       <a href="inicio.html" class="nav-item">
         <i class="fas fa-home"></i> Inicio
@@ -332,61 +375,155 @@
       </a>
     </nav>
 
-    <!-- CONTENT -->
     <main class="content">
       <h1 class="page-title">Oportunidades</h1>
-      <p class="page-subtitle" style="color: var(--text-light); font-size: 16px; margin-bottom: 32px;">
-        Conoce de nuevas Oportunidades Laborales
-      </p>
+      <p class="page-subtitle">Conoce de nuevas Oportunidades Laborales</p>
 
-      <!-- OPORTUNIDAD 1 - CLICKABLE -->
-      <a href="https://www.linkedin.com/jobs" class="opportunity-card">
-        <div class="opportunity-icon">
-          <i class="fas fa-globe"></i>
-        </div>
-        <div class="opportunity-content">
-          <div class="opportunity-title">Explora Oportunidades Laborales Globales</div>
-          <p class="opportunity-desc">
-            “Descubre un mundo de posibilidades profesionales en cualquier campo con una plataforma líder. Crea tu perfil, conecta con empleadores y da el primer paso hacia tu futuro laboral. ¡Tu carrera comienza hoy!”
-          </p>
-          <img src="https://via.placeholder.com/200x120?text=Plataforma+Laboral" alt="Plataforma Laboral" class="opportunity-img">
-        </div>
-      </a>
+      <!-- OPORTUNIDADES FIJAS -->
+      <div id="fixedOpportunities">
+        <a href="https://www.linkedin.com/jobs" target="_blank" class="opportunity-card">
+          <div class="opportunity-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="opportunity-content">
+            <div class="opportunity-title">Explora Oportunidades Laborales Globales</div>
+            <p class="opportunity-desc">
+              "Descubre un mundo de posibilidades profesionales en cualquier campo con una plataforma líder. Crea tu perfil, conecta con empleadores y da el primer paso hacia tu futuro laboral. ¡Tu carrera comienza hoy!"
+            </p>
+            <img src="https://via.placeholder.com/200x120?text=Plataforma+Laboral" alt="Plataforma Laboral" class="opportunity-img">
+          </div>
+        </a>
 
-      <!-- OPORTUNIDAD 2 - CLICKABLE -->
-      <a href="https://www.internshala.com" class="opportunity-card">
-        <div class="opportunity-icon">
-          <i class="fas fa-user-graduate"></i>
-        </div>
-        <div class="opportunity-content">
-          <div class="opportunity-title">Lanza tu Carrera con Prácticas Profesionales</div>
-          <p class="opportunity-desc">
-            “Gana experiencia valiosa en empresas de todo tipo mientras estudias. Aplica a prácticas que impulsan tus habilidades y te abren puertas en el mundo laboral. Es tu momento de brillar.”
-          </p>
-          <p class="opportunity-quote">
-            “Las prácticas profesionales son el puente entre la universidad y el éxito profesional.”
-          </p>
-          <img src="https://via.placeholder.com/200x120?text=Prácticas+Profesionales" alt="Prácticas Profesionales" class="opportunity-img">
-        </div>
-      </a>
+        <a href="https://www.internshala.com" target="_blank" class="opportunity-card">
+          <div class="opportunity-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="opportunity-content">
+            <div class="opportunity-title">Lanza tu Carrera con Prácticas Profesionales</div>
+            <p class="opportunity-desc">
+              "Gana experiencia valiosa en empresas de todo tipo mientras estudias. Aplica a prácticas que impulsan tus habilidades y te abren puertas en el mundo laboral. Es tu momento de brillar."
+            </p>
+            <p class="opportunity-quote">
+              "Las prácticas profesionales son el puente entre la universidad y el éxito profesional."
+            </p>
+            <img src="https://via.placeholder.com/200x120?text=Prácticas+Profesionales" alt="Prácticas Profesionales" class="opportunity-img">
+          </div>
+        </a>
 
-      <!-- OPORTUNIDAD 3 - CLICKABLE -->
-      <a href="https://www.linkedin.com" class="opportunity-card">
-        <div class="opportunity-icon">
-          <i class="fas fa-laptop-code"></i>
+        <a href="https://www.linkedin.com" target="_blank" class="opportunity-card">
+          <div class="opportunity-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <div class="opportunity-content">
+            <div class="opportunity-title">Conecta con tu Futuro Profesional</div>
+            <p class="opportunity-desc">
+              "Encuentra empleos, proyectos y contactos que transformen tu trayectoria. Una red global te espera para ayudarte a alcanzar tus metas, sin importar tu área de estudio. ¡Únete ahora!"
+            </p>
+            <img src="https://via.placeholder.com/200x120?text=Red+Profesional" alt="Red Profesional" class="opportunity-img">
+          </div>
+        </a>
+      </div>
+
+      <!-- OPORTUNIDADES DINÁMICAS -->
+      <div id="dynamicOpportunities"></div>
+
+      <!-- REDES SOCIALES -->
+      <div class="footer-social">
+        <div class="social-links">
+          <a href="https://www.instagram.com/unisabaneta/" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/Unisabaneta.colombia" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/@unisabaneta" target="_blank" class="social-btn youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
         </div>
-        <div class="opportunity-content">
-          <div class="opportunity-title">Conecta con tu Futuro Profesional</div>
-          <p class="opportunity-desc">
-            “Encuentra empleos, proyectos y contactos que transformen tu trayectoria. Una red global te espera para ayudarte a alcanzar tus metas, sin importar tu área de estudio. ¡Únete ahora!”
-          </p>
-          <img src="https://via.placeholder.com/200x120?text=Red+Profesional" alt="Red Profesional" class="opportunity-img">
-        </div>
-      </a>
+      </div>
     </main>
   </div>
 
-<script src="search.js"></script>
+  <!-- BÚSQUEDA EN TIEMPO REAL -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const cards = document.querySelectorAll('.opportunity-card');
+      cards.forEach(card => {
+        const title = card.querySelector('.opportunity-title').textContent.toLowerCase();
+        const desc = card.querySelector('.opportunity-desc').textContent.toLowerCase();
+        card.style.display = (title.includes(query) || desc.includes(query)) ? '' : 'none';
+      });
+    });
+  </script>
 
+  <!-- SCRIPTS -->
+  <script>
+    // Función para obtener el ícono según el tipo
+    function getIconClass(tipo) {
+      const iconos = {
+        'empleo': 'fa-briefcase',
+        'practica': 'fa-user-graduate',
+        'networking': 'fa-users',
+        'global': 'fa-globe',
+        'desarrollo': 'fa-laptop-code',
+        'educacion': 'fa-graduation-cap',
+        'investigacion': 'fa-microscope'
+      };
+      return iconos[tipo?.toLowerCase()] || 'fa-briefcase';
+    }
+
+    // Cargar oportunidades dinámicas desde MongoDB
+    async function loadDynamicOpportunities() {
+      const container = document.getElementById('dynamicOpportunities');
+      
+      try {
+        const response = await fetch('/api/oportunidades');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
+        const opportunities = await response.json();
+        
+        if (opportunities.length === 0) {
+          container.innerHTML = '';
+          return;
+        }
+
+        let html = '<div class="section-title">Nuevas Oportunidades</div>';
+        html += opportunities.map(opp => {
+          const imageUrl = opp.imagen ? `/uploads/${opp.imagen}` : '';
+          return `
+            <a href="${opp.url || opp.enlace || '#'}" target="_blank" class="opportunity-card">
+              <div class="opportunity-icon">
+                <i class="fas ${getIconClass(opp.tipo)}"></i>
+              </div>
+              <div class="opportunity-content">
+                <div class="opportunity-title">${opp.titulo}</div>
+                <p class="opportunity-desc">${opp.descripcion}</p>
+                ${imageUrl ? `<img src="${imageUrl}" alt="${opp.titulo}" class="opportunity-img" onerror="this.style.display='none'">` : ''}
+              </div>
+            </a>
+          `;
+        }).join('');
+        
+        container.innerHTML = html;
+      } catch (error) {
+        console.error('Error cargando oportunidades:', error);
+        container.innerHTML = '';
+      }
+    }
+
+    // Cargar al iniciar
+    window.addEventListener('DOMContentLoaded', loadDynamicOpportunities);
+
+    // REGISTRAR VISITA
+    fetch('/api/visitas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pagina: 'oportunidades' })
+    }).catch(() => {});
+  </script>
+
+  <script src="search.js"></script>
 </body>
 </html>

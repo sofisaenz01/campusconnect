@@ -32,6 +32,7 @@
       line-height: 1.6;
     }
 
+    /* ===== HEADER ===== */
     header {
       background: #fff;
       padding: 16px 40px;
@@ -40,6 +41,9 @@
       justify-content: space-between;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
@@ -108,6 +112,7 @@
       box-shadow: 0 2px 6px rgba(13, 103, 165, 0.2);
     }
 
+    /* ===== LAYOUT ===== */
     .layout {
       display: flex;
       min-height: calc(100vh - 74px);
@@ -283,6 +288,44 @@
       margin-right: 8px;
     }
 
+    /* ===== FOOTER CON REDES SOCIALES ===== */
+    .footer-social {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .facebook { background: #1877f2; }
+    .youtube { background: #ff0000; }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
       header { padding: 14px 24px; }
       .search-container { width: 280px; }
@@ -318,6 +361,7 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="logo">
       <i class="fas fa-project-diagram"></i>
@@ -325,7 +369,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Buscar">
+      <input type="text" placeholder="Buscar eventos..." id="searchInput">
       <i class="fas fa-search"></i>
     </div>
 
@@ -335,6 +379,7 @@
     </a>
   </header>
 
+  <!-- LAYOUT -->
   <div class="layout">
     <nav class="sidebar">
       <a href="inicio.html" class="nav-item">
@@ -357,92 +402,119 @@
     <main class="content">
       <h1 class="page-title">Próximos Eventos</h1>
 
-      <div class="section">
-        <h2 class="section-title">Inicia el nuevo torneo de ping pong</h2>
-        <div class="event-card">
-          <div class="event-icon">
-            <img src="https://images.pexels.com/photos/976873/pexels-photo-976873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ping Pong">
-          </div>
-          <div class="event-content">
-            <div class="event-title">Torneo de Ping Pong</div>
-            <p class="event-desc">
-              ¡Te invitamos a participar en una competencia llena de adrenalina y diversión que se llevará a cabo en el Auditorio principal! Este es tu momento para demostrar tus habilidades, enfrentarte a tus compañeros y coronarte como el campeón indiscutible. No importa si eres un experto o si solo juegas por diversión, ¡te esperamos!
-            </p>
-            <div class="event-contact">
-              <i class="fas fa-info-circle"></i>
-              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- EVENTOS DINÁMICOS + ESTÁTICOS -->
+      <div id="eventosContainer"></div>
 
-      <div class="section">
-        <h2 class="section-title">Pruebas de VIH sida</h2>
-        <div class="event-card">
-          <div class="event-icon">
-            <img src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Salud">
-          </div>
-          <div class="event-content">
-            <div class="event-title">Pruebas de VIH</div>
-            <p class="event-desc">
-              "Tu salud es lo más importante. Te invitamos a realizarte la prueba de VIH/SIDA en nuestro campus. Un procedimiento rápido y confidencial. La prueba está disponible para todo el mundo y se encuentra en la plaza cerca al edificio de CAEQUINOS."
-            </p>
-            <div class="event-badge hiv">
-              <i class="fas fa-shield-virus"></i>
-              Confidencial
-            </div>
-            <div class="event-contact">
-              <i class="fas fa-info-circle"></i>
-              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2 class="section-title">Festival Cultural Interuniversitario</h2>
-        <div class="event-card">
-          <div class="event-icon">
-            <img src="https://images.pexels.com/photos/1387037/pexels-photo-1387037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Festival Cultural">
-          </div>
-          <div class="event-content">
-            <div class="event-title">Festival Cultural Interuniversitario</div>
-            <p class="event-desc">
-              "Vive la diversidad con vibrantes presentaciones de música y danza de diversas culturas, acompañadas de deliciosa comida típica preparada por estudiantes. Explora talleres y stands interactivos que resaltan tradiciones globales. ¡Todos son bienvenidos a disfrutar y compartir de este gran festival!"
-            </p>
-            <div class="event-contact">
-              <i class="fas fa-info-circle"></i>
-              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2 class="section-title">Torneo Relámpago de Voleibol y Fútbol</h2>
-        <div class="event-card">
-          <div class="event-icon">
-            <img src="https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Deportes">
-          </div>
-          <div class="event-content">
-            <div class="event-title">Torneo Relámpago de Voleibol y Fútbol</div>
-            <p class="event-desc">
-              "Disfruta de un día lleno de competencia y diversión con el Torneo Relámpago de Voleibol y Fútbol, exclusivo para estudiantes. Participa en partidos intensos, forma tu equipo y vive la emoción del deporte en el campus. Habrá premios para los ganadores y un ambiente festivo para todos. ¡Únete el 28 de agosto de 2025 a partir de las 9:00 AM!"
-            </p>
-            <div class="event-date">
-              28 de agosto de 2025 - 9:00 AM
-            </div>
-            <div class="event-contact">
-              <i class="fas fa-info-circle"></i>
-              Para más información acerca del evento comunícate al número: <strong>312-228-3900</strong> o acércate a nuestras oficinas.
-            </div>
-          </div>
+      <!-- REDES SOCIALES -->
+      <div class="footer-social">
+        <div class="social-links">
+          <a href="https://www.instagram.com/unisabaneta/" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/Unisabaneta.colombia" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/@unisabaneta" target="_blank" class="social-btn youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
         </div>
       </div>
     </main>
   </div>
 
-<script src="search.js"></script>
+  <!-- BÚSQUEDA EN TIEMPO REAL -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        const title = section.querySelector('.section-title').textContent.toLowerCase();
+        const desc = section.querySelector('.event-desc')?.textContent.toLowerCase() || '';
+        section.style.display = (title.includes(query) || desc.includes(query)) ? '' : 'none';
+      });
+    });
+  </script>
 
+  <!-- SCRIPT: CARGAR EVENTOS + REGISTRAR VISITA -->
+  <script>
+    const eventosEstaticos = [
+      {
+        titulo: "Torneo de Ping Pong",
+        descripcion: "¡Te invitamos a participar en una competencia llena de adrenalina y diversión que se llevará a cabo en el Auditorio principal! Este es tu momento para demostrar tus habilidades, enfrentarte a tus compañeros y coronarte como el campeón indiscutible. No importa si eres un experto o si solo juegas por diversión, ¡te esperamos!",
+        fecha: "28 de agosto de 2025 - 9:00 AM",
+        contacto: "312-228-3900",
+        imagen: "https://images.pexels.com/photos/976873/pexels-photo-976873.jpeg"
+      },
+      {
+        titulo: "Pruebas de VIH",
+        descripcion: "Tu salud es lo más importante. Te invitamos a realizarte la prueba de VIH/SIDA en nuestro campus. Un procedimiento rápido y confidencial. La prueba está disponible para todo el mundo y se encuentra en la plaza cerca al edificio de CAEQUINOS.",
+        fecha: "Todo el mes",
+        contacto: "312-228-3900",
+        imagen: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg",
+        badge: "Confidencial"
+      },
+      {
+        titulo: "Festival Cultural Interuniversitario",
+        descripcion: "Vive la diversidad con vibrantes presentaciones de música y danza de diversas culturas, acompañadas de deliciosa comida típica preparada por estudiantes. Explora talleres y stands interactivos que resaltan tradiciones globales. ¡Todos son bienvenidos a disfrutar y compartir de este gran festival!",
+        fecha: "15 de septiembre",
+        contacto: "312-228-3900",
+        imagen: "https://images.pexels.com/photos/1387037/pexels-photo-1387037.jpeg"
+      },
+      {
+        titulo: "Torneo Relámpago de Voleibol y Fútbol",
+        descripcion: "Disfruta de un día lleno de competencia y diversión con el Torneo Relámpago de Voleibol y Fútbol, exclusivo para estudiantes. Participa en partidos intensos, forma tu equipo y vive la emoción del deporte en el campus. Habrá premios para los ganadores y un ambiente festivo para todos. ¡Únete el 28 de agosto de 2025 a partir de las 9:00 AM!",
+        fecha: "28 de agosto de 2025 - 9:00 AM",
+        contacto: "312-228-3900",
+        imagen: "https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg"
+      }
+    ];
+
+    // Cargar eventos dinámicos
+    fetch('/api/eventos')
+      .then(r => r.json())
+      .then(dinamicos => {
+        const todos = [...eventosEstaticos, ...dinamicos].sort((a, b) => {
+          return (a.fecha || '').localeCompare(b.fecha || '');
+        });
+        renderEventos(todos);
+      })
+      .catch(() => {
+        renderEventos(eventosEstaticos);
+      });
+
+    function renderEventos(eventos) {
+      const container = document.getElementById('eventosContainer');
+      container.innerHTML = eventos.map(e => `
+        <div class="section">
+          <h2 class="section-title">${e.titulo}</h2>
+          <div class="event-card">
+            <div class="event-icon">
+              <img src="${e.imagen}" alt="${e.titulo}" onerror="this.src='https://via.placeholder.com/80?text=Evento'">
+            </div>
+            <div class="event-content">
+              <div class="event-title">${e.titulo}</div>
+              <p class="event-desc">${e.descripcion}</p>
+              ${e.badge ? `<div class="event-badge hiv"><i class="fas fa-shield-virus"></i> ${e.badge}</div>` : ''}
+              ${e.fecha ? `<div class="event-date">${e.fecha}</div>` : ''}
+              <div class="event-contact">
+                <i class="fas fa-info-circle"></i>
+                Para más información comunícate al número: <strong>${e.contacto}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // REGISTRAR VISITA
+    fetch('/api/visitas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pagina: 'eventos' })
+    }).catch(() => {});
+  </script>
+
+  <script src="search.js"></script>
 </body>
 </html>

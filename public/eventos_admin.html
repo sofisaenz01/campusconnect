@@ -32,56 +32,17 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .logo-icon {
-            width: 38px;
-            height: 38px;
-            background: #0077cc;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-icon::before {
-            content: "";
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background: white;
-            border-radius: 50%;
-            top: 6px;
-            left: 6px;
-            box-shadow: 0 0 0 3px #0077cc;
-        }
-
-        .logo-icon::after {
-            content: "";
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background: white;
-            border-radius: 50%;
-            bottom: 6px;
-            right: 6px;
-            box-shadow: 0 0 0 3px #0077cc;
-        }
-
-        .logo-icon span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 2px;
-            background: #0077cc;
-            z-index: 1;
+            font-size: 28px;
+            color: #0d67a5;
         }
 
         .logo-text {
             font-weight: 700;
-            color: #0077cc;
+            color: #0d67a5;
             font-size: 1.5rem;
         }
 
@@ -91,12 +52,12 @@
             gap: 10px;
             font-size: 0.95rem;
             font-weight: 500;
-            color: #0077cc;
+            color: #0d67a5;
         }
 
         .admin-info i {
             font-size: 1.6rem;
-            color: #0077cc;
+            color: #0d67a5;
         }
 
         /* Main Layout */
@@ -143,11 +104,11 @@
 
         nav ul li a:hover {
             background-color: #e6f2ff;
-            color: #0077cc;
+            color: #0d67a5;
         }
 
         nav ul li a.active {
-            background-color: #0077cc;
+            background-color: #0d67a5;
             color: white;
         }
 
@@ -171,11 +132,11 @@
 
         .submenu a:hover {
             background-color: #f0f8ff;
-            color: #0077cc;
+            color: #0d67a5;
         }
 
         .submenu a.active {
-            background-color: #0077cc;
+            background-color: #0d67a5;
             color: white;
         }
 
@@ -188,7 +149,7 @@
 
         .page-title {
             font-size: 1.7rem;
-            color: #0077cc;
+            color: #0d67a5;
             margin-bottom: 25px;
             font-weight: 500;
         }
@@ -208,6 +169,7 @@
             display: flex;
             gap: 16px;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .event-card:hover {
@@ -246,7 +208,7 @@
             align-items: center;
             gap: 6px;
             font-size: 0.85rem;
-            color: #0077cc;
+            color: #0d67a5;
             font-weight: 500;
         }
 
@@ -263,7 +225,7 @@
         }
 
         .event-contact i {
-            color: #0077cc;
+            color: #0d67a5;
             margin-right: 5px;
         }
 
@@ -272,13 +234,13 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: linear-gradient(135deg, #0077cc, #005fa3);
+            background: linear-gradient(135deg, #0d67a5, #005fa3);
             color: white;
             padding: 14px 28px;
             border-radius: 50px;
             font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 6px 16px rgba(0, 119, 204, 0.35);
+            box-shadow: 0 6px 16px rgba(13, 103, 165, 0.35);
             transition: all 0.3s;
             z-index: 100;
             display: flex;
@@ -292,7 +254,31 @@
 
         .add-more-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 24px rgba(0, 119, 204, 0.45);
+            box-shadow: 0 10px 24px rgba(13, 103, 165, 0.45);
+        }
+
+        /* Botón Eliminar */
+        .delete-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #ef4444;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .delete-btn:hover {
+            background: #dc2626;
+            transform: scale(1.1);
         }
 
         /* Responsive */
@@ -336,14 +322,12 @@
     <!-- Header -->
     <header>
         <div class="logo-container">
-            <div class="logo-icon">
-                <span></span>
-            </div>
+            <i class="fas fa-project-diagram logo-icon"></i>
             <div class="logo-text">Campus Connect</div>
         </div>
-        <a href="perfil_admin.html" class="admin-info" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
-            <span style="font-weight: 500; color: #0077cc;">Administrador</span>
-            <i class="fas fa-user-circle" style="font-size: 1.6rem; color: #0077cc;"></i>
+        <a href="perfiladmin.html" class="admin-info" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+            <span style="font-weight: 500; color: #0d67a5;">Administrador</span>
+            <i class="fas fa-user-circle" style="font-size: 1.6rem; color: #0d67a5;"></i>
         </a>
     </header>
 
@@ -372,62 +356,9 @@
         <main>
             <h1 class="page-title">Próximos Eventos</h1>
 
-            <section class="events-section">
-
-                <!-- Evento 1: Ping Pong -->
-                <article class="event-card">
-                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Torneo de Ping Pong" class="event-img">
-                    <div class="event-content">
-                        <h3 class="event-title">Torneo de Ping Pong</h3>
-                        <p class="event-desc">¡Te invitamos a participar en una competencia llena de adrenalina y diversión que se llevará a cabo en el Auditorio principal! Este es tu momento para demostrar tus habilidades, enfrentarte a tus compañeros y coronarte como el campeón indiscutible. No importa si eres un experto o si solo juegas por diversión, ¡te esperamos!</p>
-                        <div class="event-info">
-                            <i class="far fa-clock"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Evento 2: Pruebas de VIH -->
-                <article class="event-card">
-                    <img src="https://images.unsplash.com/photo-1581595220877-7d0d2b00a9d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Pruebas de VIH" class="event-img">
-                    <div class="event-content">
-                        <h3 class="event-title">Pruebas de VIH</h3>
-                        <p class="event-desc">Tu salud es lo más importante. Te invitamos a realizarte la prueba de VIH/SIDA en nuestro campus. Un procedimiento rápido y confidencial. La prueba está disponible para todo el mundo y se encuentra en la plaza cerca al edificio de CAEGUNOS.</p>
-                        <div class="event-info">
-                            <i class="fas fa-shield-alt"></i> Confidencial
-                        </div>
-                        <div class="event-contact">
-                            <i class="fas fa-phone"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Evento 3: Festival Cultural -->
-                <article class="event-card">
-                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Festival Cultural" class="event-img">
-                    <div class="event-content">
-                        <h3 class="event-title">Festival Cultural Interuniversitario</h3>
-                        <p class="event-desc">¡Vive la diversidad con vibrantes presentaciones de música y danza de diversas culturas, acompañadas de deliciosa comida típica preparada por estudiantes! Explora talleres y stands interactivos que resaltan tradiciones globales. ¡Todos son bienvenidos a disfrutar y compartir de este gran festival!</p>
-                        <div class="event-contact">
-                            <i class="fas fa-phone"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Evento 4: Torneo Relámpago -->
-                <article class="event-card">
-                    <img src="https://images.unsplash.com/photo-1570545906912-3f2d9f76f3e6?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Torneo Relámpago" class="event-img">
-                    <div class="event-content">
-                        <h3 class="event-title">Torneo Relámpago de Voleibol y Fútbol</h3>
-                        <p class="event-desc">¡Disfruta de un día lleno de competencia y diversión con el Torneo Relámpago de Voleibol y Fútbol, exclusivo para estudiantes. Participa en partidos intensos, forma tu equipo y vive la emoción del deporte en el campus. Habrá premios para los ganadores y un ambiente festivo para todos. ¡Únete el 28 de agosto de 2025 a partir de las 9:00 AM!</p>
-                        <div class="event-info">
-                            <i class="far fa-calendar-alt"></i> 28 de agosto de 2025 – 9:00 AM
-                        </div>
-                        <div class="event-contact">
-                            <i class="fas fa-phone"></i> Para más información acerca del evento comunícate al número: 312-238-0900 o acércate a nuestras oficinas.
-                        </div>
-                    </div>
-                </article>
-
+            <!-- EVENTOS DINÁMICOS -->
+            <section id="eventosSection" class="events-section">
+                <!-- Se llenan con JS -->
             </section>
 
             <!-- Botón flotante -->
@@ -437,13 +368,58 @@
         </main>
     </div>
 
+    <!-- SCRIPT: Cargar + Eliminar -->
     <script>
         // Menú desplegable
         document.querySelector('.dropdown-toggle').addEventListener('click', function(e) {
             e.preventDefault();
-            const submenu = this.nextElementSibling;
-            submenu.classList.toggle('show');
+            this.nextElementSibling.classList.toggle('show');
         });
+
+        // Eliminar evento
+        function eliminarEvento(id, card) {
+            if (!confirm('¿Eliminar este evento?')) return;
+            fetch(`/api/eventos/${id}`, { method: 'DELETE' })
+                .then(r => r.json())
+                .then(d => {
+                    if (d.success) {
+                        card.remove();
+                        alert('Evento eliminado');
+                    } else {
+                        alert('Error: ' + d.message);
+                    }
+                })
+                .catch(() => alert('Error de conexión'));
+        }
+
+        // Cargar eventos desde MongoDB
+        fetch('/api/eventos')
+            .then(r => r.json())
+            .then(eventos => {
+                const section = document.getElementById('eventosSection');
+                section.innerHTML = eventos.map(e => `
+                    <article class="event-card" data-id="${e._id}">
+                        <div class="delete-btn" onclick="eliminarEvento('${e._id}', this.parentElement)">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                        ${e.imagen ? `<img src="${e.imagen}" alt="${e.titulo}" class="event-img">` : ''}
+                        <div class="event-content">
+                            <h3 class="event-title">${e.titulo}</h3>
+                            <p class="event-desc">${e.descripcion}</p>
+                            <div class="event-info">
+                                <i class="far fa-calendar-alt"></i> ${e.fecha}
+                            </div>
+                            <div class="event-contact">
+                                <i class="fas fa-phone"></i> ${e.contacto}
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('eventosSection').innerHTML = '<p class="text-red-600">Error al cargar eventos.</p>';
+            });
     </script>
 </body>
 </html>

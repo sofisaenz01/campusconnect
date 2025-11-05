@@ -1,295 +1,333 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Campus Connect - Unisabaneta</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Fuentes e Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
+        /* === RESET Y TIPOGRAFÍA === */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
         }
 
         body {
-            background: linear-gradient(135deg, #f0f4f867 0%, #e0e8f065 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f0f4f867 0%, #e0e8f065 100%);
+        min-height: 100vh;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
         }
 
+        /* === CONTENEDOR PRINCIPAL - PANTALLA COMPLETA === */
         .laptop {
-            background-color: white;
-            width: 850px;
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+        background-color: white;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
         }
 
-        /* ---------- Encabezado ---------- */
+        /* === HEADER === */
         header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 25px;
-            border-bottom: 1px solid #ddd;
-            background-color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 40px;
+        border-bottom: 1px solid #ddd;
+        background-color: #ffffff;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
+        display: flex;
+        align-items: center;
         }
 
         .logo img {
-            height: 45px;
-            width: auto;
-            transform: scaleX(1.3);
-            transform-origin: left center;
+        height: 50px;
+        width: auto;
+        transform: scaleX(1.3);
+        transform-origin: left center;
         }
 
         nav {
-            background-color: #e8e8e8;
-            padding: 8px 20px;
-            border-radius: 20px;
+        background-color: #e8e8e8;
+        padding: 10px 25px;
+        border-radius: 30px;
         }
 
         nav a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #000;
-            font-weight: 500;
+        margin: 0 15px;
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+        font-size: 15px;
+        transition: text-decoration 0.2s;
         }
 
         nav a:hover {
-            text-decoration: underline;
+        text-decoration: underline;
         }
 
         .login {
-            color: #000;
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        color: #000;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        transition: text-decoration 0.2s;
         }
 
         .login:hover {
-            text-decoration: underline;
+        text-decoration: underline;
         }
 
-        /* ---------- Contenido ---------- */
+        /* === CONTENIDO PRINCIPAL === */
         .content {
-            flex: 1;
-            padding: 20px 40px;
-            background-color: #fff;
+        flex: 1;
+        padding: 40px 60px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
         }
 
         .sub-logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
         }
 
-        .sub-logo img {
-            height: 35px;
-            margin-right: 10px;
+        .sub-logo i {
+        font-size: 36px;
+        color: #0d67a5;
         }
 
         .sub-logo h2 {
-            font-size: 18px;
-            color: #333;
+        font-size: 26px;
+        color: #0d67a5;
+        font-weight: 700;
         }
 
-        /* ---------- Sección "Quiénes Somos" ---------- */
+        /* === SECCIÓN QUIÉNES SOMOS === */
         .section {
-            margin-bottom: 20px;
-            background-color: #d9e9f2;
-            padding: 20px;
-            border-radius: 15px;
+        background-color: #d9e9f2;
+        padding: 28px;
+        border-radius: 18px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .section h3 {
-            background-color: transparent;
-            padding: 0;
-            border-radius: 0;
-            width: auto;
-            font-size: 16px;
-            margin-bottom: 8px;
-            font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 12px;
+        font-weight: 700;
+        color: #0d67a5;
         }
 
         .section p {
-            margin-top: 8px;
-            font-size: 14px;
-            line-height: 1.5;
-            text-align: justify;
+        font-size: 16px;
+        line-height: 1.7;
+        text-align: justify;
+        color: #444;
         }
 
-        /* ---------- Sección "Objetivos" ---------- */
+        /* === SECCIÓN OBJETIVOS === */
         .objectives {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 32px;
+        background-color: #d9e9f2;
+        padding: 28px;
+        border-radius: 18px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .objectives .text {
-            background-color: #d9e9f2;
-            padding: 15px;
-            border-radius: 15px;
-            flex: 1;
+        flex: 1;
         }
 
         .objectives .text h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 16px;
+        font-weight: 700;
+        color: #0d67a5;
         }
 
         .objectives ul {
-            margin-left: 18px;
-            font-size: 14px;
-            line-height: 1.6;
+        margin-left: 22px;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #444;
         }
 
         .objectives ul li {
-            margin-bottom: 5px;
+        margin-bottom: 10px;
         }
 
         .objectives .image-container {
-            display: flex;
-            align-items: flex-start;
+        flex-shrink: 0;
         }
 
         .objectives img {
-            width: 380px;
-            height: 230px;
-            border-radius: 8px;
-            object-fit: cover;
-            object-position: center;
+        width: 420px;
+        height: 260px;
+        border-radius: 12px;
+        object-fit: cover;
+        object-position: center;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
-        /* ---------- Pie con íconos ---------- */
+        /* === FOOTER CON REDES SOCIALES === */
         footer {
-            border-top: 1px solid #ddd;
-            text-align: center;
-            padding: 15px;
-            background-color: #ffffff;
+        border-top: 1px solid #ddd;
+        text-align: center;
+        padding: 20px;
+        background-color: #ffffff;
         }
 
         .icons {
-            font-size: 22px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        font-size: 26px;
+        display: flex;
+        justify-content: center;
+        gap: 24px;
         }
 
         .icons a {
-            color: #000;
-            text-decoration: none;
-            transition: color 0.3s;
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
         .icons a:hover {
-            color: #0077b5;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .icons a.instagram:hover {
-            color: #e4405f;
+        .facebook { background: #1877f2; }
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .youtube { background: #ff0000; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+        .content { padding: 30px 40px; }
+        .objectives { flex-direction: column; }
+        .objectives img { width: 100%; height: auto; }
         }
 
-        .icons a.youtube:hover {
-            color: #ff0000;
-        }
-
-        /* Responsivo */
         @media (max-width: 768px) {
-            .laptop {
-                width: 100%;
-            }
-
-            .objectives {
-                flex-direction: column;
-            }
-
-            .objectives img {
-                width: 100%;
-                height: auto;
-            }
+        header {
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+        }
+        nav {
+            order: 3;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+        }
+        .login { order: 2; }
+        .content { padding: 20px; }
+        .sub-logo h2 { font-size: 22px; }
+        .section, .objectives { padding: 20px; }
         }
     </style>
-</head>
-<body>
+    </head>
+    <body>
 
     <div class="laptop">
-        <!-- Encabezado -->
+        <!-- ENCABEZADO -->
         <header>
-            <div class="logo">
-                <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
-            </div>
-
-            <nav>
-                <a href="#quienes-somos">Quiénes Somos</a>
-                <a href="#objetivos">Objetivos</a>
-                <a href="beneficios.html"><strong>Beneficios</strong></a>
-            </nav>
-
-            <a href="login.html" class="login"><i class="fas fa-user"></i> Inicia Sesión</a>
-        </header>
-
-        <!-- Contenido -->
-        <div class="content">
-            <div class="sub-logo">
-                <img src="campus_connect_icon.png" alt="Campus Connect">
-                <h2>Campus Connect</h2>
-            </div>
-
-            <div class="section">
-                <h3>Quiénes Somos</h3>
-                <p>
-                    Campus Connect es una plataforma web y móvil diseñada para estudiantes de ingeniería,
-                    que centraliza noticias, eventos, deportes y recursos académicos específicos de la universidad,
-                    con un enfoque especial en las necesidades y oportunidades del ámbito ingenieril.
-                </p>
-            </div>
-
-            <div class="objectives">
-                <div class="text">
-                    <h3>Objetivos</h3>
-                    <ul>
-                        <li>Centralizar noticias, eventos y recursos de ingeniería.</li>
-                        <li>Facilitar el acceso a software, tutoriales y bibliotecas digitales.</li>
-                        <li>Conectar estudiantes, profesores y empresas del sector.</li>
-                        <li>Promover la participación en ferias y conferencias.</li>
-                        <li>Difundir oportunidades de prácticas y empleos.</li>
-                    </ul>
-                </div>
-
-                <div class="image-container">
-                    <img src="estudiantes_graduandose.jpeg" alt="Estudiantes en conferencia">
-                </div>
-            </div>
+        <div class="logo">
+            <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
         </div>
 
-        <!-- Pie -->
-        <footer>
-            <div class="icons">
-                <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
+        <nav>
+            <a href="#quienes-somos">Quiénes Somos</a>
+            <a href="#objetivos">Objetivos</a>
+            <a href="beneficios.html"><strong>Beneficios</strong></a>
+        </nav>
+
+        <a href="login.html" class="login">
+            <i class="fas fa-user"></i> Inicia Sesión
+        </a>
+        </header>
+
+        <!-- CONTENIDO -->
+        <div class="content">
+        <div class="sub-logo">
+            <i class="fas fa-project-diagram"></i>
+            <h2>Campus Connect</h2>
+        </div>
+
+        <!-- QUIÉNES SOMOS -->
+        <div class="section" id="quienes-somos">
+            <h3>Quiénes Somos</h3>
+            <p>
+            Campus Connect es una plataforma web y móvil diseñada para estudiantes de ingeniería,
+            que centraliza noticias, eventos, deportes y recursos académicos específicos de la universidad,
+            con un enfoque especial en las necesidades y oportunidades del ámbito ingenieril.
+            </p>
+        </div>
+
+        <!-- OBJETIVOS -->
+        <div class="objectives" id="objetivos">
+            <div class="text">
+            <h3>Objetivos</h3>
+            <ul>
+                <li>Centralizar noticias, eventos y recursos de ingeniería.</li>
+                <li>Facilitar el acceso a software, tutoriales y bibliotecas digitales.</li>
+                <li>Conectar estudiantes, profesores y empresas del sector.</li>
+                <li>Promover la participación en ferias y conferencias.</li>
+                <li>Difundir oportunidades de prácticas y empleos.</li>
+            </ul>
             </div>
+
+            <div class="image-container">
+            <img src="estudiantes_graduandose.jpeg" alt="Estudiantes en conferencia">
+            </div>
+        </div>
+        </div>
+
+        <!-- FOOTER CON REDES SOCIALES -->
+        <footer>
+        <div class="icons">
+            <a href="https://www.facebook.com/Unisabaneta.colombia" target="_blank" class="facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/unisabaneta/" target="_blank" class="instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/@unisabaneta" target="_blank" class="youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+            </a>
+        </div>
         </footer>
     </div>
 
-<script src="search.js"></script>
-
-</body>
-</html>
+    <!-- Script de búsqueda (opcional) -->
+    <script src="search.js"></script>
+    </body>
+    </html>  

@@ -18,14 +18,10 @@
       --transition: all 0.25s ease;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: linear-gradient(to bottom, #f8fbff, #edf2f7);
       color: var(--text);
       line-height: 1.6;
@@ -56,10 +52,7 @@
 
     .logo i {
       font-size: 28px;
-      background: linear-gradient(135deg, #0d67a5, #4a90e2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--primary);
     }
 
     .search-container {
@@ -102,9 +95,7 @@
       transition: var(--transition);
     }
 
-    .profile:hover {
-      color: var(--primary);
-    }
+    .profile:hover { color: var(--primary); }
 
     .profile i {
       width: 38px;
@@ -121,12 +112,8 @@
     }
 
     /* ===== LAYOUT ===== */
-    .layout {
-      display: flex;
-      min-height: calc(100vh - 74px);
-    }
+    .layout { display: flex; min-height: calc(100vh - 74px); }
 
-    /* ===== SIDEBAR ===== */
     .sidebar {
       width: 240px;
       background: var(--primary-light);
@@ -151,17 +138,9 @@
       overflow: hidden;
     }
 
-    .nav-item i {
-      margin-right: 12px;
-      font-size: 18px;
-      width: 20px;
-      text-align: center;
-    }
+    .nav-item i { margin-right: 12px; font-size: 18px; width: 20px; text-align: center; }
 
-    .nav-item:hover {
-      background: rgba(13, 103, 165, 0.1);
-      color: var(--primary);
-    }
+    .nav-item:hover { background: rgba(13, 103, 165, 0.1); color: var(--primary); }
 
     .nav-item.active {
       background: var(--primary);
@@ -169,32 +148,19 @@
       box-shadow: 0 4px 12px rgba(13, 103, 165, 0.25);
     }
 
-    .nav-item.active i {
-      color: white;
-    }
+    .nav-item.active i { color: white; }
 
     .nav-item.active::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: white;
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: white;
     }
 
-    /* ===== CONTENT ===== */
-    .content {
-      flex: 1;
-      padding: 32px 48px;
-      background: #ffffff;
-    }
+    .content { flex: 1; padding: 32px 48px; background: #ffffff; }
 
-    .section-title {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 24px;
+    .section-title { 
+      font-size: 28px; 
+      font-weight: 700; 
+      color: var(--text); 
+      margin-bottom: 24px; 
     }
 
     .news-grid {
@@ -228,9 +194,7 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .news-card-content {
-      padding: 16px;
-    }
+    .news-card-content { padding: 16px; }
 
     .news-card-title {
       font-size: 15px;
@@ -246,45 +210,46 @@
       line-clamp: 2;
     }
 
-    .news-card:hover .news-card-title {
-      color: var(--primary);
+    .news-card:hover .news-card-title { color: var(--primary); }
+
+    .news-card-meta { font-size: 12px; color: var(--text-light); }
+
+    /* ===== FOOTER CON REDES SOCIALES ===== */
+    .footer-social {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
     }
 
-    .news-card-meta {
-      font-size: 12px;
-      color: var(--text-light);
-    }
-
-    /* ===== SOCIAL ICONS ===== */
-    .social-bar {
+    .social-links {
       display: flex;
       justify-content: center;
-      gap: 28px;
-      padding: 20px 0;
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
+      gap: 20px;
     }
 
-    .social-icon {
-      width: 42px;
-      height: 42px;
-      background: var(--primary-light);
-      color: var(--primary);
+    .social-btn {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      transition: var(--transition);
-      cursor: pointer;
+      color: white;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
-    .social-icon:hover {
-      background: var(--primary);
-      color: white;
+    .social-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(13, 103, 165, 0.3);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
+
+    .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .facebook { background: #1877f2; }
+    .youtube { background: #ff0000; }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
@@ -296,22 +261,16 @@
 
     @media (max-width: 768px) {
       .layout { flex-direction: column; }
-      .sidebar {
-        width: 100%;
-        padding: 16px;
-        display: flex;
-        overflow-x: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
+      .sidebar { 
+        width: 100%; 
+        padding: 16px; 
+        display: flex; 
+        overflow-x: auto; 
+        border-right: none; 
+        border-bottom: 1px solid var(--border); 
       }
-      .nav-item {
-        min-width: 130px;
-        white-space: nowrap;
-      }
-      header {
-        flex-wrap: wrap;
-        gap: 12px;
-      }
+      .nav-item { min-width: 130px; white-space: nowrap; }
+      header { flex-wrap: wrap; gap: 12px; }
       .search-container { order: 3; width: 100%; }
     }
   </style>
@@ -326,7 +285,7 @@
     </div>
 
     <div class="search-container">
-      <input type="text" placeholder="Buscar">
+      <input type="text" placeholder="Buscar" id="searchInput">
       <i class="fas fa-search"></i>
     </div>
 
@@ -351,58 +310,95 @@
     <main class="content">
       <h1 class="section-title">Últimas Noticias</h1>
 
-      <div class="news-grid">
-        <a href="https://feriacampusu.com/" target="_blank" class="news-card">
-          <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Feria Campus">
-          <div class="news-card-content">
-            <h3 class="news-card-title">¡No te pierdas Feria Campus U 2024! inscríbete ya!</h3>
-            <p class="news-card-meta">Hoy • 14:30</p>
-          </div>
-        </a>
+      <!-- NOTICIAS GRID -->
+      <div id="newsGrid" class="news-grid"></div>
 
-        <a href="https://canaltrece.com.co/noticias/dia-amor-amistad-colombia-septiembre/" target="_blank" class="news-card">
-          <img src="https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Amor y Amistad">
-          <div class="news-card-content">
-            <h3 class="news-card-title">¿Cuándo es el Día de Amor y Amistad en Colombia?</h3>
-            <p class="news-card-meta">Ayer • 09:15</p>
-          </div>
-        </a>
-
-        <a href="https://www.cdc.gov/hiv/es/prevention/como-prevenir-el-vih.html" target="_blank" class="news-card">
-          <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="VIH">
-          <div class="news-card-content">
-            <h3 class="news-card-title">Conceptos básicos sobre la prevención de la infección por el VIH</h3>
-            <p class="news-card-meta">2 días atrás</p>
-          </div>
-        </a>
-
-        <a href="https://www.youtube.com/watch?v=oVMsZyTKdvo" target="_blank" class="news-card">
-          <img src="https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Ciberseguridad">
-          <div class="news-card-content">
-            <h3 class="news-card-title">Expertos comparten ideas para proteger datos en un mundo digital</h3>
-            <p class="news-card-meta">3 días atrás</p>
-          </div>
-        </a>
-
-        <a href="https://www.ibm.com/think/artificial-intelligence" target="_blank" class="news-card">
-          <img src="https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="IA">
-          <div class="news-card-content">
-            <h3 class="news-card-title">Descubre cómo la IA está transformando el mundo laboral</h3>
-            <p class="news-card-meta">5 días atrás</p>
-          </div>
-        </a>
-      </div>
-
-      <!-- SOCIAL BAR -->
-      <div class="social-bar">
-        <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
-        <div class="social-icon"><i class="fab fa-instagram"></i></div>
-        <div class="social-icon"><i class="fab fa-youtube"></i></div>
+      <!-- REDES SOCIALES -->
+      <div class="footer-social">
+        <div class="social-links">
+          <a href="https://www.instagram.com/unisabaneta/" target="_blank" class="social-btn instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/Unisabaneta.colombia" target="_blank" class="social-btn facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/@unisabaneta" target="_blank" class="social-btn youtube" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
       </div>
     </main>
   </div>
 
-<script src="search.js"></script>
+  <!-- SCRIPT PARA CARGAR NOTICIAS + BÚSQUEDA -->
+  <script>
+    const noticiasEstaticas = [
+      { titulo: "¡No te pierdas Feria Campus U 2024! inscríbete ya!", url: "https://feriacampusu.com/", imagen: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", fecha: new Date(Date.now() - 86400000 * 0).toISOString(), autor: "Admin" },
+      { titulo: "¿Cuándo es el Día de Amor y Amistad en Colombia?", url: "https://canaltrece.com.co/noticias/dia-amor-amistad-colombia-septiembre/", imagen: "https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", fecha: new Date(Date.now() - 86400000 * 1).toISOString(), autor: "Admin" },
+      { titulo: "Conceptos básicos sobre la prevención de la infección por el VIH", url: "https://www.cdc.gov/hiv/es/prevention/como-prevenir-el-vih.html", imagen: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", fecha: new Date(Date.now() - 86400000 * 2).toISOString(), autor: "Admin" },
+      { titulo: "Expertos comparten ideas para proteger datos en un mundo digital", url: "https://www.youtube.com/watch?v=oVMsZyTKdvo", imagen: "https://images.pexels.com/photos/3183183/pexels-photo-3183183.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", fecha: new Date(Date.now() - 86400000 * 3).toISOString(), autor: "Admin" },
+      { titulo: "Descubre cómo la IA está transformando el mundo laboral", url: "https://www.ibm.com/think/artificial-intelligence", imagen: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", fecha: new Date(Date.now() - 86400000 * 5).toISOString(), autor: "Admin" }
+    ];
 
+    function formatDate(dateString) {
+      const now = new Date();
+      const date = new Date(dateString);
+      const diffMs = now - date;
+      const diffMins = Math.floor(diffMs / 60000);
+      const diffHours = Math.floor(diffMs / 3600000);
+      const diffDays = Math.floor(diffMs / 86400000);
+
+      if (diffMins < 60) return `Hace ${diffMins} min`;
+      if (diffHours < 24) return `Hace ${diffHours}h`;
+      if (diffDays < 7) return `Hace ${diffDays} día${diffDays > 1 ? 's' : ''}`;
+      return date.toLocaleDateString('es-CO');
+    }
+
+    function renderNoticias(noticias) {
+      const grid = document.getElementById('newsGrid');
+      grid.innerHTML = noticias.map(n => `
+        <a href="${n.url || '#'}" target="_blank" class="news-card">
+          ${n.imagen ? `<img src="${n.imagen}" alt="${n.titulo}" onerror="this.src='https://via.placeholder.com/300x160?text=Sin+Imagen'">` : ''}
+          <div class="news-card-content">
+            <h3 class="news-card-title">${n.titulo}</h3>
+            <p class="news-card-meta">${formatDate(n.fecha)} • Por: ${n.autor}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // Cargar noticias
+    fetch('/api/noticias')
+      .then(r => r.json())
+      .then(dinamicas => {
+        const todas = [...noticiasEstaticas, ...dinamicas]
+          .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+        renderNoticias(todas);
+      })
+      .catch(err => {
+        console.error('Error al cargar noticias:', err);
+        renderNoticias(noticiasEstaticas);
+      });
+
+    // BÚSQUEDA EN TIEMPO REAL
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      const cards = document.querySelectorAll('.news-card');
+      cards.forEach(card => {
+        const title = card.querySelector('.news-card-title').textContent.toLowerCase();
+        card.style.display = title.includes(query) ? '' : 'none';
+      });
+    });
+
+    // REGISTRA VISITA
+    fetch('/api/visitas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pagina: 'noticias' })
+    }).catch(() => {});
+  </script>
+
+  <script src="search.js"></script>
 </body>
 </html>
