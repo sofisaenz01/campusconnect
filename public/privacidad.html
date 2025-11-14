@@ -3,208 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unisabaneta - Privacidad</title>
+    <title>Privacidad - Unisabaneta</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #f5f7fa;
+            background-color: #f5f5f5;
             color: #333;
             line-height: 1.6;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
         }
 
         header {
             background-color: #fff;
-            padding: 20px 30px;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #00a0df;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .logo img {
-            width: 40px;
-            height: auto;
-            margin-right: 10px;
+            height: 50px;
         }
 
-        nav {
+        nav ul {
+            list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         nav a {
             text-decoration: none;
-            color: #555;
-            font-weight: 500;
+            color: #0066cc;
+            font-weight: bold;
             font-size: 14px;
-            transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #00a0df;
-        }
-
-        nav a.active {
-            color: #00a0df;
-            font-weight: 600;
+            text-decoration: underline;
         }
 
         main {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff;
             padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .page-title {
-            font-size: 28px;
-            color: #00a0df;
-            margin-bottom: 16px;
-            font-weight: 600;
+        h1 {
+            color: #0066cc;
+            margin-bottom: 15px;
+            font-size: 24px;
         }
 
         .intro-text {
-            font-size: 15px;
+            margin-bottom: 25px;
             color: #555;
-            margin-bottom: 30px;
             text-align: justify;
         }
 
         .section {
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
-        .section-title {
+        .section h2 {
+            color: #0066cc;
+            margin-bottom: 12px;
             font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 12px;
-        }
-
-        .section-content {
-            font-size: 15px;
-            color: #444;
-            text-align: justify;
-        }
-
-        .section-content p {
-            margin-bottom: 12px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
         }
 
         .subsection {
-            margin-top: 18px;
+            margin-bottom: 20px;
         }
 
-        .subsection-title {
+        .subsection h3 {
+            color: #0066cc;
+            margin-bottom: 10px;
             font-size: 16px;
             font-weight: 600;
-            color: #00a0df;
-            margin-bottom: 8px;
+        }
+
+        .subsection p {
+            margin-bottom: 12px;
+            color: #555;
+            text-align: justify;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
         }
 
         footer {
-            background-color: #f9f9f9;
-            padding: 15px 30px;
             text-align: center;
-            font-size: 13px;
+            padding: 20px;
+            background-color: #fff;
             color: #777;
+            font-size: 12px;
+            margin-top: 50px;
             border-top: 1px solid #eee;
         }
 
         @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                border-radius: 8px;
-            }
-
             header {
                 flex-direction: column;
                 text-align: center;
-                gap: 15px;
             }
-
-            nav {
+            nav ul {
+                margin-top: 15px;
                 justify-content: center;
             }
-
             main {
+                margin: 20px;
                 padding: 20px;
-            }
-
-            .page-title {
-                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <img src="https://via.placeholder.com/40x40/00a0df/ffffff?text=U" alt="Unisabaneta Logo">
-                <span>Unisabaneta</span>
+
+    <header>
+        <div class="logo">
+            <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="ayuda.html">Ayuda</a></li>
+                <li><a href="condiciones.html">Condiciones</a></li>
+                <li><a href="privacidad.html">Privacidad</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Política de Privacidad</h1>
+        <p class="intro-text">
+            En Unisabaneta nos tomamos muy en serio la protección de tu información personal. Esta Política de Privacidad detalla de manera transparente cómo recopilamos, utilizamos, compartimos y protegemos tus datos, así como los derechos que tienes sobre ellos. Al utilizar nuestros servicios, aceptas las prácticas descritas a continuación. Nos esforzamos por garantizar que la privacidad sea respetada en todo momento, y esta política está diseñada para informarte claramente sobre nuestros compromisos.
+        </p>
+
+        <div class="section">
+            <h2>Secciones</h2>
+
+            <div class="subsection">
+                <h3>Recolección de Datos</h3>
+                <p>
+                    Recopilamos información personal necesaria para brindar y mejorar nuestros servicios. Esto incluye: Nombre completo, dirección de correo electrónico y número de teléfono si aplica. Dirección IP, tipo de dispositivo y navegador, recopilados automáticamente. Estos datos se obtienen mediante formularios de registro, cookies o tecnologías similares, siempre con tu consentimiento explícito cuando sea requerido por la ley.
+                </p>
             </div>
-            <nav>
-                <a href="ayuda.html">Ayuda</a>
-                <a href="condiciones.html">Condiciones</a>
-                <a href="privacidad.html" class="active">Privacidad</a>
-            </nav>
-        </header>
 
-        <main>
-            <h1 class="page-title">Política de Privacidad</h1>
-            <p class="intro-text">
-                En Unisabaneta nos tomamos muy en serio la protección de tu información personal. Esta Política de Privacidad detalla de manera transparente cómo recopilamos, utilizamos, compartimos y protegemos tus datos, así como los derechos que tienes sobre ellos. Al utilizar nuestros servicios, aceptas las prácticas descritas a continuación. Nos esforzamos por garantizar que la privacidad sea respetada en todo momento, y esta política está diseñada para informarte claramente sobre nuestros compromisos.
-            </p>
+            <div class="subsection">
+                <h3>Uso de Datos</h3>
+                <p>
+                    Utilizamos tu información para varios propósitos clave: mejorar nuestros servicios analizando tendencias y patrones de uso; personalizar tu experiencia; cumplir con requerimientos legales; y enviarte comunicaciones administrativas o promocionales si has dado tu consentimiento. En ningún caso vendemos tus datos a terceros sin tu autorización explícita.
+                </p>
+            </div>
+        </div>
 
-            <section class="section">
-                <h2 class="section-title">Secciones</h2>
+        <a href="index.html" class="back-link">← Volver a la página principal</a>
+    </main>
 
-                <div class="subsection">
-                    <h3 class="subsection-title">Recolección de Datos</h3>
-                    <div class="section-content">
-                        <p>
-                            Recopilamos información personal necesaria para brindar y mejorar nuestros servicios. Esto incluye: Nombre completo, dirección de correo electrónico y número de teléfono si aplica. Dirección IP, tipo de dispositivo y navegador, recopilados automáticamente. Estos datos se obtienen mediante formularios de registro, cookies o tecnologías similares, siempre con tu consentimiento explícito cuando sea requerido por la ley.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="subsection">
-                    <h3 class="subsection-title">Uso de Datos</h3>
-                    <div class="section-content">
-                        <p>
-                            Utilizamos tu información para varios propósitos clave: mejorar nuestros servicios analizando tendencias y patrones de uso; personalizar tu experiencia; cumplir con requerimientos legales; y enviarte comunicaciones administrativas o promocionales si has dado tu consentimiento. En ningún caso vendemos tus datos a terceros sin tu autorización explícita.
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            &copy; 2025 Unisabaneta. Todos los derechos reservados.
-        </footer>
-    </div>
+    <footer>
+        © 2025 Unisabaneta. Todos los derechos reservados.
+    </footer>
 
 <script src="search.js"></script>
 

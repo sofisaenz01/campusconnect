@@ -349,8 +349,8 @@
             <!-- RESUMEN DE ESTADÍSTICAS -->
             <div class="stats-summary">
                 <div class="stat-item">
-                    <div class="stat-number" id="publicaciones-hoy">Cargando...</div>
-                    <div class="stat-label">Publicaciones hoy</div>
+                    <div class="stat-number" id="noticias-disponibles">Cargando...</div>
+                    <div class="stat-label">Noticias Disponibles</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" id="eventos-proximos">Cargando...</div>
@@ -383,56 +383,64 @@
             submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
         });
 
-        // === CARGAR ESTADÍSTICAS DESDE API ===
-        fetch('/api/estadisticas')
-            .then(response => {
-                if (!response.ok) throw new Error('Error en la respuesta del servidor');
-                return response.json();
-            })
-            .then(data => {
-                if (!data.success) throw new Error(data.message || 'Error en datos');
+        // === CARGAR ESTADÍSTICAS DESDE API (CON AUTO-ACTUALIZACIÓN) ===
+        function cargarEstadisticas() {
+            fetch('/api/estadisticas')
+                .then(response => {
+                    if (!response.ok) throw new Error('Error en la respuesta del servidor');
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data.success) throw new Error(data.message || 'Error en datos');
 
-                const d = data.data;
+                    const d = data.data;
 
-                // Actualizar contadores
-                document.getElementById('publicaciones-hoy').textContent = d.publicacionesHoy;
-                document.getElementById('eventos-proximos').textContent = d.eventosProximos;
-                document.getElementById('recursos-disponibles').textContent = d.recursosDisponibles;
-                document.getElementById('oportunidades-disponibles').textContent = d.oportunidadesDisponibles;
+                    // Actualizar contadores
+                    document.getElementById('noticias-disponibles').textContent = d.noticiasDisponibles;
+                    document.getElementById('eventos-proximos').textContent = d.eventosProximos;
+                    document.getElementById('recursos-disponibles').textContent = d.recursosDisponibles;
+                    document.getElementById('oportunidades-disponibles').textContent = d.oportunidadesDisponibles;
 
-                // Generar gráfica de barras
-                const chart = document.getElementById('chart');
-                chart.innerHTML = '';
+                    // Generar gráfica de barras
+                    const chart = document.getElementById('chart');
+                    chart.innerHTML = '';
 
-                const maxHeight = 180;
-                const maxVisits = Math.max(...d.visitasPorDia, 1); // Evita división por 0
+                    const maxHeight = 180;
+                    const maxVisits = Math.max(...d.visitasPorDia, 1); // Evita división por 0
 
-                d.diasSemana.forEach((dia, i) => {
-                    const visitas = d.visitasPorDia[i] || 0;
-                    const height = (visitas / maxVisits) * maxHeight;
+                    d.diasSemana.forEach((dia, i) => {
+                        const visitas = d.visitasPorDia[i] || 0;
+                        const height = (visitas / maxVisits) * maxHeight;
 
-                    const bar = document.createElement('div');
-                    bar.className = 'bar';
-                    bar.style.height = height + 'px';
+                        const bar = document.createElement('div');
+                        bar.className = 'bar';
+                        bar.style.height = height + 'px';
 
-                    const value = document.createElement('div');
-                    value.className = 'bar-value';
-                    value.textContent = visitas;
+                        const value = document.createElement('div');
+                        value.className = 'bar-value';
+                        value.textContent = visitas;
 
-                    const label = document.createElement('div');
-                    label.className = 'bar-label';
-                    label.textContent = dia;
+                        const label = document.createElement('div');
+                        label.className = 'bar-label';
+                        label.textContent = dia;
 
-                    bar.appendChild(value);
-                    bar.appendChild(label);
-                    chart.appendChild(bar);
+                        bar.appendChild(value);
+                        bar.appendChild(label);
+                        chart.appendChild(bar);
+                    });
+                })
+                .catch(err => {
+                    console.error('Error al cargar estadísticas:', err);
+                    document.querySelectorAll('.stat-number').forEach(el => el.textContent = 'Error');
+                    document.getElementById('chart').innerHTML = '<p style="color: red; text-align: center;">Error al cargar gráfica</p>';
                 });
-            })
-            .catch(err => {
-                console.error('Error al cargar estadísticas:', err);
-                document.querySelectorAll('.stat-number').forEach(el => el.textContent = 'Error');
-                document.getElementById('chart').innerHTML = '<p style="color: red; text-align: center;">Error al cargar gráfica</p>';
-            });
+        }
+
+        // Cargar estadísticas al iniciar
+        cargarEstadisticas();
+
+        // Auto-actualizar cada 30 segundos
+        setInterval(cargarEstadisticas, 30000);
     </script>
 </body>
 </html>

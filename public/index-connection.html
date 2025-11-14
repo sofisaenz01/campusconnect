@@ -1,144 +1,212 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
+    <title>Registro - Campus Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #9cc9e0;
+        :root {
+        --primary: #5ca0d3;
+        --bg: #9cc9e0;
+        --white: #ffffff;
+        --text: #333333;
+        --border: #555555;
+        --radius: 8px;
+        --shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', Arial, sans-serif; background: var(--bg); min-height: 100vh; }
 
         header {
-            background-color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 40px;
+        background: var(--white);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        header img {
-            height: 40px;
-        }
-
+        header img { height: 40px; }
         header nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #000;
-            font-size: 14px;
+        margin-left: 20px;
+        text-decoration: none;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 500;
         }
 
         .form-container {
-            background-color: white;
-            width: 320px;
-            margin: 60px auto;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
+        background: var(--white);
+        width: 340px;
+        margin: 60px auto;
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        text-align: center;
         }
 
         .form-container h2 {
-            margin: 0;
-            font-size: 18px;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
         }
 
         .form-container p {
-            font-size: 12px;
-            color: #333;
-            margin-bottom: 15px;
+        font-size: 13px;
+        color: #555;
+        margin-bottom: 20px;
         }
 
-        .form-container input[type="text"],
-        .form-container input[type="email"],
-        .form-container input[type="number"],
-        .form-container input[type="tel"],
-        .form-container input[type="password"] {
-            width: 90%;
-            padding: 8px;
-            margin: 6px 0;
-            border: 1px solid #555;
-            border-radius: 4px;
-            box-sizing: border-box;
+        .form-group {
+        margin-bottom: 14px;
+        text-align: left;
         }
 
-        .form-container select {
-            width: 90%;
-            padding: 8px;
-            margin: 6px 0;
-            border: 1px solid #555;
-            border-radius: 4px;
-            box-sizing: border-box;
+        .form-group label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
         }
 
-        .form-container label {
-            font-size: 12px;
+        .form-group input,
+        .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1.5px solid var(--border);
+        border-radius: 6px;
+        font-size: 14px;
+        transition: all 0.2s;
         }
 
-        .form-container input[type="checkbox"] {
-            margin-right: 5px;
+        .form-group input:focus,
+        .form-group select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(92, 160, 211, 0.2);
         }
 
-        .form-container button[type="submit"] {
-            background-color: #5ca0d3;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 10px;
+        .form-group input::placeholder { color: #aaa; }
+
+        .checkbox-group {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        margin: 16px 0 20px;
         }
 
-        .form-container button[type="submit"]:hover {
-            background-color: #478bb9;
+        .checkbox-group input[type="checkbox"] {
+        width: auto;
+        margin-right: 8px;
+        }
+
+        .btn-submit {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 32px;
+        border-radius: 25px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+        background: #478bb9;
+        }
+
+        .login-link {
+        margin-top: 20px;
+        font-size: 13px;
+        }
+
+        .login-link a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        }
+
+        .login-link a:hover { text-decoration: underline; }
+
+        @media (max-width: 480px) {
+        .form-container { width: 90%; margin: 40px auto; padding: 25px; }
+        header { padding: 12px 20px; flex-direction: column; gap: 10px; }
+        header nav { margin-top: 10px; }
         }
     </style>
-</head>
-<body>
+    </head>
+    <body>
 
     <header>
         <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
         <nav>
-            <a href="ayuda.html">Ayuda</a>
-            <a href="condiciones.html">Condiciones</a>
-            <a href="privacidad.html">Privacidad</a>
+        <a href="ayuda.html">Ayuda</a>
+        <a href="condiciones.html">Condiciones</a>
+        <a href="privacidad.html">Privacidad</a>
         </nav>
     </header>
 
     <div class="form-container">
-        <h2>Formulario de Registro</h2>
+        <h2>Crear Cuenta</h2>
         <p>Todos los campos son obligatorios.</p>
 
         <form action="/sign_up" method="POST">
-            <input type="text" class="box" id="nombre" name="nombre" placeholder="Nombre" required/>
-            <br>
-            <input type="number" class="box" id="edad" name="edad" placeholder="Edad" required/>
-            <br>
-            <input type="email" class="box" id="correo" name="correo" placeholder="Correo electrónico" required/>
-            <br>
-            <input type="tel" class="box" id="telefono" name="telefono" placeholder="Teléfono" required/>
-            <br>
-            <select class="box" id="genero" name="genero" required>
-                <option value="">Seleccione un género</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-                <option value="Otro">Otro</option>
+        <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad</label>
+            <input type="number" id="edad" name="edad" placeholder="18" min="15" max="100" required>
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="3001234567" required>
+        </div>
+
+        <div class="form-group">
+            <label for="genero">Género</label>
+            <select id="genero" name="genero" required>
+            <option value="">Seleccionar</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
             </select>
-            <br>
-            <input type="password" class="box" id="contrasena" name="contrasena" placeholder="Contraseña" required/>
-            <br>
-            <label>
-                <input type="checkbox" id="terminos" name="terminos" required>
-                Aceptar Términos y Condiciones
-            </label><br>
-            <button type="submit">Enviar</button>
+        </div>
+
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" placeholder="Mínimo 6 caracteres" minlength="6" required>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="terminos" name="terminos" required>
+            <label for="terminos">Acepto los <a href="condiciones.html" style="color:var(--primary);">Términos y Condiciones</a></label>
+        </div>
+
+        <button type="submit" class="btn-submit">
+            Registrarme
+        </button>
         </form>
+
+        <div class="login-link">
+        ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+        </div>
     </div>
 
-<script src="search.js"></script>
-
-</body>
-</html>
+    </body>
+    </html>

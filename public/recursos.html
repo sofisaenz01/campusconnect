@@ -214,16 +214,21 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto 16px;
-      font-size: 36px;
+      font-size: 40px;
       color: var(--primary);
       box-shadow: 0 2px 8px rgba(13, 103, 165, 0.1);
       overflow: hidden;
+      padding: 15px;
     }
 
     .resource-icon img {
       width: 50px;
       height: 50px;
       object-fit: contain;
+    }
+
+    .resource-icon i {
+      font-size: 40px;
     }
 
     .resource-title {
@@ -376,18 +381,19 @@
 
       <!-- RECURSOS GRID -->
       <div id="resourcesGrid" class="resources-grid">
-        <!-- RECURSOS ESTÁTICOS (fallback) -->
+        <!-- Normas APA -->
         <div class="resource-card">
           <div class="resource-icon">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" alt="PDF APA">
           </div>
-          <div class="resource-title">Encuentra aquí la mejor plantilla de normas Apa 7</div>
+          <div class="resource-title">Encuentra aquí la mejor plantilla de normas APA 7</div>
           <p class="resource-desc">Edición completa</p>
           <a href="https://repository.unad.edu.co/bitstream/handle/10596/54822/Plantilla_Normas_APA_7a_Edicion.docx?sequence=1&isAllowed=y" download class="btn btn-primary">
             <i class="fas fa-download"></i> Descargar
           </a>
         </div>
 
+        <!-- Normas IEEE -->
         <div class="resource-card">
           <div class="resource-icon">
             <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/IEEE_logo.svg" alt="IEEE">
@@ -399,9 +405,10 @@
           </a>
         </div>
 
+        <!-- Excel -->
         <div class="resource-card">
           <div class="resource-icon">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel">
+            <img src="https://img.icons8.com/color/96/microsoft-excel-2019--v1.png" alt="Excel">
           </div>
           <div class="resource-title">Encuentra aquí el mejor tutorial de Excel Básico</div>
           <p class="resource-desc">Tutorial completo en video</p>
@@ -410,9 +417,10 @@
           </a>
         </div>
 
+        <!-- Canva -->
         <div class="resource-card">
           <div class="resource-icon">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg" alt="Canva">
+            <img src="https://img.icons8.com/fluency/96/canva.png" alt="Canva">
           </div>
           <div class="resource-title">Encuentra aquí la mejor plataforma para gestionar tus diseños</div>
           <p class="resource-desc">Crea diseños profesionales fácilmente</p>
@@ -421,6 +429,7 @@
           </a>
         </div>
 
+        <!-- Técnicas de estudio -->
         <div class="resource-card">
           <div class="resource-icon">
             <i class="fas fa-graduation-cap"></i>
@@ -449,6 +458,35 @@
       </div>
     </main>
   </div>
+
+  <script>
+(function() {
+    const paginaActual = window.location.pathname;
+    const visitaKey = 'visita_registrada_' + paginaActual;
+    
+    if (!sessionStorage.getItem(visitaKey)) {
+        fetch('/api/visitas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                pagina: paginaActual
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                sessionStorage.setItem(visitaKey, 'true');
+                console.log('✅ Visita registrada:', paginaActual);
+            }
+        })
+        .catch(err => {
+            console.error('Error al registrar visita:', err);
+        });
+    }
+})();
+</script>
 
   <!-- BÚSQUEDA + CARGA DINÁMICA -->
   <script>

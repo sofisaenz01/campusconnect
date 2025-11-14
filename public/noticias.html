@@ -330,6 +330,35 @@
     </main>
   </div>
 
+  <script>
+(function() {
+    const paginaActual = window.location.pathname;
+    const visitaKey = 'visita_registrada_' + paginaActual;
+    
+    if (!sessionStorage.getItem(visitaKey)) {
+        fetch('/api/visitas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                pagina: paginaActual
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                sessionStorage.setItem(visitaKey, 'true');
+                console.log('✅ Visita registrada:', paginaActual);
+            }
+        })
+        .catch(err => {
+            console.error('Error al registrar visita:', err);
+        });
+    }
+})();
+</script>
+
   <!-- SCRIPT PARA CARGAR NOTICIAS + BÚSQUEDA -->
   <script>
     const noticiasEstaticas = [
@@ -354,17 +383,43 @@
       return date.toLocaleDateString('es-CO');
     }
 
+    function validarURL(url) {
+      if (!url) return '#';
+      if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url;
+      }
+      return 'https://' + url;
+    }
+
+    function validarImagen(imagen) {
+      if (!imagen) return 'https://via.placeholder.com/300x160?text=Sin+Imagen';
+      
+      // Si es una URL completa (http/https), devolverla tal cual
+      if (imagen.startsWith('http://') || imagen.startsWith('https://')) {
+        return imagen;
+      }
+      
+      // Si no, construir la ruta desde /uploads/
+      const filename = imagen.split('/').pop();
+      return `/uploads/${filename}`;
+    }
+
     function renderNoticias(noticias) {
       const grid = document.getElementById('newsGrid');
-      grid.innerHTML = noticias.map(n => `
-        <a href="${n.url || '#'}" target="_blank" class="news-card">
-          ${n.imagen ? `<img src="${n.imagen}" alt="${n.titulo}" onerror="this.src='https://via.placeholder.com/300x160?text=Sin+Imagen'">` : ''}
-          <div class="news-card-content">
-            <h3 class="news-card-title">${n.titulo}</h3>
-            <p class="news-card-meta">${formatDate(n.fecha)} • Por: ${n.autor}</p>
-          </div>
-        </a>
-      `).join('');
+      grid.innerHTML = noticias.map(n => {
+        const imageUrl = validarImagen(n.imagen);
+        const linkUrl = validarURL(n.url || n.enlace);
+
+        return `
+          <a href="${linkUrl}" target="_blank" rel="noopener noreferrer" class="news-card">
+            <img src="${imageUrl}" alt="${n.titulo}" onerror="this.src='https://via.placeholder.com/300x160?text=Sin+Imagen'">
+            <div class="news-card-content">
+              <h3 class="news-card-title">${n.titulo}</h3>
+              <p class="news-card-meta">${formatDate(n.fecha)} • Por: ${n.autor || 'Admin'}</p>
+            </div>
+          </a>
+        `;
+      }).join('');
     }
 
     // Cargar noticias

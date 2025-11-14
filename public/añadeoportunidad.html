@@ -1,84 +1,176 @@
-  <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Noticias - Campus Connect</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
-  </head>
-  <body class="bg-gray-50 font-sans min-h-screen flex flex-col">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Añadir Oportunidad - Campus Connect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-50 font-sans min-h-screen flex flex-col">
 
-    <!-- Encabezado -->
-    <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
-      <div class="flex items-center space-x-2">
-        <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
-        <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
+  <!-- Encabezado -->
+  <header class="flex justify-between items-center bg-white px-6 py-3 shadow-sm border-b border-gray-200">
+    <div class="flex items-center space-x-2">
+      <i class="fa-solid fa-network-wired text-blue-700 text-xl"></i>
+      <span class="text-lg font-semibold text-blue-800">Campus Connect</span>
+    </div>
+    <div class="flex items-center space-x-3">
+      <span class="text-sm text-gray-700">Administrador</span>
+      <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
+        <i class="fa-solid fa-user text-gray-700"></i>
       </div>
-      <div class="flex items-center space-x-3">
-        <span class="text-sm text-gray-700">Administrador</span>
-        <div class="bg-gray-100 p-2 rounded-full border border-gray-300">
-          <i class="fa-solid fa-user text-gray-700"></i>
-        </div>
+    </div>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main class="flex justify-center items-center flex-1 p-6">
+    <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
+      
+      <!-- Encabezado del formulario -->
+      <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
+        Añade más Oportunidades
       </div>
-    </header>
 
-    <!-- Contenedor principal -->
-    <main class="flex justify-center items-center flex-1 p-6">
-      <div class="bg-white w-full max-w-lg shadow-lg rounded-2xl border border-gray-200">
-        
-        <!-- Encabezado del formulario -->
-        <div class="bg-blue-100 text-blue-800 font-semibold px-6 py-3 rounded-t-2xl border-b border-gray-200">
-          Añade más Oportunidades
+      <!-- Cuerpo del formulario -->
+      <form id="formOportunidad" class="p-6 space-y-4" enctype="multipart/form-data">
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Nombre completo de la Oportunidad:</label>
+          <input 
+            type="text" 
+            name="titulo" 
+            required 
+            placeholder="Escribe el título de la Oportunidad" 
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"
+          >
         </div>
 
-        <!-- Cuerpo del formulario -->
-        <form id="formOportunidad" class="p-6 space-y-4" enctype="multipart/form-data">
-    <div>
-      <label class="block text-gray-700 font-medium mb-1">Nombre completo de la Oportunidad:</label>
-      <input type="text" name="titulo" required placeholder="Escribe el título de la Oportunidad" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
-    </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Descripción Oportunidad:</label>
+          <textarea 
+            name="descripcion" 
+            required 
+            placeholder="Escribe una breve descripción..." 
+            rows="3" 
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"
+          ></textarea>
+        </div>
 
-    <div>
-      <label class="block text-gray-700 font-medium mb-1">Descripción Oportunidad:</label>
-      <textarea name="descripcion" required placeholder="Escribe una breve descripción..." rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"></textarea>
-    </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">URL Oportunidad:</label>
+          <input 
+            type="url" 
+            name="url" 
+            placeholder="https://ejemplo.com" 
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none"
+          >
+        </div>
 
-    <div>
-      <label class="block text-gray-700 font-medium mb-1">URL Oportunidad:</label>
-      <input type="url" name="url" placeholder="https://ejemplo.com" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-300 outline-none">
-    </div>
+        <div>
+          <label class="block text-gray-700 font-medium mb-1">Cargar Ícono:</label>
+          <input 
+            type="file" 
+            name="imagen" 
+            accept="image/*" 
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-blue-300 outline-none"
+          >
+          <p class="text-xs text-gray-500 mt-1">
+            📷 Formatos: JPG, PNG, GIF, WEBP | Tamaño máximo: 5MB | Recomendado: 400x400px
+          </p>
+        </div>
 
-    <div>
-      <label class="block text-gray-700 font-medium mb-1">Cargar Icono:</label>
-      <input type="file" name="imagen" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer focus:ring-2 focus:ring-blue-300 outline-none">
+        <div class="flex justify-between pt-4">
+          <button 
+            type="submit" 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition"
+          >
+            Subir Oportunidad
+          </button>
+          <button 
+            type="button" 
+            id="btnCancelar"
+            class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-5 py-2 rounded-full transition"
+          >
+            Cancelar
+          </button>
+          <a 
+            href="oportunidades_admin.html" 
+            class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center"
+          >
+            Atrás
+          </a>
+        </div>
+      </form>
     </div>
-
-    <div class="flex justify-between pt-4">
-      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">Subir</button>
-      <button type="reset" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-5 py-2 rounded-full transition">Cancelar</button>
-      <a href="oportunidades_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition inline-flex items-center justify-center">Atrás</a>
-    </div>
-  </form>
+  </main>
 
   <script>
-  document.getElementById('formOportunidad').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+    // ===== ENVIAR FORMULARIO =====
+    document.getElementById('formOportunidad').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      
+      // Validar que se haya subido una imagen
+      const imagen = formData.get('imagen');
+      if (!imagen || imagen.size === 0) {
+        alert('⚠️ Por favor selecciona una imagen para la oportunidad');
+        return;
+      }
 
-    const res = await fetch('/api/oportunidades', {
-      method: 'POST',
-      body: formData
+      // Validar tamaño de imagen (máximo 5MB)
+      if (imagen.size > 5 * 1024 * 1024) {
+        alert('⚠️ La imagen es muy grande. El tamaño máximo es 5MB');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/oportunidades', {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await res.json();
+        
+        if (data.success || res.ok) {
+          alert('✅ Oportunidad publicada exitosamente');
+          
+          // ✅ REINICIAR EL FORMULARIO
+          e.target.reset();
+          
+          // Opcional: Redirigir a la página de administración después de 1 segundo
+          setTimeout(() => {
+            window.location.href = 'oportunidades_admin.html';
+          }, 1000);
+        } else {
+          alert('❌ Error: ' + (data.message || 'No se pudo publicar la oportunidad'));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Error de conexión. Verifica que el servidor esté activo en el puerto 3001.');
+      }
     });
 
-    const data = await res.json();
-    alert(data.message || 'Operación completada');
-  });
+    // ===== BOTÓN CANCELAR =====
+    document.getElementById('btnCancelar').addEventListener('click', () => {
+      if (confirm('¿Seguro que deseas cancelar? Se perderán los datos ingresados.')) {
+        document.getElementById('formOportunidad').reset();
+      }
+    });
+
+    // ===== PREVIEW DE IMAGEN (OPCIONAL) =====
+    document.querySelector('input[name="imagen"]').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        if (file.size > 5 * 1024 * 1024) {
+          alert('⚠️ La imagen es muy grande. Tamaño máximo: 5MB');
+          this.value = '';
+          return;
+        }
+        console.log('✅ Imagen seleccionada:', file.name, '(' + (file.size / 1024).toFixed(2) + ' KB)');
+      }
+    });
   </script>
 
-        </form>
-      </div>
-    </main>
-
-  </body>
-  </html>
+</body>
+</html>

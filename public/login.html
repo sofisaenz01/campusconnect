@@ -1,130 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unisabaneta Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            display: flex;
-            width: 600px;
-            height: 400px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .logo-section {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-        }
-        .logo-section img {
-            max-width: 90%;
-            max-height: 90%;
-            width: auto;
-            height: auto;
-        }
-        .login-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-        input[type="password"] {
-            margin-bottom: 15px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión - Campus Connect</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+    --primary: #007bff;
+    --success: #28a745;
+    --bg: #f4f4f4;
+    --card: #ffffff;
+    --text: #333;
+    --border: #ccc;
+    --shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
 
-        /* Botones */
-        .btn {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', Arial, sans-serif; background: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; }
 
-        .btn-primary {
-            background-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
+    .container {
+    display: flex;
+    width: 600px;
+    height: 420px;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    }
 
-        .btn-admin {
-            background-color: #28a745;
-        }
-        .btn-admin:hover {
-            background-color: #218838;
-        }
+    .logo-section {
+    flex: 1;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    }
 
-        .register-link {
-            margin-top: 15px;
-            font-size: 12px;
-            color: #666;
-        }
-        .register-link a {
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
+    .logo-section img {
+    max-width: 85%;
+    max-height: 85%;
+    }
+
+    .login-section {
+    flex: 1;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+
+    h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 22px;
+    }
+
+    .form-group {
+    margin-bottom: 16px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s;
+    }
+
+    input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+    }
+
+    .btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    }
+
+    .btn-primary {
+    background: var(--primary);
+    color: white;
+    }
+
+    .btn-primary:hover { background: #0056b3; }
+
+    .btn-admin {
+    background: var(--success);
+    color: white;
+    margin-top: 16px;
+    }
+
+    .btn-admin:hover { background: #218838; }
+
+    .register-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #666;
+    }
+
+    .register-link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    }
+
+    .register-link a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+    .container { flex-direction: column; width: 90%; height: auto; }
+    .logo-section { padding: 30px; }
+    .login-section { padding: 30px 25px; }
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo-section">
-            <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
-        </div>
-        <div class="login-section">
-            <h2>¡Bienvenido de nuevo!</h2>
-            <form action="/login" method="POST">
-                <input type="email" name="correo" placeholder="Correo electrónico" required>
-                <input type="password" name="contrasena" placeholder="Contraseña" required>
-                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-            </form>
 
-            <!-- NUEVO BOTÓN: Entrar como Administrador -->
-            <a href="admin-login.html" class="btn btn-admin">
-                Entrar como Administrador
-                </a>
-
-            <div class="register-link">
-                ¿Todavía no tienes una cuenta? <a href="index-connection.html">Regístrate</a>.
-            </div>
-        </div>
+<div class="container">
+    <div class="logo-section">
+    <img src="logo_unisabaneta.png" alt="Logo Unisabaneta">
     </div>
 
-    <script src="search.js"></script>
+    <div class="login-section">
+    <h2>¡Bienvenido de nuevo!</h2>
+
+    <form action="/login" method="POST">
+        <div class="form-group">
+        <input type="email" name="correo" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group">
+        <input type="password" name="contrasena" placeholder="Contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </form>
+
+    <a href="admin-login.html" class="btn btn-admin">
+        Entrar como Administrador
+    </a>
+
+    <div class="register-link">
+        ¿No tienes cuenta? <a href="index-connection.html">Regístrate aquí</a>
+    </div>
+    </div>
+</div>
+
 </body>
 </html>

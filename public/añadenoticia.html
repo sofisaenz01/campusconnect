@@ -6,6 +6,19 @@
   <title>Añadir Noticias - Campus Connect</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a2e0a6efee.js" crossorigin="anonymous"></script>
+  <style>
+    .preview-img {
+      max-width: 100%;
+      max-height: 200px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 2px dashed #ccc;
+      display: none;
+    }
+    .preview-img.show {
+      display: block;
+    }
+  </style>
 </head>
 <body class="bg-gray-50 font-sans min-h-screen flex flex-col">
 
@@ -34,25 +47,30 @@
       <form id="noticiaForm" enctype="multipart/form-data" class="p-6 space-y-4">
         <div>
           <label class="block text-gray-700 font-medium mb-1">Título:</label>
-          <input type="text" name="titulo" required placeholder="Título de la noticia" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+          <input type="text" name="titulo" required placeholder="Título de la noticia" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
+
         <div>
           <label class="block text-gray-700 font-medium mb-1">Descripción:</label>
-          <textarea name="descripcion" required rows="3" placeholder="Breve descripción..." class="w-full border border-gray-300 rounded-lg px-3 py-2"></textarea>
+          <textarea name="descripcion" required rows="3" placeholder="Breve descripción..." class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
         </div>
+
         <div>
           <label class="block text-gray-700 font-medium mb-1">URL (opcional):</label>
-          <input type="url" name="url" placeholder="https://ejemplo.com" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+          <input type="url" name="url" placeholder="https://ejemplo.com" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
+
         <div>
           <label class="block text-gray-700 font-medium mb-1">Imagen:</label>
-          <input type="file" name="imagen" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer">
+          <input type="file" name="imagen" id="imagenInput" accept="image/*" class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-50 cursor-pointer">
+          <img id="preview" class="preview-img" alt="Vista previa">
         </div>
+
         <div class="flex justify-between pt-4">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full">
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-full transition">
             Publicar
           </button>
-          <a href="noticias_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full">
+          <a href="noticias_admin.html" class="bg-blue-200 hover:bg-blue-300 text-blue-800 font-semibold px-5 py-2 rounded-full transition">
             Atrás
           </a>
         </div>
@@ -61,34 +79,68 @@
   </main>
 
   <script>
-    // CARGAR NOMBRE DEL ADMIN
+    // === VISTA PREVIA DE IMAGEN ===
+    document.getElementById('imagenInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const preview = document.getElementById('preview');
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.classList.add('show');
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.classList.remove('show');
+      }
+    });
+
+    // === CARGAR NOMBRE DEL ADMIN ===
     fetch('/api/admin/perfil')
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(d => document.getElementById('adminName').textContent = d.nombre)
       .catch(() => window.location.href = 'admin-login.html');
 
-    // ENVIAR NOTICIA
+    // === ENVIAR NOTICIA ===
     document.getElementById('noticiaForm').onsubmit = async function(e) {
       e.preventDefault();
       const formData = new FormData(this);
+      
+      // Mostrar loading
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Publicando...';
+
       try {
-        const res = await fetch('/api/noticias', { method: 'POST', body: formData });
+        const res = await fetch('/api/noticias', {
+          method: 'POST',
+          body: formData
+        });
         const data = await res.json();
+
         if (data.success) {
           alert('¡Noticia publicada exitosamente!');
           this.reset();
+          document.getElementById('preview').classList.remove('show');
         } else {
-          alert('Error: ' + data.message);
+          alert('Error: ' + (data.message || 'No se pudo publicar'));
         }
       } catch (err) {
-        console.error(err);
+        console.error('Error:', err);
         alert('Error de conexión. Revisa la consola (F12)');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
       }
     };
 
+    // === CERRAR SESIÓN ===
     function logout() {
       if (confirm('¿Cerrar sesión?')) {
-        fetch('/logout', { method: 'POST' }).then(() => window.location.href = 'login.html');
+        fetch('/logout', { method: 'POST' })
+          .then(() => window.location.href = 'login.html')
+          .catch(() => window.location.href = 'login.html');
       }
     }
   </script>

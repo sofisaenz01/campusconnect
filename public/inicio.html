@@ -476,6 +476,35 @@
     </main>
   </div>
 
+  <script>
+(function() {
+    const paginaActual = window.location.pathname;
+    const visitaKey = 'visita_registrada_' + paginaActual;
+    
+    if (!sessionStorage.getItem(visitaKey)) {
+        fetch('/api/visitas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                pagina: paginaActual
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                sessionStorage.setItem(visitaKey, 'true');
+                console.log('✅ Visita registrada:', paginaActual);
+            }
+        })
+        .catch(err => {
+            console.error('Error al registrar visita:', err);
+        });
+    }
+})();
+</script>
+
   <!-- BÚSQUEDA EN TIEMPO REAL -->
   <script>
     const searchInput = document.getElementById('searchInput');
