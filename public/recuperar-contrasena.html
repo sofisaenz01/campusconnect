@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperar Contraseña - Campus Connect</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+    --primary: #007bff;
+    --success: #28a745;
+    --danger: #dc3545;
+    --bg: #f4f4f4;
+    --card: #ffffff;
+    --text: #333;
+    --border: #ccc;
+    --shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+    font-family: 'Inter', Arial, sans-serif; 
+    background: var(--bg); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 100vh;
+    padding: 20px;
+    }
+
+    .container {
+    width: 100%;
+    max-width: 480px;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 40px 35px;
+    box-shadow: var(--shadow);
+    }
+
+    .header {
+    text-align: center;
+    margin-bottom: 30px;
+    }
+
+    .header i {
+    font-size: 48px;
+    color: var(--primary);
+    margin-bottom: 15px;
+    }
+
+    h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 24px;
+    }
+
+    .subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    }
+
+    .step {
+    display: none;
+    animation: fadeIn 0.3s;
+    }
+
+    .step.active {
+    display: block;
+    }
+
+    @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+    margin-bottom: 20px;
+    }
+
+    label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text);
+    font-size: 14px;
+    }
+
+    input[type="email"],
+    input[type="text"],
+    input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.2s;
+    font-family: 'Inter', Arial, sans-serif;
+    }
+
+    input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.15);
+    }
+
+    .verification-code {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+    }
+
+    .verification-code input {
+    width: 50px;
+    height: 55px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    }
+
+    .verification-code input:focus {
+    border-color: var(--primary);
+    }
+
+    .btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s;
+    }
+
+    .btn-primary {
+    background: var(--primary);
+    color: white;
+    }
+
+    .btn-primary:hover { 
+    background: #0056b3; 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+    }
+
+    .btn-primary:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    }
+
+    .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: none;
+    }
+
+    .alert.show {
+    display: block;
+    animation: slideDown 0.3s;
+    }
+
+    @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+    }
+
+    .alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    }
+
+    .alert-info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    }
+
+    .resend-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #666;
+    }
+
+    .resend-link button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 13px;
+    }
+
+    .resend-link button:disabled {
+    color: #999;
+    cursor: not-allowed;
+    }
+
+    .back-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 14px;
+    }
+
+    .back-link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    }
+
+    .back-link a:hover { text-decoration: underline; }
+
+    .password-requirements {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    padding-left: 5px;
+    }
+
+    .password-requirements li {
+    margin-bottom: 4px;
+    }
+
+    .success-icon {
+    text-align: center;
+    margin-bottom: 20px;
+    }
+
+    .success-icon i {
+    font-size: 64px;
+    color: var(--success);
+    }
+
+    .loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+    vertical-align: middle;
+    }
+
+    @keyframes spin {
+    to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 640px) {
+    .container { padding: 30px 25px; }
+    .verification-code input { width: 45px; height: 50px; font-size: 20px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+    <i class="fas fa-lock"></i>
+    </div>
+
+    <div id="alert" class="alert"></div>
+
+    <!-- Paso 1: Ingresar correo -->
+    <div id="step1" class="step active">
+    <h2>Recuperar Contraseña</h2>
+    <p class="subtitle">Ingresa tu correo electrónico y te enviaremos un código de verificación</p>
+
+    <form id="emailForm">
+        <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="sendCodeBtn">Enviar Código</button>
+    </form>
+
+    <div class="back-link">
+        <a href="login.html"><i class="fas fa-arrow-left"></i> Volver al inicio de sesión</a>
+    </div>
+    </div>
+
+    <!-- Paso 2: Verificar código -->
+    <div id="step2" class="step">
+    <h2>Verificar Código</h2>
+    <p class="subtitle">Ingresa el código de 6 dígitos que enviamos a <strong id="emailDisplay"></strong></p>
+
+    <form id="codeForm">
+        <div class="verification-code">
+        <input type="text" maxlength="1" class="code-input" data-index="0" required>
+        <input type="text" maxlength="1" class="code-input" data-index="1" required>
+        <input type="text" maxlength="1" class="code-input" data-index="2" required>
+        <input type="text" maxlength="1" class="code-input" data-index="3" required>
+        <input type="text" maxlength="1" class="code-input" data-index="4" required>
+        <input type="text" maxlength="1" class="code-input" data-index="5" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="verifyCodeBtn">Verificar Código</button>
+    </form>
+
+    <div class="resend-link">
+        ¿No recibiste el código? <button id="resendBtn">Reenviar código</button>
+        <div id="timer"></div>
+    </div>
+
+    <div class="back-link">
+        <a href="#" id="backToEmail"><i class="fas fa-arrow-left"></i> Cambiar correo</a>
+    </div>
+    </div>
+
+    <!-- Paso 3: Nueva contraseña -->
+    <div id="step3" class="step">
+    <h2>Nueva Contraseña</h2>
+    <p class="subtitle">Crea una contraseña segura para tu cuenta</p>
+
+    <form id="passwordForm">
+        <div class="form-group">
+        <label for="newPassword">Nueva contraseña</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Mínimo 6 caracteres" required>
+        <ul class="password-requirements">
+            <li>• Mínimo 6 caracteres</li>
+        </ul>
+        </div>
+        <div class="form-group">
+        <label for="confirmPassword">Confirmar contraseña</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repite tu contraseña" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="changePasswordBtn">Cambiar Contraseña</button>
+    </form>
+    </div>
+
+    <!-- Paso 4: Éxito -->
+    <div id="step4" class="step">
+    <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <h2>¡Contraseña Actualizada!</h2>
+    <p class="subtitle">Tu contraseña ha sido cambiada exitosamente. Ya puedes iniciar sesión con tu nueva contraseña.</p>
+    <a href="login.html" class="btn btn-primary">Ir al Inicio de Sesión</a>
+    </div>
+</div>
+
+<script>
+    // CONFIGURACIÓN - Cambia esta URL por tu API de Render
+    const API_URL = 'http://localhost:3001/api';
+    
+    let userEmail = '';
+    let resendTimer = 0;
+
+    // Función para mostrar alertas
+    function showAlert(message, type) {
+    const alert = document.getElementById('alert');
+    alert.className = `alert alert-${type} show`;
+    alert.textContent = message;
+    setTimeout(() => {
+        alert.classList.remove('show');
+    }, 5000);
+    }
+
+    // Función para cambiar de paso
+    function goToStep(stepNumber) {
+    document.querySelectorAll('.step').forEach(step => {
+        step.classList.remove('active');
+    });
+    document.getElementById(`step${stepNumber}`).classList.add('active');
+    window.scrollTo(0, 0);
+    }
+
+    // Paso 1: Enviar correo
+    document.getElementById('emailForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const btn = document.getElementById('sendCodeBtn');
+    const originalText = btn.textContent;
+    
+    try {
+        btn.disabled = true;
+        btn.innerHTML = 'Enviando...<span class="loading"></span>';
+        
+        // Llamada a tu API en Render
+        const response = await fetch(`${API_URL}/send-verification-code`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+        userEmail = email;
+        document.getElementById('emailDisplay').textContent = email;
+        showAlert('Código enviado exitosamente a tu correo', 'success');
+        goToStep(2);
+        startResendTimer();
+        } else {
+        showAlert(data.message || 'Error al enviar el código. Verifica tu correo.', 'error');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión. Intenta nuevamente.', 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+    }
+    });
+
+    // Paso 2: Manejo de inputs de código
+    const codeInputs = document.querySelectorAll('.code-input');
+    codeInputs.forEach((input, index) => {
+    input.addEventListener('input', (e) => {
+        // Solo permitir números
+        e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        
+        if (e.target.value.length === 1 && index < codeInputs.length - 1) {
+        codeInputs[index + 1].focus();
+        }
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+        codeInputs[index - 1].focus();
+        }
+    });
+
+    input.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pastedData = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 6);
+        pastedData.split('').forEach((char, i) => {
+        if (codeInputs[i]) {
+            codeInputs[i].value = char;
+        }
+        });
+        if (pastedData.length === 6) {
+        codeInputs[5].focus();
+        }
+    });
+    });
+
+    // Verificar código
+    document.getElementById('codeForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const enteredCode = Array.from(codeInputs).map(input => input.value).join('');
+    const btn = document.getElementById('verifyCodeBtn');
+    const originalText = btn.textContent;
+    
+    if (enteredCode.length !== 6) {
+        showAlert('Por favor ingresa el código completo', 'error');
+        return;
+    }
+    
+    try {
+        btn.disabled = true;
+        btn.innerHTML = 'Verificando...<span class="loading"></span>';
+        
+        // Verificar código con tu API
+        const response = await fetch(`${API_URL}/verify-code`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+            email: userEmail,
+            code: enteredCode 
+        })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+        showAlert('Código verificado correctamente', 'success');
+        setTimeout(() => goToStep(3), 1000);
+        } else {
+        showAlert(data.message || 'Código incorrecto. Intenta nuevamente.', 'error');
+        codeInputs.forEach(input => input.value = '');
+        codeInputs[0].focus();
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión. Intenta nuevamente.', 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+    }
+    });
+
+    // Timer para reenviar código
+    function startResendTimer() {
+    resendTimer = 60;
+    const resendBtn = document.getElementById('resendBtn');
+    const timerDiv = document.getElementById('timer');
+    resendBtn.disabled = true;
+    
+    const interval = setInterval(() => {
+        resendTimer--;
+        timerDiv.textContent = `Puedes reenviar en ${resendTimer}s`;
+        
+        if (resendTimer <= 0) {
+        clearInterval(interval);
+        resendBtn.disabled = false;
+        timerDiv.textContent = '';
+        }
+    }, 1000);
+    }
+
+    // Reenviar código
+    document.getElementById('resendBtn').addEventListener('click', async () => {
+    try {
+        const response = await fetch(`${API_URL}/send-verification-code`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: userEmail })
+        });
+        
+        if (response.ok) {
+        showAlert('Código reenviado a tu correo', 'success');
+        startResendTimer();
+        codeInputs.forEach(input => input.value = '');
+        codeInputs[0].focus();
+        } else {
+        showAlert('Error al reenviar el código', 'error');
+        }
+    } catch (error) {
+        showAlert('Error de conexión', 'error');
+    }
+    });
+
+    // Volver a cambiar email
+    document.getElementById('backToEmail').addEventListener('click', (e) => {
+    e.preventDefault();
+    goToStep(1);
+    codeInputs.forEach(input => input.value = '');
+    });
+
+    // Paso 3: Cambiar contraseña
+    document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const btn = document.getElementById('changePasswordBtn');
+    const originalText = btn.textContent;
+    
+    // Validaciones
+    if (newPassword.length < 6) {
+        showAlert('La contraseña debe tener al menos 6 caracteres', 'error');
+        return;
+    }
+    
+    if (newPassword !== confirmPassword) {
+        showAlert('Las contraseñas no coinciden', 'error');
+        return;
+    }
+    
+    try {
+        btn.disabled = true;
+        btn.innerHTML = 'Actualizando...<span class="loading"></span>';
+        
+        // Actualizar contraseña con tu API
+        const response = await fetch(`${API_URL}/reset-password`, {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+            email: userEmail,
+            newPassword: newPassword 
+        })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+        showAlert('Contraseña actualizada exitosamente', 'success');
+        setTimeout(() => goToStep(4), 1500);
+        } else {
+        showAlert(data.message || 'Error al actualizar la contraseña', 'error');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión. Intenta nuevamente.', 'error');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+    }
+    });
+</script>
+
+</body>
+</html>

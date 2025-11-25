@@ -803,6 +803,120 @@ setInterval(limpiarEstadisticasAntiguas, 24 * 60 * 60 * 1000);
 })();
 
 // ============================================
+// FIX 100% EFECTIVO → Elimina error "addEventListener of null" en páginas sin barra de búsqueda
+// ============================================
+app.use((req, res, next) => {
+  if (req.path.includes('.html')) {
+    const oldSend = res.send;
+    res.send = function (data) {
+      if (typeof data === 'string' && data.includes('</body>')) {
+        const noCrashScript = `<script>
+          document.addEventListener("DOMContentLoaded", () => {
+            if (!document.getElementById("btn-buscar")) window.buscar = () => {};
+            if (!document.getElementById("menu-toggle")) window.toggleMenu = () => {};
+          });
+        </script>`;
+        data = data.replace("</body>", noCrashScript + "</body>");
+      }
+      oldSend.apply(this, arguments);
+    };
+  }
+  next();
+});
+
+// ======================== RECUPERACIÓN DE CONTRASEÑA ========================
+
+const crypto = require('crypto');
+const { Resend } = require('resend');
+
+// ←←← AQUÍ PEGAS TU API KEY DE RESEND.COM ←←←
+const resend = new Resend('re_AMXgc277_HKQ1q8iMDoXmkambcVSX8jV9'); // Cambia esto!!
+
+// Almacén temporal en memoria (después puedes usar Redis si quieres)
+const verificationCodes = new Map(); // email → { code, expires }
+
+// 1. Enviar código al correo
+app.post('/api/send-verification-code', async (req, res) => {
+    const { email } = req.body;
+
+    // Validar que el usuario exista en tu base de datos (opcional pero recomendado)
+    const usuario = await Usuario.findOne({ correo: email }); // ajusta según tu modelo
+    if (!usuario) return res.status(404).json({ message: 'Correo no encontrado' });
+
+    // Generar código de 6 dígitos
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    const expires = Date.now() + 10 * 60 * 1000; // 10 minutos
+
+    verificationCodes.set(email, { code, expires });
+
+    try {
+        await resend.emails.send({
+            from: 'Campus Connect <noreply@resend.dev>',
+            to: email,
+            subject: 'Código de recuperación - Campus Connect',
+            html: `
+                <div style="font-family: Arial; text-align: center; padding: 30px; background: #f9f9f9; border-radius: 10px;">
+                    <h1 style="color: #007bff; font-size: 40px; letter-spacing: 8px;">${code}</h1>
+                    <p>Este es tu código de verificación</p>
+                    <p>Válido por 10 minutos</p>
+                </div>
+            `
+        });
+
+        res.json({ message: 'Código enviado correctamente' });
+    } catch (error) {
+        console.error('Error Resend:', error);
+        res.status(500).json({ message: 'Error enviando el correo' });
+    }
+});
+
+// 2. Verificar el código
+app.post('/api/verify-code', (req, res) => {
+    const { email, code } = req.body;
+    const stored = verificationCodes.get(email);
+
+    if (!stored || stored.expires < Date.now() || stored.code !== code) {
+        return res.status(400).json({ message: 'Código inválido o expirado' });
+    }
+
+    res.json({ message: 'Código correcto' });
+});
+
+// 3. Cambiar contraseña
+app.post('/api/reset-password', async (req, res) => {
+    const { email, newPassword } = req.body;
+    const stored = verificationCodes.get(email);
+
+    if (!stored || stored.expires < Date.now()) {
+        return res.status(400).json({ message: 'Sesión expirada, solicita un nuevo código' });
+    }
+
+    try {
+        // BUSCAR EL USUARIO
+        const usuario = await Usuario.findOne({ correo: email });
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        // FORZAR EL HASH USANDO EL MIDDLEWARE pre('save')
+        usuario.contrasena = newPassword;  // ← Aquí se activa el pre('save')
+        await usuario.save();              // ← Esto sí hashea correctamente
+
+        // Limpiar código usado
+        verificationCodes.delete(email);
+
+        console.log(`Contraseña actualizada correctamente para: ${email}`);
+        res.json({ message: 'Contraseña actualizada con éxito' });
+
+    } catch (error) {
+        console.error('Error al actualizar contraseña:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+});
+
+// =========================================================================
+
+// ============================================
 // INICIAR SERVIDOR
 // ============================================
 const PORT = 3001;
